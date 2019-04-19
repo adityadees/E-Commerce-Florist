@@ -1,182 +1,239 @@
-  
-<!--newsletter area start-->
-<div class="newsletter_area">
+ <footer id="footer">
+  <div class="footer-center">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-2 col-md-6">
-                <div class="footer_logo">
-                    <a href="#"><img src="<?php echo base_url();?>assets/frontend/assets/img/logo/logo.png" alt=""></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="social_icone">
-                    <ul>
-                        <li><a href="#" title="facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#" title="feed"><i class="fa fa-feed"></i></a></li>
-                        <li><a href="#" title="linkedin"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-7">
-                <div class="newslatter_inner fix">
-                    <h4>send Newsletters</h4>
-                    <form action="#">
-                        <input placeholder="enter your email" type="text">
-                        <button type="submit">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+      <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 col-sp-12">
+          <div class="block-keep block">
+            <h4 class="title_block">About us</h4>
+            <div class="block_content">
+              <p>Lorem Khaled Ipsum is a major key to success. To be successful you’ve got to work hard, to make history, simple, you’ve got to make it. You do know</p>
+          </div>
+      </div>
+      <div class="social_block">
+        <ul class="links">
+          <li><a href="#"><em class="fa fa-facebook"></em><span class="unvisible">facebook</span> </a></li>
+          <li><a href="#"><em class="fa fa-twitter"></em><span class="unvisible">twitter</span> </a></li>
+          <li><a href="#"><em class="fa fa-google-plus"></em><span class="unvisible">google</span> </a></li>
+          <li><a href="#"><em class="fa fa-linkedin"></em><span class="unvisible">linkedin</span> </a></li>
+          <li><a href="#"><em class="fa fa-pinterest"></em><span class="unvisible">pinterest</span> </a></li>
+          <li class="last"><a href="#"><em class="fa fa-instagram"></em><span class="unvisible">instagram</span> </a></li>
+      </ul>
+  </div><!-- end social_block -->
+</div>
+<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 col-sp-12">
+  <div class="footer-block block">
+    <h4 class="title_block">Services</h4>
+    <ul class="toggle-footer list-group bullet">
+      <li><a href="#" title="Our Policy">Our Policy</a></li>
+      <li><a href="#" title="Gurantees">Gurantees</a></li>
+      <li><a href="#" title="Terms & Conditions">Terms & Conditions</a></li>
+      <li><a href="#" title="Shipping & Returns">Shipping & Returns</a></li>
+      <li><a href="#" title="F.A.Qs">F.A.Qs</a></li>
+  </ul>
+</div>
+</div>
+<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12 col-sp-12">
+  <div class="footer-block block">
+    <h4 class="title_block">Account</h4>
+    <ul class="toggle-footer list-group bullet">
+      <li><a href="page-login.html" title="Login">Login</a></li>
+      <li><a href="page-register.html" title="Register">Register</a></li>
+      <li><a href="#" title="Wishlist">Wishlist</a></li>
+      <li><a href="#" title="Order History">Order History</a></li>
+      <li><a href="page-checkout.html" title="Checkout">Checkout</a></li>
+  </ul>
+</div>
+</div>
+<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 col-sp-12">
+  <div class="block-html block">
+    <h4 class="title_block">Opening time</h4>
+    <div class="block_content">
+      <p>Monday to Friday ....... 8 am - 10 pm</p>
+      <p>Saturday & Sunday ....... 10 am - 9 pm</p>
+      <p>Holiday is off</p>
+  </div>
+</div><!-- end block-gallery -->
+</div>
+</div><!-- end row -->
+</div>
+</div><!-- end footer-center -->
+
+<div class="footer-copyright">
+    <div class="container">
+      <div class="row">
+        <div class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12 col-sp-12">
+          Copyright © 2017 - All rights reserved. Powered by Tivatheme
+      </div>
+  </div>
+</div>
+</div><!-- end footer-copyright -->
+</footer><!-- end footer -->
+
+
+
+<div class="go-up">
+  <a href="#"><i class="fa fa-chevron-up"></i></a>    
+</div><!-- end go-up -->
+</div> <!-- end all -->
+
+<!-- Multi-color -->
+<div id="multi-color" class="multi-color">
+    <span class="handle" title="Style Settings"><i class="fa fa-sun-o"></i></span>
+
+    <h4>Setting</h4>
+    
+    <p class="underline"><i class="fa fa-paint-brush"></i>Template color</p>
+    <div class="group-handle multi-groupcolor">
+      <span class="color color1" id="color1"></span>
+      <span class="color color2" id="color2"></span>
+      <span class="color color3" id="color3"></span>
+      <span class="color color4" id="color4"></span>
+      <span class="color color5" id="color5"></span>
+  </div>
+
+  <p class="underline"><i class="fa fa-toggle-on"></i>Fixed header</p>
+  <div class="group-handle"> 
+      <div class="btn-fixedheader">
+        <span class="button yes" data-value="1">Yes</span> 
+        <span class="button no active" data-value="0">No</span>
     </div>
 </div>
 
-<div class="footer_area">
-    <div class="container">
-        <div class="footer_top">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="single_footer">
-                        <h4>store information</h4>
-                        
-                        <ul>
-                            <li><i class="fa fa-home"></i>KPRI GUKA SMK N 3 PALEMBANG <br>JL SRIJAYA NEGARA BUKIT BESAR
-                         </li>
-                         <li><i class="fa fa-phone"></i> (0711) 351816</li>
-                         <li><a href="#"><i class="fa fa-envelope-square"></i> Gantriminimarket@gmail.com</a></li>
-                     </ul>
-                 </div> 
-             </div>
-             
-        </div>
-    </div>
-    <div class="copyright_area">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="widget_copyright">
-                    <p>copyright &copy; 2018 <a href="#">Gantri Minimarket</a>. all right reserved</p>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="payment">
-                    <a href="#"><img src="<?php echo base_url();?>assets/frontend/assets/img/visha/payment.png" alt=""></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-<!--footer area end-->
-<!--footer area end-->
+<p class="view-demos"><i class="fa fa-hand-o-right"></i><a href="http://tivatheme.com/html/landing-page/byhands/" title="View Other Demos">View All Demos</a></p>
+</div><!-- end multi-color -->
+
+
 
 <?php if(isset($produk)){
-   $tgl=date("Y-m-d h:i:s");
-   foreach($produk as $i) :
-       $jtable=[
-        'promo' => 'produk_kode',
-        'produk' => 'produk_kode'
-    ];
-    $where=[
-        't1.promo_start <='=>$tgl,
-        't1.promo_end >'=>$tgl,
-        't2.produk_kode'=>$i['produk_kode'],
-    ];
-    $promo = $this->Mymod->GetDataJoin($jtable,$where);
-    $gprom = $promo->row_array();
-    $newprc=($gprom['produk_harga']-(($gprom['produk_harga']*$gprom['promo_diskon'])/100));
-    ?> 
+    $tgl=date("Y-m-d h:i:s");
+    foreach($produk as $i) :
+        $jtable=[
+            'promo' => 'produk_kode',
+            'produk' => 'produk_kode'
+        ];
+        $where=[
+            't1.promo_start <='=>$tgl,
+            't1.promo_end >'=>$tgl,
+            't2.produk_kode'=>$i['produk_kode'],
+        ];
+        $promo = $this->Mymod->GetDataJoin($jtable,$where);
+        $gprom = $promo->row_array();
+        $newprc=($gprom['produk_harga']-(($gprom['produk_harga']*$gprom['promo_diskon'])/100));
+        ?> 
 
-    <div class="modal fade" id="modal_box<?= $i['produk_kode']; ?>" tabindex="-1" role="dialog"  aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-              <div class="modal_body">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-12">
-                            <div class="modal_tab">  
-                                <div class="tab-content" id="pills-tabContent">
-                                    <div class="tab-pane fade show active" id="tab1" role="tabpanel" >
-                                        <div class="modal_tab_img">
-                                            <a href="#"><img src="<?= base_url().'assets/images/'.$i['produk_gambar'];?>" alt=""></a>    
-                                            <?php if($promo->row_array() > 0 ) {?>
-                                                <div class="product_discount">
-                                                    <span>- <?= $gprom['promo_diskon']."%"; ?></span>
-                                                </div>
-                                            <?php } else {} ?>
+        <div class="modal fade" id="modal_box<?= $i['produk_kode']; ?>" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal_body mt-10">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-12" style="margin-top: 50px;margin-bottom: 50px;">
+                                    <div class="pb-left-column col-xs-12 col-sm-12 col-md-5">
+                                        <div id="image-blocks" class="clearfix">
+                                            <div id="view_full_size">
+                                                <img src="<?= base_url().'assets/images/product/'.$i['produk_gambar'];?>" alt="The Cottage Bouquet" class="img-responsive" width="470" height="627">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>   
-                            </div>  
-                        </div> 
-                        <div class="col-lg-7 col-md-7 col-sm-12">
-                            <div class="modal_right">
-                                <div class="modal_title mb-10">
-                                    <h2><?= $i['produk_nama']; ?></h2> 
-                                </div>
-                                <div class="modal_price mb-10">
+                                    <div class="pb-center-column col-xs-12 col-sm-12 col-md-7">
+                                        <div class="pb-centercolumn">
+                                            <h1><?= $i['produk_nama']; ?></h1>
+                                            <div class="price clearfix">
 
-                                    <?php 
-                                    if($promo->row_array() > 0 ) {?>
-                                        <span class="new_price"> <?= "Rp. ".number_format($newprc); ?>  </span>
-                                        <span class="old_price"> <?= "Rp. ".number_format($i['produk_harga']); ?> </span>
-                                    <?php } else { ?>
+                                                <?php 
+                                                if($promo->row_array() > 0 ) {?>
+                                                    <p class="our_price_display">
+                                                        <?= "Rp. ".number_format($newprc); ?>
+                                                    </p>
+                                                    <p class="old_price">
+                                                        <?= "Rp. ".number_format($i['produk_harga']); ?>
+                                                    </p>
+                                                <?php } else { ?>
+                                                    <p class="our_price_display">
+                                                        <?= "Rp. ".number_format($i['produk_harga']); ?>
+                                                    </p>
+                                                <?php }?> 
 
-                                        <span class="new_price"> <?= "Rp. ".number_format($i['produk_harga']); ?> </span>   
-                                    <?php }?> 
-                                </div>
-                                <div class="modal_add_to_cart mb-15">
+                                            </div><!-- end price -->
+                                            <div class="product-boxinfo">
+                                                <p id="availability_statut">
+                                                    <label>Info : </label>
+                                                    <?php if($promo->row_array() > 0 ) {?>
+                                                        <span id="availability_value" class="label label-success">Diskon <?= $gprom['promo_diskon']."%"; ?></span>
+                                                    <?php } else { ?>
+                                                        <span id="availability_value" class="label label-danger">Tidak ada diskon</span>
+                                                    <?php } ?>
 
+                                                </p>
+                                            </div><!-- end product-boxinfo -->
+                                            <div id="short_description_block">
+                                                <p>
+                                                  <?php 
+                                                  $long_string = $i['produk_ket'];
+                                                  $limited_string = limit_words($long_string, 24);
+                                                  echo $limited_string;
+                                                  ?>
+                                              </p>
+                                          </div><!-- end short_description_block -->
+                                          <div class="box-info-product clearfix">
+                                            <div id="quantity_wanted_p">
+                                                <label>Quantity</label>
+                                                <div class="group-quantity">
+                                                    <input type="number" min="1" name="qty" id="quantity_wanted" class="text form-control" value="1">
+                                                </div>
+                                            </div>
+                                        </div><!-- end box-info-product -->
+                                        <div class="box-cart-bottom clearfix">
+                                            <button id="add_to_cart" type="submit" name="Submit" class="exclusive btn button btn-primary" title="Add to cart">
+                                                Add to cart
+                                            </button>
+                                        </div><!-- end box-cart-bottom -->
+                                    </div><!-- end pb-centercolumn -->
+                                </div><!-- end pb-center-column -->
+                            </div><!-- end row -->
 
+                        </div>
+                    </div>
+                </div> 
 
-                                    <form action="<?= base_url();?>frontendc/addtocart" method="POST" name="cartForm">
-                                        <input min="1" max="100" value="1" type="number" name="qty">
-                                        <?php if(isset($_SESSION['logged_in_user'])) {
-                                            ?>
-                                            <input type="hidden" name="produk_kode" value="<?= $i['produk_kode'];?>">
-                                            <button type="submit" class="btn btn-primary">add to cart</button>
-                                        <?php } else { ?>
-                                            <button type="submit" disabled="disabled"  class="btn btn-primary">add to cart</button>
-                                            <span class="text-danger">*Anda harus login terlebih dahulu</span>
-                                            <?php 
-                                        } 
-                                        ?>
-
-                                    </form>
-                                </div>   
-                                <div class="modal_description mb-15">
-                                    <p><?= readmore($i['produk_ket']); ?></p>
-                                </div> 
-                                <div class="modal_social">
-                                    <h2>Share this product</h2>
-                                    <ul>
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                    </ul>    
-                                </div>      
-                            </div>    
-                        </div>    
-                    </div>     
-                </div>
-            </div>    
+                <div class="modal-footer">
+                    <div class="share-social">
+                        <span>Share:</span>
+                        <ul class="links list-inline">
+                            <li><a href="#"><em class="fa fa-facebook"></em></a></li>
+                            <li><a href="#"><em class="fa fa-twitter"></em></a></li>
+                            <li><a href="#"><em class="fa fa-google-plus"></em></a></li>
+                            <li><a href="#"><em class="fa fa-linkedin"></em></a></li>
+                            <li><a href="#"><em class="fa fa-pinterest"></em></a></li>
+                            <li class="last"><a href="#"><em class="fa fa-instagram"></em></a></li>
+                        </ul>
+                    </div><!-- end share-social -->
+                </div>   
+            </div>
         </div>
-    </div>
-</div> 
+    </div> 
 <?php endforeach; } else {}?>
 
 
 
-<script src="<?php echo base_url();?>assets/frontend/assets/js/vendor/jquery-1.12.0.min.js"></script>
-<script src="<?php echo base_url();?>assets/frontend/assets/js/popper.js"></script>
-<script src="<?php echo base_url();?>assets/frontend/assets/js/bootstrap.min.js"></script>
-<script src="<?php echo base_url();?>assets/frontend/assets/js/plugins.js"></script>
-<script src="<?php echo base_url();?>assets/frontend/assets/js/main.js"></script>
-</body>
 
+<!-- Vendor JS -->
+<script src="<?= base_url();?>assets/frontend/vendor/jquery/jquery.min.js"></script>
+<script src="<?= base_url();?>assets/frontend/vendor/owl.carousel/owl.carousel.min.js"></script>
+<script src="<?= base_url();?>assets/frontend/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+<script src="<?= base_url();?>assets/frontend/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="<?= base_url();?>assets/frontend/vendor/nivo-slider/js/jquery.nivo.slider.js"></script>
+
+<script src="<?= base_url();?>assets/frontend/vendor/slider-range/js/tmpl.js"></script>
+<script src="<?= base_url();?>assets/frontend/vendor/slider-range/js/jquery.dependClass-0.1.js"></script>
+<script src="<?= base_url();?>assets/frontend/vendor/slider-range/js/draggable-0.1.js"></script>
+<script src="<?= base_url();?>assets/frontend/vendor/slider-range/js/jquery.slider.js"></script>
+
+<!-- Template Base, Components and Settings -->
+<script src="<?= base_url();?>assets/frontend/js/theme.js"></script>
+
+<!-- Template Custom -->
+<script src="<?= base_url();?>assets/frontend/js/custom.js"></script>
+</body>
 </html>

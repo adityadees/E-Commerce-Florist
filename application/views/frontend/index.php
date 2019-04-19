@@ -1,388 +1,352 @@
-<div class="banner_slide_show mb-40">
-    <div class="banner_slider">
-        <div class="slider_active owl-carousel">
-            <?php foreach ($slider as $slide) :?>
-                <div class="single_slider single_slider_three" style="background-image: url(<?= base_url()?>assets/images/<?= $slide['slider_gambar']; ?>)">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-6 offset-lg-6 col-md-7 offset-md-5">
-                                <div class="slider_content slider_c_four">
-                                    <h1><?= $slide['slider_judul']; ?> </h1>
-                                    <p><?= $slide['slider_ket']; ?></p>
-                                </div>
-                            </div>  
-                        </div>
-                    </div>   
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
+  
+<div class="tiva-slideshow-wrapper">
+  <div id="tiva-slideshow" class="nivoSlider">
+    <?php $no=0; foreach ($slider as $slide) : $no++;?>
+    <a href="#" title="Slideshow image"><img class="img-responsive" src="<?= base_url()?>assets/images/slider/<?= $slide['slider_gambar']; ?>" title="#caption<?= $no; ?>" alt="Slideshow image"></a>
+  <?php endforeach; ?>
 </div>
 
-
-<div class="shipping_area mb-40">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="single_shipping">
-                    <div class="shippin_icone">
-                        <i class="fa fa-truck"></i>
-                    </div>
-                    <div class="shipping_content">
-                        <h3>Free shipping on orders over $100</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single_shipping">
-                    <div class="shippin_icone">
-                        <i class="fa fa-history"></i>
-                    </div>
-                    <div class="shipping_content">
-                        <h3>30-day returns money back guarantee</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="single_shipping box3">
-                    <div class="shippin_icone">
-                        <i class="fa fa-headphones"></i>
-                    </div>
-                    <div class="shipping_content">
-                        <h3>24/7 online support consultations</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
+<?php $no=0; foreach ($slider as $slide) : $no++;?>
+<div id="caption<?= $no; ?>" class="nivo-html-caption">
+  <div class="tiva-caption">
+    <div class="left-right hidden-xs normal very_large_60"><?= $slide['slider_judul']; ?></div>
+    <div class="left-right  hidden-md hidden-sm hidden-xs slow medium_16">
+      <?= $slide['slider_ket']; ?>
     </div>
+  </div>
 </div>
+<?php endforeach; ?>
 
-<div class="categorir_banner_four mb-40">
+</div><!-- end tiva-slideshow-wrapper -->
+
+
+<div id="columns" class="columns-container">
+  <div class="section section-tabsproduct">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="categorie_banner_title">
-                    <h2>shop by categories</h2>
-                </div>
-            </div>
-            <div class="categorie_banner_active owl-carousel">
-                <?php 
-                foreach ($kategori as $i) : 
-                    $cc = $this->Mymod->countkat($i['kategori_id'])->row_array();
-                    ?>
-                    <div class="col-lg-2">
-                        <div class="single_banner_categorie">
-                            <div class="categorie_thumb">
-                                <a href="<?= base_url()?>produk/kat/<?= $i['kategori_id'];?>"><img src="<?php echo base_url();?>assets/images/<?= $i['kategori_gambar']; ?>" alt=""  style="width: 150px;height: 150px"></a>
-                                <div class="categorie_number">
-                                    <span>(<?= $cc['Total']; ?>) products</span>
-                                </div>
-                            </div>
-                            <div class="categorie_name">
-                                <a href="<?= base_url()?>produk/kat/<?= $i['kategori_id'];?>"><?= $i['kategori_nama']; ?></a>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div> 
-        </div>
-    </div>
-</div>
+      <!-- tabs-top -->
+      <div class="tabs-top block">
+        <div class="block-title">
+          <h4 class="title_block">Shop By Collection</h4>
+          <!-- Nav tabs -->
+          <ul id="myTabs" class="nav nav-tabs" role="tablist">
+           <?php 
+           $no=0;
+           foreach ($kategori as $i) : 
+            $no++;
+            ?>
+            <li role="presentation" class="<?php if($no==1) { echo 'active';} else {}?>"><a href="#kat<?= $i['kategori_id']; ?>" aria-controls="<?= $i['kategori_nama']; ?>" role="tab" data-toggle="tab"><?= $i['kategori_nama']; ?></a></li>
+          <?php endforeach; ?>
+
+        </ul>
+      </div><!--end title -->
+
+      <!-- Tab panes -->
 
 
-<div class="product_area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-9 col-md-8">
-                <div class="product_inner">
-                    <div class="top_title">
-                        <h2> hot deals</h2>
-                    </div>
-                    <div class="row">
-
-                        <div class="product_active owl-carousel">
-                            <?php 
-                            foreach ($promo as $prom ):
-                                $tgl=date("Y-m-d h:i:s");
-                                if($prom['promo_start']<$tgl){
-                                    $newprc=($prom['produk_harga']-(($prom['produk_harga']*$prom['promo_diskon'])/100));
-                                    ?>
-                                    <div class="col-lg-3">
-                                        <div class="single_product">
-                                            <div class="product_thumb">
-                                                <a href="<?= base_url();?>produk/detail/<?= $prom['produk_kode']; ?>"><img src="<?php echo base_url();?>assets/images/<?= $prom['produk_gambar']; ?>" alt="" height="160px"></a>
-                                                <div class="product_discount">
-                                                    <span><?= "-".$prom['promo_diskon']."%";?></span>
-                                                </div>
-                                                <div class="quick_view categorie_view">
-                                                    <a href="#" data-toggle="modal" data-target="#modal_box<?= $prom['produk_kode'];?>" title="Quick view"><i class="fa fa-search"></i></a>
-                                                </div>
-
-                                            </div>
-                                            <div class="product_content">
-                                                <div class="product_timing">
-                                                    <div data-countdown="<?= $prom['promo_end'];?>"></div>
-                                                </div>
-                                                <div class="small_product_name">
-                                                    <a title="<?= $prom['produk_nama']; ?>" href="<?= base_url();?>produk/detail/<?= $prom['produk_kode']; ?>"><?= $prom['produk_nama'];?></a>
-                                                </div>
-                                                <div class="small_product_price">
-                                                    <span class="new_price"><?= "Rp. ".number_format($newprc);?> </span>
-                                                    <span class="old_price">  <?= "Rp. ".number_format($prom['produk_harga']);?>  </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } endforeach; ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4">
-                    <div class="product_banner fix">
-                        <a href="#"><img src="<?php echo base_url();?>assets/frontend/assets/img/banner/q.jpg" alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="featured_area mb-40">
-        <div class="container">
+      <div class="tab-content">
+        <?php  $no=0;   foreach ($kategori as $i) :  $no++;  ?>
+        <div role="tabpanel" class="tab-pane <?php if($no==1) { echo 'active';} else {}?>" id="kat<?= $i['kategori_id']; ?>">
+          <div class="block_content">
             <div class="row">
-                <div class="col-lg-9">
-                    <div class="featured_produt feature_p_four mb-40">    
-                        <div class="top_title">
-                            <h2> Bestseller</h2>
+
+
+             <?php 
+             $tgl=date("Y-m-d h:i:s");
+             $where = [
+              'kategori_id'=>$i['kategori_id'],
+            ];
+            $get_subkat=$this->db->get_where('sub_kategori',$where)->result_array();
+
+            foreach ($get_subkat as $gsubkat) :
+              ?>
+              <?php 
+              $where = [
+                'sk_id'=>$gsubkat['sk_id'],
+              ];
+              $get_prod=$this->db->get_where('produk',$where)->result_array();
+              $gkdlmt = 0;
+              foreach ($get_prod as $gprod) :
+                $gkdlmt++;
+                $jtable=[
+                  'promo' => 'produk_kode',
+                  'produk' => 'produk_kode'
+                ];
+                $where=[
+                  't1.promo_start <='=>$tgl,
+                  't1.promo_end >'=>$tgl,
+                  't2.produk_kode'=>$gprod['produk_kode'],
+                ];
+                $promo = $this->Mymod->GetDataJoin($jtable,$where);
+                $gprom = $promo->row_array();
+                $newprc=($gprom['produk_harga']-(($gprom['produk_harga']*$gprom['promo_diskon'])/100));
+
+                if($gkdlmt<=8){
+                  ?>
+
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-sp-12">
+                    <div class="product-container">
+                      <div class="left-block">
+                        <div class="product-image-container">
+                          <a class="product_img_link" href="<?= base_url();?>produk/detail/<?= $gprod['produk_kode']; ?>" title="<?= $gprod['produk_nama']; ?>">
+                            <img src="<?= base_url().'assets/images/product/'.$gprod['produk_gambar'];?>" alt="<?= $gprod['produk_nama']; ?>" class="img-responsive" width="480" height="640">
+                          </a>
+                          <?php if($promo->row_array() > 0 ) {?>
+
+                            <span class="label-reduction label">- <?= $gprom['promo_diskon']."%"; ?></span>
+                          <?php } else {} ?>
                         </div>
-                        <div class="f_active_four owl-carousel">
-                            <?php 
-                            $tgl=date("Y-m-d h:i:s");
-                            foreach($best as $i): 
-                                $gtable='produk';
-                                $gwhere='produk_kode';
-                                $gdata=$i['produk_kode'];
-
-                                $gc= $this->Mymod->ViewDetail($gtable,$gwhere,$gdata);
-
-                                $jtable=[
-                                    'promo' => 'produk_kode',
-                                    'produk' => 'produk_kode'
-                                ];
-                                $where=[
-                                    't1.promo_start <='=>$tgl,
-                                    't1.promo_end >'=>$tgl,
-                                    't2.produk_kode'=>$gc['produk_kode'],
-                                ];
-                                $promo = $this->Mymod->GetDataJoin($jtable,$where);
-                                $gprom = $promo->row_array();
-                                $newprc=($gprom['produk_harga']-(($gprom['produk_harga']*$gprom['promo_diskon'])/100));
-                                ?>
-                                <div class="single_featured">
-                                    <div class="single_product single_p_four">
-                                        <div class="product_thumb">
-                                           <a href="<?= base_url();?>produk/detail/<?= $gc['produk_kode']; ?>"><img src="<?php echo base_url();?>assets/images/<?= $gc['produk_gambar']; ?>" alt=""></a>
-                                           <?php if($promo->row_array() > 0 ) {?>
-                                            <div class="product_discount">
-                                                <span>- <?= $gprom['promo_diskon']."%"; ?></span>
-                                            </div>
-                                        <?php } else {} ?>
-                                        <div class="quick_view categorie_view">
-                                            <a href="#" data-toggle="modal" data-target="#modal_box<?= $gc['produk_kode'];?>" title="Quick view"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product_content">
-                                        <div class="small_product_name">
-                                            <a title="<?= $gc['produk_nama']; ?>" href="<?= base_url();?>produk/detail/<?= $gc['produk_kode']; ?>"><?= $gc['produk_nama'];?></a>
-                                        </div>
-                                        <div class="small_product_price">
-                                         <?php if($promo->row_array() > 0 ) {?>
-                                            <span class="new_price"> <?= "Rp. ".number_format($newprc); ?>  </span>
-                                            <span class="old_price"> <?= "Rp. ".number_format($gc['produk_harga']); ?> </span>
-                                        <?php } else { ?>
-
-                                            <span class="new_price"> <?= "Rp. ".number_format($gc['produk_harga']); ?> </span>
-
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="box-buttons">
+                          <a class="ajax_add_to_cart_button button btn" href="#" rel="nofollow" title="Add to cart"><i class="zmdi zmdi-shopping-cart"></i></a>
+                          <a class="button btn quick-view" href="#" data-toggle="modal" data-target="#modal_box<?= $gprod['produk_kode']; ?>"  title="Quick view">
+                            <i class="zmdi zmdi-eye"></i>
+                          </a>
                         </div>
-                    <?php endforeach; ?>
+                      </div><!--end left block -->
+                      <div class="right-block">
+                        <div class="product-box">
+                          <h5 class="name">
+                            <a class="product-name" href="<?= base_url();?>produk/detail/<?= $gprod['produk_kode']; ?>" title="<?= $gprod['produk_nama']; ?>">
+                             <?php 
+                             $long_string = $gprod['produk_nama'];
+                             $limited_string = limit_words($long_string, 4);
+                             echo $limited_string;
+                             ?>
+                           </a>
+                         </h5>
+                         <div class="content_price">
+                           <?php if($promo->row_array() > 0 ) {?>
+
+                            <span class="price product-price"><?= "Rp. ".number_format($newprc); ?></span>
+                            <span class="old-price product-price"><?= "Rp. ".number_format($gprod['produk_harga']); ?></span>
+                          <?php } else { ?>
+
+                            <span class="new_price"> <?= "Rp. ".number_format($gprod['produk_harga']); ?> </span>
+
+                          <?php } ?>
+                        </div>
+                      </div><!-- end product-box -->
+                    </div><!--end right block -->
+                  </div><!-- end product-container-->
                 </div>
-            </div>    
+
+              <?php } endforeach; ?>
+            <?php endforeach; ?>
+
+
+          </div><!-- end row -->
+        </div><!-- end block_content -->
+      </div>
+    <?php endforeach; ?>
+
+  </div>
+
+
+</div><!-- end tabs-top -->
+</div><!-- end container -->
+</div><!-- end section-tabsproduct -->
+
+
+<div class="section section-testimoniol">
+  <div class="container">
+    <div class="testimoniol-slider">
+      <div class="testimoniol-items">
+        <div class="item">
+          <img class="img-responsive" src="<?= base_url();?>assets/frontend/img/testimonial/1.png" alt="">
+          <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima</p>
+          <a href="#" title="">John Doe</a><br>
+          <span class="position">CEO & Founder</span>
         </div>
-
-
-        <div class="col-lg-3 col-md-3 ">
-
-            <div class="brand_logo brand_logo_two">  
-                <div class="top_title mb-10">
-                    <h2> logo brands</h2>
-                </div>
-                <div class="brand_active_two active_four owl-carousel">
-                    <div class="single_brand_item single_i_four">
-                        <div class="brand_itens_inner">
-                            <div class="single_brand single_b_four">
-                                <a href="#"><img src="<?php echo base_url();?>assets/frontend/assets/img/brand/bni.png" alt="" height="50px"></a>
-                            </div>
-                        </div>
-                        <div class="brand_itens_inner">
-                            <div class="single_brand single_b_four">
-                                <a href="#"><img src="<?php echo base_url();?>assets/frontend/assets/img/brand/bri.png" alt="" height="50px"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> 
+        <div class="item">
+          <img class="img-responsive" src="<?= base_url();?>assets/frontend/img/testimonial/2.png" alt="">
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima</p>
+          <a href="#" title="">Tivatheme</a><br>
+          <span class="position">CEO & Founder</span>
         </div>
-
-         <!--    <div class="col-lg-6">
-                <div class="featured_produt feature_p_four mb-40">    
-                    <div class="top_title">
-                        <h2> shop by <?= $shoprand['kategori_nama']; ?></h2>
-                    </div>
-                    <div class="f_active_four owl-carousel">
-
-                     <?php 
-                     $where = [
-                        'kategori_id'=>$shoprand['kategori_id'],
-                    ];
-                    $get_subkat=$this->db->get_where('sub_kategori',$where)->result_array();
-
-                    foreach ($get_subkat as $gsubkat) :
-                        ?>
-                        <?php 
-                        $where = [
-                            'sk_id'=>$gsubkat['sk_id'],
-                        ];
-                        $get_sublist=$this->db->get_where('list',$where)->result_array();
-
-                        foreach ($get_sublist as $glist) :
-                            ?>
-                            <?php 
-                            $where = [
-                                'list_id'=>$glist['list_id']
-                            ];
-                            $get_prod=$this->db->get_where('produk',$where)->result_array();
-
-                            foreach ($get_prod as $gprod) :
-                                ?>
-                                <div class="single_featured">
-                                    <div class="product_thumb">
-                                        <a href="<?= base_url();?>produk/detail/<?= $gprod['produk_kode'];?>"><img src="<?= base_url().'assets/images/'.$gprod['produk_gambar'];?>" alt="" width="200px" height="200px"></a>
-                                        <div class="product_discount">
-                                            <span>New</span>
-                                        </div>
-                                        <div class="product_action">
-                                            <ul>
-                                               <?php if(isset($_SESSION['logged_in_user'])) {
-                                                ?>
-                                                <li><button class="btn  btn-primary" type="submit"><i class="fa fa-shopping-cart"></i></button></li>
-
-                                            <?php  } else {} ?>
-                                        </ul>
-                                    </div>
-                                    <div class="quick_view">
-                                        <a href="#" data-toggle="modal" data-target="#modal_box<?= $gprod['produk_kode']; ?>" title="Quick view"><i class="fa fa-search"></i></a>
-                                    </div>
-
-                                </div>
-                                <div class="product_content">
-                                    <div class="small_product_name">
-                                        <a title="Printed Summer Dress" href="<?= base_url();?>produk/detail/<?= $gprod['produk_kode'];?>"><?= $gprod['produk_nama']; ?>
-                                    </div>
-                                    <div class="small_product_price">
-                                        <span class="new_price"><?= "Rp. ".number_format($gprod['produk_harga']); ?></span>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
+      </div>
+    </div><!-- end testimoniol-slider -->
+  </div><!-- end container -->
+</div><!--end section-testimoniol-->
 
 
-                    <?php endforeach; ?>
-                <?php endforeach; ?>
-            </div>
-        </div>    
-    </div> -->
+<div class="section section-bestsellers">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="tiva-prolist">
+          <h4 class="title_block">Best sellers</h4>
+          <div class="block_content">
+            <div class="bestsellers-owlcaousel owl-carousel">
+              <?php 
+              $tgl=date("Y-m-d h:i:s");
+              foreach($best as $i): 
+                $gtable='produk';
+                $gwhere='produk_kode';
+                $gdata=$i['produk_kode'];
 
+                $gc= $this->Mymod->ViewDetail($gtable,$gwhere,$gdata);
 
-</div>
-</div>
-</div>
+                $jtable=[
+                  'promo' => 'produk_kode',
+                  'produk' => 'produk_kode'
+                ];
+                $where=[
+                  't1.promo_start <='=>$tgl,
+                  't1.promo_end >'=>$tgl,
+                  't2.produk_kode'=>$gc['produk_kode'],
+                ];
+                $promo = $this->Mymod->GetDataJoin($jtable,$where);
+                $gprom = $promo->row_array();
+                $newprc=($gprom['produk_harga']-(($gprom['produk_harga']*$gprom['promo_diskon'])/100));
+                ?>
+                <div class="item">
+                  <div class="product-container">
+                    <div class="left-block">
+                      <div class="product-image-container">
+                        <a class="product_img_link" href="<?= base_url();?>produk/detail/<?= $gc['produk_kode']; ?>" title="<?= $gc['produk_nama'];?>">
+                          <img src="<?php echo base_url();?>assets/images/product/<?= $gc['produk_gambar']; ?>" alt="<?= $gc['produk_nama'];?>" class="img-responsive" width="480" height="640">
+                        </a>
+                        <?php if($promo->row_array() > 0 ) {?>
+                          <span class="label-reduction label"><?= $gprom['promo_diskon']."% -"; ?></span>
+                        <?php } else {} ?>
+                      </div>
+                      <div class="box-buttons">
+                        <a class="ajax_add_to_cart_button button btn" href="#" rel="nofollow" title="Add to cart"><i class="zmdi zmdi-shopping-cart"></i></a>
+                        <a class="button btn quick-view" href="#" data-toggle="modal" data-target="#modal_box<?= $gc['produk_kode']; ?>"   title="Quick view">
+                          <i class="zmdi zmdi-eye"></i>
+                        </a>
+                      </a>
+                    </div>
+                  </div><!--end left block -->
+                  <div class="right-block">
+                    <div class="product-box">
+                      <h5 class="name">
+                        <a class="product-name" href="<?= base_url();?>produk/detail/<?= $gc['produk_kode']; ?>" title="<?= $gc['produk_nama'];?>">
+                          <?= $gc['produk_nama'];?>
+                        </a>
+                      </h5>
+                      <div class="content_price">
+                        <?php if($promo->row_array() > 0 ) {?>
+                          <span class="price product-price"><?= "Rp. ".number_format($newprc); ?> </span>
+                          <span class="old-price product-price"> <?= "Rp. ".number_format($gc['produk_harga']); ?> </span>
+                        <?php } else { ?>
+                          <span class="price product-price"><?= "Rp. ".number_format($gc['produk_harga']); ?> </span>
+                        <?php } ?>
+                      </div>
+                    </div><!-- end product-box -->
+                  </div><!--end right block -->
+                </div><!-- end product-container-->
+              </div>
+            <?php endforeach; ?>
 
-
-<div class="static_area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="single_static mb-30">
-                    <div class="icone_static">
-                        <i class="fa fa-address-book"></i>
-                    </div>
-                    <div class="content_static">
-                        <h4>Free Delivery</h4>
-                        <p>All the beautiful pieces are made in Italy and manufactured with the greatest attention. Now Fashion extends to a range of accessories</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single_static mb-30">
-                    <div class="icone_static">
-                        <i class="fa fa-cubes"></i>
-                    </div>
-                    <div class="content_static">
-                        <h4>Big Saving</h4>
-                        <p>All the beautiful pieces are made in Italy and manufactured with the greatest attention. Now Fashion extends to a range of accessories</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single_static mb-30">
-                    <div class="icone_static">
-                        <i class="fa fa-tags"></i>
-                    </div>
-                    <div class="content_static">
-                        <h4>Gift Vouchers</h4>
-                        <p>All the beautiful pieces are made in Italy and manufactured with the greatest attention. Now Fashion extends to a range of accessories</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single_static">
-                    <div class="icone_static">
-                        <i class="fa fa-codepen"></i>
-                    </div>
-                    <div class="content_static">
-                        <h4>Easy return</h4>
-                        <p>All the beautiful pieces are made in Italy and manufactured with the greatest attention. Now Fashion extends to a range of accessories</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single_static">
-                    <div class="icone_static">
-                        <i class="fa fa-cut"></i>
-                    </div>
-                    <div class="content_static">
-                        <h4>Save 20% When You</h4>
-                        <p>All the beautiful pieces are made in Italy and manufactured with the greatest attention. Now Fashion extends to a range of accessories</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single_static">
-                    <div class="icone_static">
-                        <i class="fa fa-diamond"></i>
-                    </div>
-                    <div class="content_static">
-                        <h4>Free Delivery Worldwide</h4>
-                        <p>All the beautiful pieces are made in Italy and manufactured with the greatest attention. Now Fashion extends to a range of accessories</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+          </div><!-- end bestsellers-owlcaousel -->
+        </div><!-- end bock_content -->
+      </div><!-- end tiva-prolist -->
     </div>
-</div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="banner-item effect">
+        <a class="image-wrap" href="#" title=""><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/banner/banner1-h3.jpg" alt=""></a>
+      </div>
+    </div>
+  </div><!-- end row -->
+</div><!-- end container -->
+</div><!-- end section-bestsellers -->
+
+
+
+<div class="section section-servies">
+  <div class="services-items">
+    <div class="row no-gutters">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-sp-12">
+        <div class="services-item services-item1">
+          <div class="media">    
+            <div class="icon-box">   
+              <i class="zmdi zmdi-truck"></i>
+            </div>    
+            <div class="media-body">        
+              <h4><a title="Free shipping" href="#">Free shipping</a></h4>        
+              <p>Guaranteed delivery in 3 days</p>    
+            </div>
+          </div>
+        </div><!--end services-item-->
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-sp-12">
+        <div class="services-item services-item2">
+          <div class="media">    
+            <div class="icon-box">   
+              <i class="zmdi zmdi-mail-reply-all"></i>
+            </div>    
+            <div class="media-body">        
+              <h4><a title="Exchanges & returns" href="#">Exchanges & returns</a></h4>        
+              <p>100% money back within 30 days</p>    
+            </div>
+          </div>
+        </div><!--end services-item-->
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-sp-12">
+        <div class="services-item services-item3">
+          <div class="media">    
+            <div class="icon-box">   
+              <i class="zmdi zmdi-comments"></i>
+            </div>    
+            <div class="media-body">        
+              <h4><a title="Online support" href="#">Online support</a></h4>        
+              <p>Live chat or call us 24/7</p>    
+            </div>
+          </div>
+        </div><!--end services-item-->
+      </div>
+    </div>
+  </div><!-- end services-items -->
+</div><!-- end section-servies -->
+
+<div class="section section-manufacture" style="">
+  <div class="container">
+    <div class="block manufacturers_block">
+      <ul class="manufacture_block">
+        <li><a href="#"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/brand/logo_image1.jpg" alt=""></a></li>
+        <li><a href="#"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/brand/logo_image2.jpg" alt=""></a></li>
+        <li><a href="#"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/brand/logo_image3.jpg" alt=""></a></li>
+        <li><a href="#"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/brand/logo_image4.jpg" alt=""></a></li>
+        <li><a href="#"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/brand/logo_image5.jpg" alt=""></a></li>
+        <li><a href="#"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/brand/logo_image1.jpg" alt=""></a></li>
+        <li><a href="#"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/brand/logo_image2.jpg" alt=""></a></li>
+        <li><a href="#"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/brand/logo_image3.jpg" alt=""></a></li>
+      </ul><!--end manufacture_block-->
+    </div><!-- end Manufactures -->
+  </div><!-- end container -->
+</div><!-- end section-manufacture -->
+
+<section class="section section-gallery" style="background: #fafafa">
+  <div class="container">
+    <div class="block-gallery block">
+      <h4 class="title_block">Gallery</h4>
+      <p class="des-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ut labore et dolore</p>
+      <div class="block_content">
+        <div class="row no-gutters">
+          <div class="image-item col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sp-4">
+            <a href="<?= base_url();?>assets/frontend/img/gallery/1.jpg"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/gallery/1.jpg" alt=""></a>
+          </div>
+          <div class="image-item col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sp-4">
+            <a href="<?= base_url();?>assets/frontend/img/gallery/2.jpg"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/gallery/2.jpg" alt=""></a>
+          </div>
+          <div class="image-item col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sp-4">
+            <a href="<?= base_url();?>assets/frontend/img/gallery/3.jpg"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/gallery/3.jpg" alt=""></a>
+          </div>
+          <div class="image-item col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sp-4">
+            <a href="<?= base_url();?>assets/frontend/img/gallery/4.jpg"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/gallery/4.jpg" alt=""></a>
+          </div>
+          <div class="image-item col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sp-4">
+            <a href="<?= base_url();?>assets/frontend/img/gallery/5.jpg"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/gallery/5.jpg" alt=""></a>
+          </div>
+          <div class="image-item col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sp-4">
+            <a href="<?= base_url();?>assets/frontend/img/gallery/6.jpg"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/gallery/6.jpg" alt=""></a>
+          </div>
+        </div>
+      </div>
+    </div><!-- end block-gallery -->
+  </div><!-- end container -->
+</section><!-- end section-gallery -->
+
+
+</div><!--end columns -->
 

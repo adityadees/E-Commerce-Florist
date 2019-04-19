@@ -164,7 +164,7 @@ class Mymod extends CI_Model{
         return $res;
     }
 
-
+/*
     public function related($where){
         $this->db->select('*');
         $this->db->from('produk');
@@ -221,21 +221,6 @@ class Mymod extends CI_Model{
         $res = $this->db->get();
         return $res;
     }
-
-    public function countkat($kat){
-        $res = $this->db->query("SELECT
-            kategori.kategori_id,
-            COUNT(produk.produk_kode) AS Total
-            FROM
-            kategori
-            LEFT JOIN sub_kategori on kategori.kategori_id=sub_kategori.kategori_id
-            LEFT JOIN list ON list.sk_id = sub_kategori.sk_id
-            LEFT JOIN produk on produk.list_id=list.list_id
-            WHERE kategori.kategori_id=$kat
-            GROUP BY kategori.kategori_id");
-        return $res;
-    }
-
     public function GetDataJoinNW($table){
         $i=1;
         foreach($table as $table_name=>$table_id){ 
@@ -258,6 +243,22 @@ class Mymod extends CI_Model{
         $res = $this->db->get();
         return $res;
     }
+    
+    public function countkat($kat){
+        $res = $this->db->query("SELECT
+            kategori.kategori_id,
+            COUNT(produk.produk_kode) AS Total
+            FROM
+            kategori
+            LEFT JOIN sub_kategori on kategori.kategori_id=sub_kategori.kategori_id
+            LEFT JOIN list ON list.sk_id = sub_kategori.sk_id
+            LEFT JOIN produk on produk.list_id=list.list_id
+            WHERE kategori.kategori_id=$kat
+            GROUP BY kategori.kategori_id");
+        return $res;
+    }
+*/
+
 
 
 }

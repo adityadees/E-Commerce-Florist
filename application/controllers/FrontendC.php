@@ -12,7 +12,7 @@ class FrontendC extends CI_Controller{
 		$prod = $this->Mymod->ViewData('produk');
 		$kat = $this->Mymod->ViewData('kategori');
 		$slide = $this->Mymod->ViewData('slider');
-		$promo = $this->Mymod->ViewData('promo');
+	//	$promo = $this->Mymod->ViewData('promo');
 		$best = $this->Mymod->best_seller()->result_array();
 		$tgl=date('Y-m-d H:i:s');
 
@@ -24,16 +24,16 @@ class FrontendC extends CI_Controller{
 			't1.promo_start <='=>$tgl,
 			't1.promo_end >'=>$tgl,
 		];
-		$promo = $this->Mymod->GetDataJoin($jtable,$where)->result_array();
-		$shoprand = $this->Mymod->order_by_rand('kategori');
+	//	$promo = $this->Mymod->GetDataJoin($jtable,$where)->result_array();
+	//	$shoprand = $this->Mymod->order_by_rand('kategori');
 
-		$x['produk'] = $prod;
+	//	$x['produk'] = $prod;
 		$xx['produk'] = $prod;
-		$x['shoprand'] = $shoprand;
+	//	$x['shoprand'] = $shoprand;
 		$x['kategori'] = $kat;
 		$y['kategori'] = $kat;
 		$x['slider'] = $slide;
-		$x['promo'] = $promo;
+	//	$x['promo'] = $promo;
 		$x['best'] = $best;
 
 
@@ -45,7 +45,7 @@ class FrontendC extends CI_Controller{
 		$this->load->view('frontend/layout/footer',$xx);
 
 	}
-
+/*
 	public function pembayaran(){
 		$y['title']='Pembayaran';
 		$this->load->view('frontend/layout/header',$y);
@@ -587,5 +587,5 @@ class FrontendC extends CI_Controller{
 			$this->session->set_flashdata('error', 'Gagal ngeirim data '.$title);
 			redirect('upload/pembayaran');		
 		}
-	}
+	}*/
 }
