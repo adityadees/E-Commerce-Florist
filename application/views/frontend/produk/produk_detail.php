@@ -1,23 +1,15 @@
-<br>
-<div class="breadcrumbs_area bread_about">
+<div id="breadcrumb" class="clearfix">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="breadcrumb_content">
-                    <div class="breadcrumb_header">
-                        <a href="index.html"><i class="fa fa-home"></i></a>
-                        <span><i class="fa fa-angle-right"></i></span>
-                        <span> <a href="shop.html">product</a></span>
-
-                        <span><i class="fa fa-angle-right"></i></span>
-                        <span> Product Details</span>
-                    </div>
-                </div>
-            </div>
+        <div class="breadcrumb clearfix">
+            <ul class="ul-breadcrumb">
+                <li><a href="<?= base_url()?>" title="Home">Home</a></li>
+                <li><a href="<?= base_url('produk')?>" title="Product">Product</a></li>
+                <li><span><?= $prd_detail['produk_nama']; ?></span></li>
+            </ul>
+            <h2 class="bread-title">Products Detail</h2>
         </div>
     </div>
-</div>
-
+</div><!-- end breadcrumb -->
 
 
 <?php 
@@ -35,254 +27,174 @@ $promo = $this->Mymod->GetDataJoin($jtable,$where);
 $gprom = $promo->row_array();
 $newprc=($gprom['produk_harga']-(($gprom['produk_harga']*$gprom['promo_diskon'])/100));
 
-$glist = $this->Mymod->ViewDetail('list','list_id',$prd_detail['list_id']);
-$gsubkat = $this->Mymod->ViewDetail('sub_kategori','sk_id',$glist['sk_id']);
+$gsubkat = $this->Mymod->ViewDetail('sub_kategori','sk_id',$prd_detail['sk_id']);
 $gkategori = $this->Mymod->ViewDetail('kategori','kategori_id',$gsubkat['kategori_id']);
 ?>
 
 
-<div class="product_details">
+<div id="columns" class="columns-container">
+    <!-- container -->
     <div class="container">
         <div class="row">
-            <div class="col-lg-5 col-md-6">
-                <div class="product_d_tab fix">  
-                    <div class="tab-content product_d_content">
-                        <div class="tab-pane fade show active" id="p_d_tab1" role="tabpanel" >
-                            <div class="modal_tab_img">
-                                <a href="#"><img src="<?= base_url().'assets/images/'.$prd_detail['produk_gambar'];?>" data-zoom-image="<?= base_url().'assets/images/'.$prd_detail['produk_gambar'];?>" alt=""></a>
-                                <?php if($promo->row_array() > 0 ) {?>
-                                    <div class="product_discount">
-                                        <span>- <?= $gprom['promo_diskon']."%"; ?></span>
-                                    </div>
-                                <?php } else {} ?>
-                                <div class="view_img">
-                                    <a class="view_large_img" href="<?= base_url().'assets/images/'.$prd_detail['produk_gambar'];?>">View larger <i class="fa fa-search-plus"></i></a>
-                                </div>    
-                            </div>
-                        </div>
+            <div class="pb-left-column col-xs-12 col-sm-12 col-md-5">
+                <div id="image-block" class="clearfix">
+                    <div id="view_full_size">
+                        <img src="<?= base_url().'assets/images/product/'.$prd_detail['produk_gambar'];?>" alt="<?= $prd_detail['produk_nama']; ?>" class="img-responsive" width="470" height="627">
                     </div>
-                </div> 
-            </div>
-            <div class="col-lg-7 col-md-6">
-                <div class="product_d_right">
+                </div><!-- end #image-block -->
+            </div><!-- end pb-left-column -->
+            <div class="pb-center-column col-xs-12 col-sm-12 col-md-7">
+                <div class="pb-centercolumn">
                     <h1><?= $prd_detail['produk_nama']; ?></h1>
-                    <div class="product_reference">
-                        <p>
-                            Reference: 
-                            <span><?= $gkategori['kategori_nama']; ?></span>
-                            >  
-                            <span><?= $gsubkat['sk_nama']; ?></span> 
-                            > 
-                            <span><?= $glist['list_nama']; ?></span> 
-                        </p>
-                    </div>
-                    <div class="small_product_price mb-15">
+                    <div class="price clearfix">
                         <?php if($promo->row_array() > 0 ) {?>
-                            <span class="new_price"> <?= "Rp. ".number_format($newprc); ?>  </span>
-                            <span class="old_price"> <?= "Rp. ".number_format($prd_detail['produk_harga']); ?> </span>
+                            <p class="our_price_display">
+                                <?= "Rp. ".number_format($newprc); ?>
+                            </p>
+                            <p class="old_price">
+                                <?= "Rp. ".number_format($prd_detail['produk_harga']); ?>
+                            </p>
                         <?php } else { ?>
-
-                            <span class="new_price"> <?= "Rp. ".number_format($prd_detail['produk_harga']); ?> </span>
-
+                            <p class="our_price_display">
+                                <?= "Rp. ".number_format($prd_detail['produk_harga']); ?>
+                            </p>
                         <?php } ?>
-                    </div>
-                    <div class="product_d_quantity mb-20">
 
+                    </div><!-- end price -->
+                    <div class="product-boxinfo">  
+                        <p id="product_reference">
+                            <label>Reference: </label>
+                             <span class="editable"><?= $gkategori['kategori_nama']; ?></span>
+                            >  
+                            <span class="editable"><?= $gsubkat['sk_nama']; ?></span> 
+                        </p>
 
-                        <form action="<?= base_url();?>frontendc/addtocart" method="POST" name="cartForm">
-                            <input min="0" max="100" value="1" type="number" name="qty">
-                            <?php if(isset($_SESSION['logged_in_user'])) {
-                                ?>
-                                <input type="hidden" name="produk_kode" value="<?= $prd_detail['produk_kode'];?>">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                            <?php } else { ?>
-                                <button type="submit" disabled="disabled"  class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</button>
-                                <span class="text-danger">*Anda harus login terlebih dahulu</span>
-                                <?php 
-                            } 
-                            ?>
-                        </form>
-
-                    </div>
-                    <div class="product_d_social mb-40">
-                        <ul>
-                            <li><a href="#"> <i class="fa fa-twitter"></i> Tweet </a></li>
-                            <li><a href="#"> <i class="fa fa-facebook-f"></i>  Share  </a></li>
-                            <li><a href="#"> <i class="fa fa-google-plus" aria-hidden="true"></i>Google+ </a></li>
-                            <li><a href="#"> <i class="fa fa-pinterest"></i>  Pinterest </a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<br>
-<div class="product__details_tab mb-40">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 ">
-                <div class="product_details_tab_inner"> 
-                    <div class="product_details_tab_button">    
-                        <ul class="nav" role="tablist">
-                            <li >
-                                <a class="nav-link active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">More info</a>
-                            </li>
-                        </ul>
-                    </div> 
-                    <div class="tab-content product_details_content">
-                        <div class="tab-pane fade show active" id="info" role="tabpanel" >
-                            <div class="product_d_tab_content">
-
-
-                                <?php 
-                                $prparent = $this->Mymod->ViewDetail('produk','produk_kode',$prd_detail['produk_parent']);
-                                if($prparent['produk_parent']=='null'){ ?>
-                                    <p><?= $prd_detail['produk_ket']; ?></p>
-                                <?php }
-                                else {
-                                    ?>
-
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <h4 class="text-center" style="margin-bottom:10px"><b>Related Produk</b>
-                                                <div style="padding-top:10px; border-bottom: 1px solid #c8d6e5;margin-bottom:10px;,padding-top:10px;"></div>
-                                            </h4>
-                                            <div class="single_product categorie">
-                                                <div class="product_thumb ">
-                                                  <a href="<?= base_url().'produk/detail/'.$prparent['produk_kode'];?>"><img src="<?= base_url().'assets/images/'.$prparent['produk_gambar'];?>" alt="" style="width: 300px; height:200px; "></a>
-                                                  <?php if($promo->row_array() > 0 ) {?>
-                                                    <div class="product_discount">
-                                                        <span>- <?= $gprom['promo_diskon']."%"; ?></span>
-                                                    </div>
-                                                <?php } else {} ?>
-                                                <div class="quick_view categorie_view">
-                                                    <a href="#" data-toggle="modal" data-target="#modal_box<?= $prparent['produk_kode'];?>" title="Quick view"><i class="fa fa-search"></i></a>
-                                                </div>
-
-                                            </div>
-                                            <div class="product_content">
-                                                <div class="small_product_name text-center">
-                                                    <a title="<?= $prparent['produk_nama']; ?>" href="<?= base_url().'produk/detail/'.$prparent['produk_kode'];?>"><b> <?= $prparent['produk_nama']; ?> </b></a>
-                                                </div>
-                                                <div style="text-align: center;font-size: 17px;color:red;">
-                                                    <b>
-                                                        <?php if($promo->row_array() > 0 ) {?>
-                                                            <span class="new_price"> <?= "Rp. ".number_format($newprc); ?>  </span>
-                                                            <span class="old_price"> <?= "Rp. ".number_format($prparent['produk_harga']); ?> </span>
-                                                        <?php } else { ?>
-
-                                                            <span class="new_price"> <?= "Rp. ".number_format($prparent['produk_harga']); ?> </span>
-
-                                                        <?php } ?>
-                                                    </b>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                    <div class="col-md-9">
-                                        <p><?= $prd_detail['produk_ket']; ?></p>
-                                    </div>
-                                </div>
-
-                            <?php } ?>
-
-                        </div>    
-                    </div>
-                </div>  
-
-            </div>
-        </div>   
-
-    </div>
-</div>
-</div>
-
-
-<!--product_details_single_product-->
-<div class="product_details_s_product mb-40">
-    <div class="container">
-        <div class="product_details_s_product_inner">
-            <div class="top_title p_details mb-10">
-                <h2>Kategori produk yang berhubungan:</h2>
-            </div>
-            <div class="row">
-
-
-                <div class="details_s_product_active owl-carousel">
-                    <?php
-                    $whr = [
-                        'kategori.kategori_id' => $gkategori['kategori_id'],
-                    ];
-                    $related = $this->Mymod->related($whr)->result_array();
-                    foreach ($related as  $arre) :
-
-                        $jtable=[
-                            'promo' => 'produk_kode',
-                            'produk' => 'produk_kode'
-                        ];
-                        $where=[
-                            't1.promo_start <='=>$tgl,
-                            't1.promo_end >'=>$tgl,
-                            't2.produk_kode'=>$arre['produk_kode'],
-                        ];
-                        $promo = $this->Mymod->GetDataJoin($jtable,$where);
-                        $gprom = $promo->row_array();
-                        $newprc=($gprom['produk_harga']-(($gprom['produk_harga']*$gprom['promo_diskon'])/100));
-                        ?>
-                        <div class="col-lg-4">
-                            <div class="single_product categorie">
-                                <div class="product_thumb">
-                                  <a href="<?= base_url().'produk/detail/'.$arre['produk_kode'];?>"><img src="<?= base_url().'assets/images/'.$arre['produk_gambar'];?>" alt="" style="width: 300px; height:200px;"></a>
-                                  <?php if($promo->row_array() > 0 ) {?>
-                                    <div class="product_discount">
-                                        <span>- <?= $gprom['promo_diskon']."%"; ?></span>
-                                    </div>
-                                <?php } else {} ?>
-                                <div class="quick_view categorie_view">
-                                    <a href="#" data-toggle="modal" data-target="#modal_box<?= $arre['produk_kode'];?>" title="Quick view"><i class="fa fa-search"></i></a>
-                                </div>
-
-                            </div>
-                            <div class="product_content">
-                                <div class="small_product_name">
-                                  <a title="<?= $arre['produk_nama']; ?>" href="<?= base_url().'produk/detail/'.$arre['produk_kode'];?>"> <?= $arre['produk_nama']; ?> </a>
-                              </div>
-                              <div class="small_product_price">
-                                <?php if($promo->row_array() > 0 ) {?>
-                                    <span class="new_price"> <?= "Rp. ".number_format($newprc); ?>  </span>
-                                    <span class="old_price"> <?= "Rp. ".number_format($arre['produk_harga']); ?> </span>
-                                <?php } else { ?>
-
-                                    <span class="new_price"> <?= "Rp. ".number_format($arre['produk_harga']); ?> </span>
-
-                                <?php } ?>
+                        <?php if($promo->row_array() > 0 ) {?>
+                            <span id="availability_value" class="label label-success">Diskon <?= $gprom['promo_diskon']."%"; ?></span>
+                        <?php } else { ?>
+                            <span id="availability_value" class="label label-danger">Tidak ada diskon</span>
+                        <?php } ?>
+                    </div><!-- end product-boxinfo -->
+                    <div class="box-info-product clearfix">
+                        <div id="quantity_wanted_p">
+                            <label>Quantity</label>
+                            <div class="group-quantity">
+                                <input type="number" min="1" name="qty" id="quantity_wanted" class="text form-control" value="1">
                             </div>
                         </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</div>     
-</div>
-</div>
 
-<div class="product_details_s_product mb-40">
-    <div class="container">
-        <div class="product_details_s_product_inner">
-            <div class="top_title p_details mb-10">
-                <h2>PRODUK SERUPA</h2>
+                    </div><!-- end box-info-product -->
+                    <div class="box-cart-bottom clearfix">
+                        <button id="add_to_cart" type="submit" name="Submit" class="exclusive btn button btn-primary" title="Add to cart">
+                            Add to cart
+                        </button>
+                    </div><!-- end box-cart-bottom -->
+                    <div class="share-social">
+                        <span>Share:</span>
+                        <ul class="links list-inline">
+                            <li><a href="#"><em class="fa fa-facebook"></em></a></li>
+                            <li><a href="#"><em class="fa fa-twitter"></em></a></li>
+                            <li><a href="#"><em class="fa fa-google-plus"></em></a></li>
+                            <li><a href="#"><em class="fa fa-linkedin"></em></a></li>
+                            <li><a href="#"><em class="fa fa-pinterest"></em></a></li>
+                            <li class="last"><a href="#"><em class="fa fa-instagram"></em></a></li>
+                        </ul>
+                    </div><!-- end share-social -->
+                </div><!-- end pb-centercolumn -->
+            </div><!-- end pb-center-column -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="tabs-top accordion-info">
+                    <ul id="myTabs" class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="description">
+                            <div class="panel-body">
+                                <p><?= $prd_detail['produk_ket']; ?></p>
+                            </div>
+                        </div>
+                    </div><!-- end tab-content -->
+                </div><!-- end  accordion-info-->
             </div>
-            <div class="single_product__wrapper">
+        </div><!-- end row -->
 
-                <div class="row">
-                    <div class="details_s_product_active related_product owl-carousel">   
+        <div class="blockproductscategory block">
+            <h4 class="title_block">Kategori Yang Berhubungan</h4>
+            <div class="block_content">
+                <div class="owl-row">
+                    <div class="blockproductscategory_grid">
                         <?php
                         $whr = [
-                            'list.list_id' => $glist['list_id'],
+                            'kategori.kategori_id' => $gkategori['kategori_id'],
+                        ];
+                        $related = $this->Mymod->related($whr)->result_array();
+                        foreach ($related as  $arre) :
+
+                            $jtable=[
+                                'promo' => 'produk_kode',
+                                'produk' => 'produk_kode'
+                            ];
+                            $where=[
+                                't1.promo_start <='=>$tgl,
+                                't1.promo_end >'=>$tgl,
+                                't2.produk_kode'=>$arre['produk_kode'],
+                            ];
+                            $promo = $this->Mymod->GetDataJoin($jtable,$where);
+                            $gprom = $promo->row_array();
+                            $newprc=($gprom['produk_harga']-(($gprom['produk_harga']*$gprom['promo_diskon'])/100));
+                            ?>
+                            <div class="item">
+                                <div class="product-container">
+                                    <div class="left-block">
+                                        <div class="product-image-container">
+                                            <a class="product_img_link" href="<?= base_url().'produk/detail/'.$arre['produk_kode'];?>" title="<?= $arre['produk_nama']; ?>">
+                                                <img src="<?= base_url().'assets/images/product/'.$arre['produk_gambar'];?>" alt="<?= $arre['produk_nama']; ?>" class="img-responsive image-effect" width="480" height="640">
+                                            </a>
+                                            <?php if($promo->row_array() > 0 ) {?>
+                                                <span class="label-reduction label">- <?= $gprom['promo_diskon']."%"; ?></span>
+                                            <?php } else {} ?>
+                                        </div>
+                                        <div class="box-buttons">
+                                            <a class="ajax_add_to_cart_button button btn" href="#" rel="nofollow" title="Add to cart"><i class="zmdi zmdi-shopping-cart"></i></a>
+                                            <a class="button btn quick-view" href="#" data-toggle="modal" data-target="#modal_box<?= $arre['produk_kode']; ?>" title="Quick view">
+                                                <i class="zmdi zmdi-eye"></i>
+                                            </a>
+                                        </div>
+                                    </div><!--end left block -->
+                                    <div class="right-block">
+                                        <div class="product-box">
+                                            <h5 class="name">
+                                                <a class="product-name" href="<?= base_url().'produk/detail/'.$arre['produk_kode'];?>" title="<?= $arre['produk_nama']; ?>">
+                                                    <?= $arre['produk_nama']; ?>
+                                                </a>
+                                            </h5>
+                                            <div class="content_price">
+                                                <?php if($promo->row_array() > 0 ) {?>
+                                                    <span class="price product-price"><?= "Rp. ".number_format($newprc); ?></span>
+                                                    <span class="old-price product-price"><?= "Rp. ".number_format($arre['produk_harga']); ?></span>
+                                                <?php } else { ?>
+                                                    <span class="price product-price"><?= "Rp. ".number_format($arre['produk_harga']); ?></span>
+                                                <?php } ?>
+                                            </div>
+                                        </div><!-- end product-box -->
+                                    </div><!--end right block -->
+                                </div><!-- end product-container-->
+                            </div>
+                        <?php endforeach; ?>
+                    </div><!-- end blockproductscategory_grid -->
+                </div><!-- end tabproduct-carousel -->
+            </div>
+        </div><!-- end blockproductscategory -->
+
+        
+        <div class="blockproductscategory block">
+            <h4 class="title_block">Produk Serupa</h4>
+            <div class="block_content">
+                <div class="owl-row">
+                    <div class="blockproductscategory_grid">
+                        <?php
+                        $whr = [
+                            'sub_kategori.sk_id' => $gsubkat['sk_id'],
                         ];
                         $serupa = $this->Mymod->related($whr)->result_array();
                         foreach ($serupa as  $srp) :
@@ -300,44 +212,49 @@ $gkategori = $this->Mymod->ViewDetail('kategori','kategori_id',$gsubkat['kategor
                             $gprom = $promo->row_array();
                             $newprc=($gprom['produk_harga']-(($gprom['produk_harga']*$gprom['promo_diskon'])/100));
                             ?>
-                            <div class="col-lg-3 col-md-3 col-sm-6">
-                                <div class="single_product categorie">
-                                    <div class="product_thumb">
-                                        <a href="<?= base_url().'produk/detail/'.$srp['produk_kode'];?>"><img src="<?= base_url().'assets/images/'.$srp['produk_gambar'];?>" alt="" style="width: 300px; height:200px;"></a>
-                                        <?php if($promo->row_array() > 0 ) {?>
-                                            <div class="product_discount">
-                                                <span>- <?= $gprom['promo_diskon']."%"; ?></span>
-                                            </div>
-                                        <?php } else {} ?>
-
-                                        <div class="quick_view categorie_view">
-                                            <a href="#" data-toggle="modal" data-target="#modal_box<?= $srp['produk_kode'];?>" title="Quick view"><i class="fa fa-search"></i></a>
+                            <div class="item">
+                                <div class="product-container">
+                                    <div class="left-block">
+                                        <div class="product-image-container">
+                                            <a class="product_img_link" href="<?= base_url().'produk/detail/'.$srp['produk_kode'];?>" title="<?= $srp['produk_nama']; ?>">
+                                                <img src="<?= base_url().'assets/images/product/'.$srp['produk_gambar'];?>" alt="<?= $srp['produk_nama']; ?>" class="img-responsive image-effect" width="480" height="640">
+                                            </a>
+                                            <?php if($promo->row_array() > 0 ) {?>
+                                                <span class="label-reduction label">- <?= $gprom['promo_diskon']."%"; ?></span>
+                                            <?php } else {} ?>
                                         </div>
-
-                                    </div>
-                                    <div class="product_content">
-                                        <div class="small_product_name">
-                                          <a title="<?= $srp['produk_nama']; ?>" href="<?= base_url().'produk/detail/'.$srp['produk_kode'];?>"> <?= $srp['produk_nama']; ?> </a>
-                                      </div>
-                                      <div class="small_product_price">
-                                        <?php if($promo->row_array() > 0 ) {?>
-                                            <span class="new_price"> <?= "Rp. ".number_format($newprc); ?>  </span>
-                                            <span class="old_price"> <?= "Rp. ".number_format($srp['produk_harga']); ?> </span>
-                                        <?php } else { ?>
-
-                                            <span class="new_price"> <?= "Rp. ".number_format($srp['produk_harga']); ?> </span>
-
-                                        <?php } ?>
-                                    </div>
-                                </div>
+                                        <div class="box-buttons">
+                                            <a class="ajax_add_to_cart_button button btn" href="#" rel="nofollow" title="Add to cart"><i class="zmdi zmdi-shopping-cart"></i></a>
+                                            <a class="button btn quick-view" href="#" data-toggle="modal" data-target="#modal_box<?= $srp['produk_kode']; ?>" title="Quick view">
+                                                <i class="zmdi zmdi-eye"></i>
+                                            </a>
+                                        </div>
+                                    </div><!--end left block -->
+                                    <div class="right-block">
+                                        <div class="product-box">
+                                            <h5 class="name">
+                                                <a class="product-name" href="<?= base_url().'produk/detail/'.$srp['produk_kode'];?>" title="<?= $srp['produk_nama']; ?>">
+                                                    <?= $srp['produk_nama']; ?>
+                                                </a>
+                                            </h5>
+                                            <div class="content_price">
+                                                <?php if($promo->row_array() > 0 ) {?>
+                                                    <span class="price product-price"><?= "Rp. ".number_format($newprc); ?></span>
+                                                    <span class="old-price product-price"><?= "Rp. ".number_format($srp['produk_harga']); ?></span>
+                                                <?php } else { ?>
+                                                    <span class="price product-price"><?= "Rp. ".number_format($srp['produk_harga']); ?></span>
+                                                <?php } ?>
+                                            </div>
+                                        </div><!-- end product-box -->
+                                    </div><!--end right block -->
+                                </div><!-- end product-container-->
                             </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>    
+                        <?php endforeach; ?>
+                    </div><!-- end blockproductscategory_grid -->
+                </div><!-- end tabproduct-carousel -->
             </div>
-        </div>
-    </div>     
-</div>
-</div>
+        </div><!-- end blockproductscategory -->
 
 
+    </div> <!-- end container -->
+</div><!--end warp-->

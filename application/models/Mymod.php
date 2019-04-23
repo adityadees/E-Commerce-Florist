@@ -164,17 +164,54 @@ class Mymod extends CI_Model{
         return $res;
     }
 
-/*
-    public function related($where){
+
+    public function joinsubkat($kode){
         $this->db->select('*');
-        $this->db->from('produk');
-        $this->db->join ( 'list', 'produk.list_id = list.list_id' , 'left' );
-        $this->db->join ( 'sub_kategori', 'list.sk_id = sub_kategori.sk_id' , 'left' );
-        $this->db->join ( 'kategori', 'kategori.kategori_id = sub_kategori.kategori_id' , 'left' );
-        $this->db->where($where);
+        $this->db->from('sub_kategori');
+        $this->db->join ( 'produk', 'produk.sk_id = sub_kategori.sk_id' , 'inner' );
+        $this->db->where ( 'sub_kategori.sk_id', $kode );
         $res = $this->db->get();
         return $res;
     }
+
+    
+    public function countkat($kat){
+        $res = $this->db->query("SELECT
+            kategori.kategori_id,
+            COUNT(produk.produk_kode) AS Total
+            FROM
+            kategori
+            LEFT JOIN sub_kategori on kategori.kategori_id=sub_kategori.kategori_id
+            LEFT JOIN produk on produk.sk_id=sub_kategori.sk_id
+            WHERE kategori.kategori_id=$kat
+            GROUP BY kategori.kategori_id");
+        return $res;
+    }
+
+
+    public function joinkat($kode){
+        $this->db->select('*');
+        $this->db->from('kategori');
+        $this->db->join ( 'sub_kategori', 'kategori.kategori_id = sub_kategori.kategori_id' , 'inner' );
+        $this->db->join ( 'produk', 'produk.sk_id = sub_kategori.sk_id' , 'inner' );
+        $this->db->where ( 'kategori.kategori_id', $kode );
+        $this->db->order_by('rand()');
+        $res = $this->db->get();
+        return $res;
+    }
+    public function related($where){
+        $this->db->select('*');
+        $this->db->from('produk');
+        $this->db->join ( 'sub_kategori', 'produk.sk_id = sub_kategori.sk_id' , 'left' );
+        $this->db->join ( 'kategori', 'kategori.kategori_id = sub_kategori.kategori_id' , 'left' );
+        $this->db->where($where);
+        $this->db->order_by('rand()');
+        $res = $this->db->get();
+        return $res;
+    }
+
+/*
+
 
     public function JoinPesan(){
         $this->db->select('*');
@@ -193,26 +230,6 @@ class Mymod extends CI_Model{
         $res = $this->db->get();
         return $res;
     }
-    public function joinsubkat($kode){
-        $this->db->select('*');
-        $this->db->from('sub_kategori');
-        $this->db->join ( 'list', 'sub_kategori.sk_id = list.sk_id' , 'inner' );
-        $this->db->join ( 'produk', 'produk.list_id = list.list_id' , 'inner' );
-        $this->db->where ( 'sub_kategori.sk_id', $kode );
-        $res = $this->db->get();
-        return $res;
-    }
-    public function joinkat($kode){
-        $this->db->select('*');
-        $this->db->from('kategori');
-        $this->db->join ( 'sub_kategori', 'kategori.kategori_id = sub_kategori.kategori_id' , 'inner' );
-        $this->db->join ( 'list', 'sub_kategori.sk_id = list.sk_id' , 'inner' );
-        $this->db->join ( 'produk', 'produk.list_id = list.list_id' , 'inner' );
-        $this->db->where ( 'kategori.kategori_id', $kode );
-        $res = $this->db->get();
-        return $res;
-    }
-
     public function joinlist($kode){
         $this->db->select('*');
         $this->db->from('list');
@@ -241,20 +258,6 @@ class Mymod extends CI_Model{
         $this->db->from('produk');
         $this->db->where('produk_kode !=',$produk_kode);
         $res = $this->db->get();
-        return $res;
-    }
-    
-    public function countkat($kat){
-        $res = $this->db->query("SELECT
-            kategori.kategori_id,
-            COUNT(produk.produk_kode) AS Total
-            FROM
-            kategori
-            LEFT JOIN sub_kategori on kategori.kategori_id=sub_kategori.kategori_id
-            LEFT JOIN list ON list.sk_id = sub_kategori.sk_id
-            LEFT JOIN produk on produk.list_id=list.list_id
-            WHERE kategori.kategori_id=$kat
-            GROUP BY kategori.kategori_id");
         return $res;
     }
 */

@@ -1,41 +1,57 @@
+<style type="text/css">
+    .sakatabs { border-bottom: 2px solid #DDD; }
+    .sakatabs > li.active > a, .sakatabs > li.active > a:focus, .sakatabs > li.active > a:hover { border-width: 0; }
+    .sakatabs > li > a { border: none; color: #ffffff;background: #5a4080; }
+    .sakatabs > li.active > a, .sakatabs > li > a:hover { border: none;  color: #5a4080 !important; background: #fff; }
+    .sakatabs > li > a::after { content: ""; background: #5a4080; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
+    .sakatabs > li.active > a::after, .sakatabs > li:hover > a::after { transform: scale(1); }
+    .tab-nav > li > a::after { background: ##5a4080 none repeat scroll 0% 0%; color: #fff; }
+    .tab-pane { padding: 15px 0; }
+    .tab-content{padding:20px}
+    .sakatabs > li  {width:20%; text-align:center;}
+    .card {background: #FFF none repeat scroll 0% 0%; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3); margin-bottom: 30px; }
 
-<div class="breadcrumbs_area contact_bread">
+    @media all and (max-width:724px){
+        .sakatabs > li > a > span {display:none;}   
+        .sakatabs > li > a {padding: 5px 5px;}
+    }
+</style>
+<div id="breadcrumb" class="clearfix">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="breadcrumb_content">
-                    <div class="breadcrumb_header">
-                        <a href="index.html"><i class="fa fa-home"></i></a>
-                        <span><i class="fa fa-angle-right"></i></span>
-                        <span> my account</span>
-                    </div>
-                    <div class="breadcrumb_title">
-                        <h2>my account</h2>
-                    </div>
-                </div>
-            </div>
+        <div class="breadcrumb clearfix">
+            <ul class="ul-breadcrumb">
+                <li><a href="<?= base_url()?>" title="Home">Home</a></li>
+                <li><span>My Account</span></li>
+            </ul>
+            <h2 class="bread-title">My Account</h2>
         </div>
     </div>
-</div>
-<section class="main_content_area my_account">
+</div><!-- end breadcrumb -->
+
+<div id="columns" class="columns-container">
     <div class="container">
-        <div class="account_dashboard">
-            <div class="row">
-                <div class="col-sm-12 col-md-3 col-lg-3">
-                    <!-- Nav tabs -->
-                    <div class="dashboard_tab_button">
-                        <ul role="tablist" class="nav flex-column dashboard-list">
-                            <li><a href="#dashboard" data-toggle="tab" class="nav-link active">Dashboard</a></li>
-                            <li><a href="#downloads" data-toggle="tab" class="nav-link">Personal Information</a></li>
-                            <li> <a href="#orders" data-toggle="tab" class="nav-link">My Orders</a></li>
-                        </ul>
-                    </div>    
-                </div>
-                <div class="col-sm-12 col-md-9 col-lg-9">
-                    <!-- Tab panes -->
-                    <div class="tab-content dashboard_content">
-                        <div class="tab-pane fade show active" id="dashboard">
-                            <h3>Dashboard </h3>
+        <div class="row">
+            <div class="col-md-12"> 
+                <div class="card">
+                    <ul class="nav nav-tabs sakatabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#dashboard" aria-controls="dashboard" role="tab" data-toggle="tab">
+                                <i class="fa fa-home"></i>  <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
+                                <i class="fa fa-user"></i>  <span>Personal Informations</span>
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#orders" aria-controls="orders" role="tab" data-toggle="tab">
+                                <i class="fa fa-first-order"></i>  <span>My Orders</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="dashboard">
                             <?php if($belumbayar->num_rows()>0){ ?>
                                 <div class="alert alert-danger" role="alert">
                                     Anda memiliki
@@ -60,52 +76,148 @@
                                 </div>
                             <?php } else {} ?>
                         </div>
-                        <div class="tab-pane fade" id="orders">
-                           <div class="ml-auto mr-auto col-lg-9">
-                            <div class="checkout-wrapper">
-                                <div id="faq" class="panel-group">
-
-                                    <ul class="nav nav-pills nav-tabs nav-fill mb-3" id="pills-tab" role="tablist">
-                                      <li class="nav-item">
-                                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#belumbayar" role="tab" aria-controls="pills-home" aria-selected="true">Belum Bayar
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                            <div class="card">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a href="#myinfo" aria-controls="myinfo" role="tab" data-toggle="tab">
+                                            <i class="fa fa-info"></i>  <span>Edit your account information</span>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#belumdikirim" role="tab" aria-controls="pills-profile" aria-selected="false">Belum Dikirim</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#selesai" role="tab" aria-controls="pills-contact" aria-selected="false">Selesai</a>
+                                    <li role="presentation">
+                                        <a href="#mypassword" aria-controls="mypassword" role="tab" data-toggle="tab">
+                                            <i class="fa fa-key"></i>  <span>Password</span>
+                                        </a>
                                     </li>
                                 </ul>
-                                <div class="tab-content" id="pills-tabContent">
-                                  <div class="tab-pane fade show active" id="belumbayar" role="tabpanel" aria-labelledby="pills-home-tab">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Invoice</th>
-                                                <th class="text-center">Total Biaya</th>
-                                                <th class="text-center">Tanggal</th>
-                                                <th class="text-center">Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php 
-                                            if(isset($belumbayar)){
-                                                foreach ($belumbayar->result_array() as $i) : ?>
-                                                    <tr>
-                                                        <td><a href="<?= base_url();?>invoice/cetak/<?= $i['pemesanan_kode']; ?>" target="_blank"><?= $i['pemesanan_kode']; ?></a></td>
-                                                        <td class="text-center"><?= "Rp. ".number_format($i['pemesanan_total']); ?></td>
-                                                        <td class="text-center"><?= date('d-m-Y',strtotime($i['pemesanan_tanggal'])); ?></td>
-                                                        <td class="text-center">
-                                                            <a href="" class="btn btn-primary text-white">Bayar</a>
-                                                            <a href="" class="btn btn-danger text-white" data-target="#batalOrders<?= $i['pemesanan_kode']; ?>" data-toggle="modal">Batal</a>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; } else {}?>
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="myinfo">
+                                        <form method="POST" action="<?= base_url();?>frontendc/update_user">
+                                            <div class="billing-information-wrapper">
+                                                <div class="account-info-wrapper">
+                                                    <h5>Your Personal Details</h5>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form-group col-md-12">
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <label>Username</label>
+                                                            <input type="text" class="form-control" value="<?= $user['user_username'];?>" readonly>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <label>Nama Lengkap</label>
+                                                            <input type="text" class="form-control" name="user_nama" value="<?= $user['user_nama']; ?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <label>Telephone</label>
+                                                            <input type="tel" class="form-control" name="user_tel" value="<?= $user['user_tel']; ?>">
+                                                        </div>
+
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <label>Email</label>
+                                                            <input type="email" class="form-control" name="user_email" value="<?= $user['user_email']; ?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <div class="col-lg-12 col-md-12">
+                                                            <label>Alamat</label>
+                                                            <textarea class="form-control" name="user_alamat"><?= $user['user_alamat']; ?></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="billing-back-btn">
+                                                    <div class="billing-btn"><br>
+                                                        <button type="submit" class="btn btn-primary">Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="mypassword">
+                                        <form method="POST" action="<?= base_url();?>frontendc/update_password">
+                                            <div class="panel-body">
+                                                <div class="billing-information-wrapper">
+                                                    <div class="account-info-wrapper">
+                                                        <h4>Change Password</h4>
+                                                        <h5>Your Password</h5>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12">
+                                                            <div class="billing-info">
+                                                                <label>Password</label>
+                                                                <input type="password" class="form-control" name="password">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12 col-md-12">
+                                                            <div class="billing-info">
+                                                                <label>Password Confirm</label>
+                                                                <input type="password" class="form-control" name="repassword">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="billing-back-btn">
+                                                        <div class="billing-btn"><br>
+                                                            <button type="submit" class="btn btn-primary">Continue</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="orders">
+                            <div class="card">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active">
+                                        <a href="#belumbayar" aria-controls="belumbayar" role="tab" data-toggle="tab">
+                                            <i class="fa fa-money"></i>  <span>Belum Bayar</span>
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#belumdikirim" aria-controls="belumdikirim" role="tab" data-toggle="tab">
+                                            <i class="fa fa-truck"></i>  <span>Belum Dikirim</span>
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#selesai" aria-controls="selesai" role="tab" data-toggle="tab">
+                                            <i class="fa fa-flag-checkered"></i>  <span>Selesai</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="belumbayar">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Invoice</th>
+                                                    <th class="text-center">Total Biaya</th>
+                                                    <th class="text-center">Tanggal</th>
+                                                    <th class="text-center">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php 
+                                                if(isset($belumbayar)){
+                                                    foreach ($belumbayar->result_array() as $i) : ?>
+                                                        <tr>
+                                                            <td><a href="<?= base_url();?>invoice/cetak/<?= $i['pemesanan_kode']; ?>" target="_blank"><?= $i['pemesanan_kode']; ?></a></td>
+                                                            <td class="text-center"><?= "Rp. ".number_format($i['pemesanan_total']); ?></td>
+                                                            <td class="text-center"><?= date('d-m-Y',strtotime($i['pemesanan_tanggal'])); ?></td>
+                                                            <td class="text-center">
+                                                                <a href="" class="btn btn-primary text-white">Bayar</a>
+                                                                <a href="" class="btn btn-danger text-white" data-target="#batalOrders<?= $i['pemesanan_kode']; ?>" data-toggle="modal">Batal</a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; 
+                                                } else {}?>
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="tab-pane fade" id="belumdikirim" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                    <div role="tabpanel" class="tab-pane" id="belumdikirim">
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
@@ -130,7 +242,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="tab-pane fade" id="selesai" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                    <div role="tabpanel" class="tab-pane" id="selesai">
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
@@ -156,117 +268,11 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <div class="tab-pane fade" id="downloads">
-                    <div class="col-12 ">
-                        <div class="product_details_tab_inner"> 
-                            <div class="product_details_tab_button">    
-                                <ul class="nav" role="tablist">
-                                    <li >
-                                        <a class="nav-link active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Edit your account information</a>
-                                    </li>
-                                    <li>
-                                       <a class="nav-link" data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet" aria-selected="false">Password</a>
-                                   </li>
-                               </ul>
-                           </div> 
-                           <div class="tab-content product_details_content">
-                            <div class="tab-pane fade show active" id="info" role="tabpanel" >
-                                <div class="product_d_tab_content">
-                                    <form method="POST" action="<?= base_url();?>frontendc/update_user">
-                                        <div class="billing-information-wrapper">
-                                            <div class="account-info-wrapper">
-                                                <h4>My Account Information</h4>
-                                                <h5>Your Personal Details</h5>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6">
-                                                    <div class="billing-info">
-                                                        <label>Username</label>
-                                                        <input type="text" value="<?= $user['user_username'];?>" readonly>
-                                                        <span class="text-danger"> * Username tidak dapat diganti</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                    <div class="billing-info">
-                                                        <label>Nama Lengkap</label>
-                                                        <input type="text" name="user_nama" value="<?= $user['user_nama']; ?>">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                    <div class="billing-info">
-                                                        <label>Telephone</label>
-                                                        <input type="text" name="user_tel" value="<?= $user['user_tel']; ?>">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                    <div class="billing-info">
-                                                        <label>Email</label>
-                                                        <input type="email" name="user_email" value="<?= $user['user_email']; ?>">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-12 col-md-12">
-                                                    <div class="billing-info">
-                                                        <label>Alamat</label>
-                                                        <input type="text" name="user_alamat" value="<?= $user['user_alamat']; ?>">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="billing-back-btn">
-                                                <div class="billing-btn"><br>
-                                                    <button type="submit" class="btn btn-primary">Save</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>    
-                            </div>
-                            <div class="tab-pane fade" id="sheet" role="tabpanel">
-                                <div class="product_d_tab_content">
-                                   <form method="POST" action="<?= base_url();?>frontendc/update_password">
-                                    <div class="panel-body">
-                                        <div class="billing-information-wrapper">
-                                            <div class="account-info-wrapper">
-                                                <h4>Change Password</h4>
-                                                <h5>Your Password</h5>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12">
-                                                    <div class="billing-info">
-                                                        <label>Password</label>
-                                                        <input type="password" name="password">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12 col-md-12">
-                                                    <div class="billing-info">
-                                                        <label>Password Confirm</label>
-                                                        <input type="password" name="repassword">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="billing-back-btn">
-                                                <div class="billing-btn"><br>
-                                                    <button type="submit" class="btn btn-primary">Continue</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div> 
-                        </div>
-                    </div>  
-
-                </div>
-            </div>   
+            </div>
         </div>
     </div>
 </div>
-</div>
-</div>
-</div>          
-</section>          
 
 <?php foreach($belumbayar->result_array() as $i): ?>
     <div class="modal fade text-left" id="batalOrders<?= $i['pemesanan_kode']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel34" aria-hidden="true">
@@ -298,4 +304,4 @@
             </div>
         </div>
     </div>
-    <?php endforeach; ?>
+<?php endforeach; ?>

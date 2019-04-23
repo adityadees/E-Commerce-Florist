@@ -203,7 +203,7 @@
                     <div class="left-block">
                       <div class="product-image-container">
                         <a class="product_img_link" href="<?= base_url();?>produk/detail/<?= $gc['produk_kode']; ?>" title="<?= $gc['produk_nama'];?>">
-                          <img src="<?php echo base_url();?>assets/images/product/<?= $gc['produk_gambar']; ?>" alt="<?= $gc['produk_nama'];?>" class="img-responsive" width="480" height="640">
+                          <img src="<?= base_url();?>assets/images/product/<?= $gc['produk_gambar']; ?>" alt="<?= $gc['produk_nama'];?>" class="img-responsive" width="480" height="640">
                         </a>
                         <?php if($promo->row_array() > 0 ) {?>
                           <span class="label-reduction label"><?= $gprom['promo_diskon']."% -"; ?></span>

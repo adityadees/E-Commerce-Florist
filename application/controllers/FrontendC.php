@@ -4,16 +4,18 @@ class FrontendC extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model('Mymod');
+
+		$this->data['kat'] = $this->Mymod->ViewData('kategori');
+		$this->data['best'] = $this->Mymod->best_seller()->result_array();
+
 	}
 
 	public function index()
 	{
 
 		$prod = $this->Mymod->ViewData('produk');
-		$kat = $this->Mymod->ViewData('kategori');
 		$slide = $this->Mymod->ViewData('slider');
 	//	$promo = $this->Mymod->ViewData('promo');
-		$best = $this->Mymod->best_seller()->result_array();
 		$tgl=date('Y-m-d H:i:s');
 
 		$jtable=[
@@ -30,11 +32,11 @@ class FrontendC extends CI_Controller{
 	//	$x['produk'] = $prod;
 		$xx['produk'] = $prod;
 	//	$x['shoprand'] = $shoprand;
-		$x['kategori'] = $kat;
-		$y['kategori'] = $kat;
+		$x['kategori'] = $this->data['kat'];
+		$y['kategori'] = $this->data['kat'];
 		$x['slider'] = $slide;
 	//	$x['promo'] = $promo;
-		$x['best'] = $best;
+		$x['best'] = $this->data['best'];
 
 
 
@@ -45,7 +47,7 @@ class FrontendC extends CI_Controller{
 		$this->load->view('frontend/layout/footer',$xx);
 
 	}
-/*
+
 	public function pembayaran(){
 		$y['title']='Pembayaran';
 		$this->load->view('frontend/layout/header',$y);
@@ -129,19 +131,17 @@ class FrontendC extends CI_Controller{
 	}
 	public function subkat()
 	{
-
 		$kode=$this->uri->segment(3);
-
 		$table='produk';
 		$where='produk_kode';
 		$data=$kode;
-		$best = $this->Mymod->best_seller()->result_array();
 		$nprds = $this->Mymod->joinsubkat($kode)->result_array();
 		$proed = $this->Mymod->ViewData('produk');
 		$x['nprd'] = $nprds;
-		$x['best'] = $best;
 		$xx['produk'] = $proed;
-		$y['title']='Produk';
+		$y['title']=$nprds[0]['sk_nama'];
+		$y['kategori'] = $this->data['kat'];
+		$x['best'] = $this->data['best'];
 		$this->load->view('frontend/layout/header',$y);
 		$this->load->view('frontend/produk/subkat',$x);
 		$this->load->view('frontend/layout/footer',$xx);
@@ -154,13 +154,13 @@ class FrontendC extends CI_Controller{
 		$table='produk';
 		$where='produk_kode';
 		$data=$kode;
-		$best = $this->Mymod->best_seller()->result_array();
 		$nprds = $this->Mymod->joinkat($kode)->result_array();
 		$proed = $this->Mymod->ViewData('produk');
 		$x['nprd'] = $nprds;
-		$x['best'] = $best;
+		$x['best'] = $this->data['best'];
 		$xx['produk'] = $proed;
-		$y['title']='Produk';
+		$y['kategori'] = $this->data['kat'];
+		$y['title']=$nprds[0]['kategori_nama'];
 		$this->load->view('frontend/layout/header',$y);
 		$this->load->view('frontend/produk/kat',$x);
 		$this->load->view('frontend/layout/footer',$xx);
@@ -205,11 +205,10 @@ class FrontendC extends CI_Controller{
 	public function produk(){
 		$prod = $this->Mymod->ViewData('produk');
 		$best = $this->Mymod->best_seller()->result_array();
-		$kat = $this->Mymod->ViewData('kategori');
-		$y['kategori'] = $kat;
+		$y['kategori'] = $this->data['kat'];
 		$x['produk'] = $prod;
 		$x['best'] = $best;
-		$x['kategori'] = $kat;
+		$x['kategori'] = $this->data['kat'];
 		$xx['produk'] = $prod;
 		$y['title']='Produk';
 		$this->load->view('frontend/layout/header',$y);
@@ -218,18 +217,16 @@ class FrontendC extends CI_Controller{
 	}
 
 	public function contactus(){
-		$kat = $this->Mymod->ViewData('kategori');
+		$y['kategori'] = $this->data['kat'];
 		$y['title']='Contact Us';
-		$y['kategori'] = $kat;
 		$this->load->view('frontend/layout/header',$y);
 		$this->load->view('frontend/contact/contactus');
 		$this->load->view('frontend/layout/footer');		
 	}
 
 	public function aboutus(){
-		$kat = $this->Mymod->ViewData('kategori');
+		$y['kategori'] = $this->data['kat'];
 		$y['title']='Contact Us';
-		$y['kategori'] = $kat;
 		$this->load->view('frontend/layout/header',$y);
 		$this->load->view('frontend/contact/aboutus');
 		$this->load->view('frontend/layout/footer');		
@@ -264,7 +261,7 @@ class FrontendC extends CI_Controller{
 				't1.pemesanan_status'=>'selesai',
 			];
 
-
+			$y['kategori'] = $this->data['kat'];
 			$x['selesai'] = $this->Mymod->GetDataJoin($bbtabel,$pselesai);
 			$x['belumbayar'] = $this->Mymod->GetDataJoin($bbtabel,$wpesan);
 			$x['belumdikirim'] =  $this->Mymod->GetDataJoin($bbtabel,$bdikirim);
@@ -587,5 +584,5 @@ class FrontendC extends CI_Controller{
 			$this->session->set_flashdata('error', 'Gagal ngeirim data '.$title);
 			redirect('upload/pembayaran');		
 		}
-	}*/
+	}
 }

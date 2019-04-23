@@ -1,66 +1,30 @@
-        <div class="breadcrumbs_area bread_about">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="breadcrumb_content">
-                            <div class="breadcrumb_header">
-                                <a href="index.html"><i class="fa fa-home"></i></a>
-                                <span><i class="fa fa-angle-right"></i></span>
-                                <span> About Us</span>
-                            </div>
-                            <div class="breadcrumb_title">
-                                <h2>About Us</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="about_section_aera">
-         <div class="container-fluid about_container">
-             <div class="row no-gutters align-items-center">
-                 <div class="col-lg-12 col-md-12">
-                     <div class="about_content">
-                        <h1>Sejarah <br>Gantri Minimarket</h1>
-                        <p>Sejalan dengan visi misi SMK Negeri 3 Palembang sebagai sekolah yang berbasis bisnis dan manajemen, maka pada bulan Mei 2015 dimusyawarakanlah antara Para Wakil Kepala Sekolah dan para Ketua Kompetensi dan Pemegang jabatan Unit produksi di SMK Negeri 3 Palembang untuk membuat salah satu wadah untuk tempat anak melakukan kegiatan industri pada dunia industri yang nyata.
-                            Hasil permusyawaratan tersebut akhirnya menunjuk KPRI GUKA SMK NEGERI 3 Palembang sebagai wadah koperasi guru- guru dan karyawan untuk mendirikan sebuah minimarket, yang pada saat itu permodalan berasal dari koperasi, unit produksi, koperasi pelajar dan dari sisa uang bisnis centre smk negeri 3 yang lama.
-                            Minimarket tersebut merupakan waralaba dengan PT INTI CAKRAWALA CITRA yang kantor pusatnya ada di Jakarta, dengan perwakilan distribusi barang dan kantor cabangnya ada di Palembang. Usaha minimarket ini sesuai standar pertokoan yang ada di dunia industri sehingga peserta didik yang berasal dari berbagai kompetensi keahlian dapat belajar di minimarket ini, terutama peserta didik dari paket keahlian Bisnis daring dan Pemasaran sebagai “ Teaching Factory” mereka sebelum mereka diterjunkan ke tengah masyarakat menghadapin dunia industri.
-                        </p> 
-                    </div>
-                </div>
-            </div>
+<div id="breadcrumb" class="clearfix">
+    <div class="container">
+        <div class="breadcrumb clearfix">
+            <ul class="ul-breadcrumb">
+                <li><a href="index.html" title="Home">Home</a></li>
+                <li><span>about us</span></li>
+            </ul>
+            <h2 class="bread-title">About us</h2>
         </div>
     </div>
+</div><!-- end breadcrumb -->
 
 
-    <div class="counter_up_area mb-40">
-      <div class="container-fluid counter">
-          <div class="row no-gutters">
-              <div class="col-lg-6 col-md-6 col-sm-6">
-                  <div class="single_counterup">
-                   <div class="counter_img">
-                    <img src="assets/img/cart/count.png" alt="">
+<div id="columns" class="columns-container">
+    <!-- container -->
+    <div class="container">
+        <div class="rte">
+            <div class="we-are">
+                <h2 class="title_block">Who we are</h2>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                <div class="quote">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat dent.</p>
                 </div>
-                <div class="counter_info">
-                    <h2 class="counter_number text-center">4</h2>
-                    <p>Jumlah Pekerja</p>
-                </div>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
             </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6">
-          <div class="single_counterup count-two">
-            <div class="counter_img">
-                <img src="assets/img/cart/count2.png" alt="">
-            </div>
-            <div class="counter_info">
-                <h2 class="counter_number text-center">19</h2>
-                <p>Jam Kerja</p>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-
+        </div><!--end rte -->
+    </div> <!-- end container -->
+</div><!--end columns -->
+<br>
+<br>

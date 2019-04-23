@@ -7,7 +7,7 @@
   <!-- Basic Page Needs -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>byHands Responsive HTML Template</title>
+  <title><?= $title; ?></title>
 
   <meta name="keywords" content="Responsive HTML Template">
   <meta name="description" content="Scara Responsive HTML Template">
@@ -66,18 +66,23 @@
                   <a href="#" title="My account"><i class="fa fa-user"></i></a>
                 </div>   
                 <ul class="links">
-                  <li>
-                    <a href="#" title="Account">Account</a>
-                  </li>
-                  <li>
-                    <a href="page-register.html" title="Register">Register</a>
-                  </li>
-                  <li>
-                    <a href="page-login.html" title="Login">Login</a>
-                  </li>
-                  <li class="last">
-                    <a href="#" title="My wishlists">Wishlists</a>
-                  </li>
+                  <?php if(!isset($_SESSION['logged_in_user'])) {?>
+
+                    <li>
+                      <a href="<?= base_url('Register')?>" title="Register">Register</a>
+                    </li>
+                    <li>
+                      <a href="<?= base_url('Login')?>" title="Login">Login</a>
+                    </li>
+                  <?php }else {?>
+                    <li>
+                      <a href="<?= base_url();?>myaccount" title="Account">Account</a>
+                    </li>
+                    <li>
+                      <a href="<?= base_url();?>Logout" title="Logout">Logout</a>
+                    </li>
+                  <?php } ?>
+
                 </ul>
               </div><!-- end header_user_info -->
             </div>
@@ -89,7 +94,7 @@
           <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-5 col-xs-5">
               <div class="logo">
-                <a href="index.html" title="Tiva byHands">
+                <a href="<?= base_url()?>" title="Tiva byHands">
                   <img class="img-responsive" src="<?= base_url();?>assets/frontend/img/logo.png" alt="">
                 </a>
               </div><!--end logo-->
@@ -197,7 +202,7 @@
                               <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div class="block-subcategories">
                                   <div class="menu-title">
-                                    <b><a href="#" title="<?= $kat['kategori_nama']; ?>"><?= $kat['kategori_nama']; ?></a></b>
+                                    <b><a href="<?= base_url()?>produk/kat/<?= $kat['kategori_id'];?>" title="<?= $kat['kategori_nama']; ?>"><?= $kat['kategori_nama']; ?></a></b>
                                   </div>
                                   <ul>
                                    <?php 
