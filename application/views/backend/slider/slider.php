@@ -52,7 +52,7 @@
 											<tbody>
 												<?php foreach ($slider as $i)  : ?>
 													<tr>
-														<td><img src="<?php echo base_url().'assets/images/'.$i['slider_gambar'];?>" width="213px" height="75px;"></td>
+														<td><img src="<?php echo base_url().'assets/images/slider/'.$i['slider_gambar'];?>" width="213px" height="75px;"></td>
 														<td><?php echo $i['slider_judul'];?></td>
 														<td><?php echo $i['slider_ket'];?></td>
 														<td class=" text-center">

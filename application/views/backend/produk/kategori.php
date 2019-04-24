@@ -46,7 +46,6 @@
 												<tr>
 													<th>Nama</th>
 													<th>Keterangan</th>
-													<th>Gambar</th>
 													<th>Aksi</th>
 												</tr>
 											</thead>
@@ -55,7 +54,6 @@
 													<tr>
 														<td><?php echo $i['kategori_nama'];?></td>
 														<td><?php echo $i['kategori_ket'];?></td>
-														<td>    <img class="card-img-top img-fluid" src="<?php echo base_url().'assets/images/'.$i['kategori_gambar'];?>" alt="Card image cap" style="width:50px;height: 50px"></td>
 														<td class=" text-center">
 															<div class="btn-group mr-1 mb-1">
 																<button type="button" class="btn btn-icon btn-pink dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-info"></i></button>
@@ -108,14 +106,6 @@
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-12">
-									<div class="form-group">
-										<label>Gambar: </label>
-										<input type="file" name="filefoto" class="dropzone dropzone-area col-12" id="dpz-single-file">
-									</div>
-								</div>
-							</div>
 						</div>
 						<div class="modal-footer">
 							<input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
@@ -149,7 +139,6 @@
 									</div>
 								</div>
 
-
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
@@ -158,14 +147,6 @@
 										</div>
 									</div>
 								</div>
-							<div class="row">
-								<div class="col-md-12">
-									<div class="form-group">
-										<label>Gambar: </label>
-										<input type="file" name="filefoto" class="dropzone dropzone-area col-12" id="dpz-single-file">
-									</div>
-								</div>
-							</div>
 							</div>
 							<div class="modal-footer">
 								<input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">

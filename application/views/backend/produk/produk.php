@@ -65,7 +65,7 @@
                                                         <td><?php echo substr($i['produk_ket'],0,50);?>...</td>
                                                         <td><?php echo $i['produk_up']; ?></td>
                                                         <td><?php echo $i['produk_parent']; ?></td>
-                                                        <td>    <img class="card-img-top img-fluid" src="<?php echo base_url().'assets/images/'.$i['produk_gambar'];?>" alt="Card image cap"></td>
+                                                        <td>    <img class="card-img-top img-fluid" src="<?php echo base_url().'assets/images/product/'.$i['produk_gambar'];?>" alt="Card image cap"></td>
                                                         <td class=" text-center">
                                                             <div class="btn-group mr-1 mb-1">
                                                                 <button type="button" class="btn btn-icon btn-pink dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-info"></i></button>
@@ -139,10 +139,24 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                     <label>Promo Up: </label>
-                                     <select class="form-control" name="produk_up">
-                                        <option value="yes">Ya</option>
-                                        <option value="no">Tidak</option>
+                                        <label>Promo Up: </label>
+                                        <select class="form-control" name="produk_up">
+                                            <option value="yes">Ya</option>
+                                            <option value="no">Tidak</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12">
+                                  <div class="form-group">
+                                    <label>Produk Parent: </label>
+                                    <select class="form-control" name="produk_parent">
+                                        <option value="">--First Parent--</option>
+                                        <?php foreach ($produk as $pp) : ?>
+                                            <option value="<?= $pp['produk_kode']; ?>"><?= $pp['produk_nama']; ?></option>
+                                        <?php endforeach ?>
                                     </select>
                                 </div>
                             </div>
@@ -151,39 +165,26 @@
                         <div class="row">
                             <div class="col-12">
                               <div class="form-group">
-                                <label>Produk Parent: </label>
-                                <select class="form-control" name="produk_parent">
-                                    <?php foreach ($produk as $pp) : ?>
-                                        <option value="<?= $pp['produk_kode']; ?>"><?= $pp['produk_nama']; ?></option>
-                                    <?php endforeach ?>
-                                </select>
+                                <label>Keterangan: </label>
+                                <textarea name="keterangan" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-12">
-                          <div class="form-group">
-                            <label>Keterangan: </label>
-                            <textarea name="keterangan" class="form-control"></textarea>
+                            <div class="card-content collapse show">
+                                <input type="file" name="filefoto" class="dropzone dropzone-area col-12" id="dpz-single-file">
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card-content collapse show">
-                            <input type="file" name="filefoto" class="dropzone dropzone-area col-12" id="dpz-single-file">
-                        </div>
-                    </div>
+                <div class="modal-footer">
+                    <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
+                    <input type="submit" class="btn btn-outline-primary btn-lg" value="Submit">
                 </div>
-            </div>
-            <div class="modal-footer">
-                <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
-                <input type="submit" class="btn btn-outline-primary btn-lg" value="Submit">
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 </div>
 
 
@@ -263,19 +264,19 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                           <div class="card-content collapse show">
-                              <input type="file" name="filefoto" class="dropzone dropzone-area col-12" id="dpz-single-file">
-                          </div>
+                         <div class="card-content collapse show">
+                          <input type="file" name="filefoto" class="dropzone dropzone-area col-12" id="dpz-single-file">
                       </div>
                   </div>
               </div>
           </div>
-          <div class="modal-footer">
-              <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
-              <input type="submit" class="btn btn-outline-primary btn-lg" value="Submit">
-          </div>
-      </form>
-  </div>
+      </div>
+      <div class="modal-footer">
+          <input type="reset" class="btn btn-outline-secondary btn-lg" data-dismiss="modal" value="close">
+          <input type="submit" class="btn btn-outline-primary btn-lg" value="Submit">
+      </div>
+  </form>
+</div>
 </div>
 </div>
 

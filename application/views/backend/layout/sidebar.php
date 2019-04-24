@@ -20,7 +20,6 @@
         <ul class="menu-content">
           <li class=""><a class="menu-item" href="<?php echo base_url();?>admin/kategori">Kategori</a></li>
           <li class=""><a class="menu-item" href="<?php echo base_url();?>admin/subkategori">Sub-Kategori</a></li>
-          <li class=""><a class="menu-item" href="<?php echo base_url();?>admin/list">List</a></li>
         </ul>
       </li>
       <li class=" nav-item"><a href="#"><i class="ft-package"></i><span class="menu-title" data-i18n="">Produk</span></a>

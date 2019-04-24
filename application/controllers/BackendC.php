@@ -767,68 +767,92 @@ class BackendC extends CI_Controller{
 		$produk_harga=$this->input->post('produk_harga');
 		$produk_up=$this->input->post('produk_up');
 		$produk_parent=$this->input->post('produk_parent');
-		$list_id=$this->input->post('list_id');
+		$sk_id=$this->input->post('sk_id');
 		$keterangan=$this->input->post('keterangan');
 		$table='produk';
 		$title='produk';
 
+		$config['upload_path'] = 'assets\images\product';
+		$config['allowed_types'] = 'jpg|jpeg|png|gif';
+		$config['encrypt_name'] = TRUE; 
+
+		$this->upload->initialize($config);
 		if(!empty($_FILES['filefoto']['name'])){
-			$config['upload_path'] = 'assets\images';
-			$config['allowed_types'] = 'jpg|jpeg|png|gif';
-			$config['file_name'] = $_FILES['filefoto']['name'];
-			$config['width'] = 1000;
-			$config['height'] = 750;
 
-			$this->load->library('upload',$config);
-			$this->upload->initialize($config);
+			if ($this->upload->do_upload('filefoto')){
+				$config['image_library'] = 'gd2';
+				$config['source_image'] = $this->upload->upload_path.$this->upload->file_name;
+				$filename = $_FILES['filefoto']['tmp_name'];
 
-			if($this->upload->do_upload('filefoto')){
-				$uploadData = $this->upload->data();
-				$produk_gambar = $uploadData['file_name'];
-				$data = [
-					'produk_kode' => $produk_kode,
-					'produk_nama' => $produk_nama,
-					'list_id' => $list_id,
-					'produk_harga' => $produk_harga,
-					'produk_up' => $produk_up,
-					'produk_parent' => $produk_parent,
-					'produk_ket' => $keterangan,
-					'produk_gambar' => $produk_gambar
-				];
-				$InsertData=$this->Mymod->InsertData($table,$data);
-				if($InsertData){
-					$this->session->set_flashdata('success', 'Berhasil menambah data '.$title);
-					redirect('admin/produk');		
-				}else{
-					$this->session->set_flashdata('error', 'Gagal menambah data '.$title);
-					redirect('admin/produk');		
+
+				$imgdata=exif_read_data($this->upload->upload_path.$this->upload->file_name, 'IFD0');
+
+
+				list($width, $height) = getimagesize($filename);
+				if ($width >= $height){
+					$config['width'] = 800;
 				}
+				else{
+					$config['height'] = 800;
+				}
+				$config['master_dim'] = 'auto';
 
 
-			}else{
-				$data =[ 
-					'produk_kode' => $produk_kode,
-					'produk_nama' => $produk_nama,
-					'list_id' => $list_id,
-					'produk_harga' => $produk_harga,
-					'produk_up' => $produk_up,
-					'produk_parent' => $produk_parent,
-					'produk_ket' => $keterangan,
-				];
-				$InsertData=$this->Mymod->InsertData($table,$data);
-				if($InsertData){
-					$this->session->set_flashdata('success', 'Berhasil menambah data '.$title);
-					redirect('admin/produk');		
+				$this->load->library('image_lib',$config); 
+
+				if (!$this->image_lib->resize()){  
+					echo "error";
 				}else{
-					$this->session->set_flashdata('error', 'Gagal menambah data '.$title);
-					redirect('admin/produk');		
+
+					$this->image_lib->clear();
+					$config=array();
+
+					$config['image_library'] = 'gd2';
+					$config['source_image'] = $this->upload->upload_path.$this->upload->file_name;
+
+
+					switch($imgdata['Orientation']) {
+						case 3:
+						$config['rotation_angle']='180';
+						break;
+						case 6:
+						$config['rotation_angle']='270';
+						break;
+						case 8:
+						$config['rotation_angle']='90';
+						break;
+					}
+
+					$this->image_lib->initialize($config); 
+					$this->image_lib->rotate();
+					$gambar=$imgdata['FileName'];
+
+					$data = [
+						'produk_kode' => $produk_kode,
+						'produk_nama' => $produk_nama,
+						'sk_id' => $sk_id,
+						'produk_harga' => $produk_harga,
+						'produk_up' => $produk_up,
+						'produk_parent' => $produk_parent,
+						'produk_ket' => $keterangan,
+						'produk_gambar' => $gambar
+					];
+					$InsertData=$this->Mymod->InsertData($table,$data);
+					if($InsertData){
+						$this->session->set_flashdata('success', 'Berhasil menambah data '.$title);
+						redirect('admin/produk');		
+					}else{
+						$this->session->set_flashdata('error', 'Gagal menambah data '.$title);
+						redirect('admin/produk');		
+					}
 				}
 			}
+
 		}else{
 			$data = [
 				'produk_kode' => $produk_kode,
 				'produk_nama' => $produk_nama,
-				'list_id' => $list_id,
+				'sk_id' => $sk_id,
 				'produk_harga' => $produk_harga,
 				'produk_up' => $produk_up,
 				'produk_parent' => $produk_parent,
@@ -843,8 +867,6 @@ class BackendC extends CI_Controller{
 				redirect('admin/produk');		
 			}
 		}
-
-
 	}	
 
 	public function save_rekening(){
@@ -922,7 +944,7 @@ class BackendC extends CI_Controller{
 		$produk_harga=$this->input->post('produk_harga');
 		$produk_up=$this->input->post('produk_up');
 		$produk_parent=$this->input->post('produk_parent');
-		$list_id=$this->input->post('list_id');
+		$sk_id=$this->input->post('sk_id');
 		$keterangan=$this->input->post('keterangan');
 		$table='produk';
 		$title='produk';
@@ -931,71 +953,93 @@ class BackendC extends CI_Controller{
 			'produk_kode' => $produk_kode
 		];
 
+		$config['upload_path'] = 'assets\images\product';
+		$config['allowed_types'] = 'jpg|jpeg|png|gif';
+		$config['encrypt_name'] = TRUE; 
 
+		$this->upload->initialize($config);
 		if(!empty($_FILES['filefoto']['name'])){
-			$config['upload_path'] = 'assets\images';
-			$config['allowed_types'] = 'jpg|jpeg|png|gif';
-			$config['file_name'] = $_FILES['filefoto']['name'];
-			$config['width'] = 1000;
-			$config['height'] = 750;
 
-			$this->load->library('upload',$config);
-			$this->upload->initialize($config);
+			if ($this->upload->do_upload('filefoto')){
+				$config['image_library'] = 'gd2';
+				$config['source_image'] = $this->upload->upload_path.$this->upload->file_name;
+				$filename = $_FILES['filefoto']['tmp_name'];
 
-			if($this->upload->do_upload('filefoto')){
-				$uploadData = $this->upload->data();
-				$produk_gambar = $uploadData['file_name'];
-				$data = [
-					'produk_nama' => $produk_nama,
-					'list_id' => $list_id,
-					'produk_harga' => $produk_harga,
-					'produk_ket' => $keterangan,
-					'produk_up' => $produk_up,
-					'produk_parent' => $produk_parent,
-					'produk_gambar' => $produk_gambar
-				];
 
-				$UpdateData=$this->Mymod->UpdateData($table,$data,$where);
-				if($UpdateData){
-					$this->session->set_flashdata('success', 'Berhasil merubah data '.$title);
-					redirect('admin/produk');		
-				}else{
-					$this->session->set_flashdata('error', 'Gagal merubah data '.$title);
-					redirect('admin/produk');		
+				$imgdata=exif_read_data($this->upload->upload_path.$this->upload->file_name, 'IFD0');
+
+
+				list($width, $height) = getimagesize($filename);
+				if ($width >= $height){
+					$config['width'] = 800;
 				}
-			}else{
+				else{
+					$config['height'] = 800;
+				}
+				$config['master_dim'] = 'auto';
 
-				$data = [
-					'produk_kode' => $produk_kode,
-					'produk_nama' => $produk_nama,
-					'list_id' => $list_id,
-					'produk_up' => $produk_up,
-					'produk_parent' => $produk_parent,
-					'produk_harga' => $produk_harga,
-					'produk_ket' => $keterangan,
-				];
 
-				$UpdateData=$this->Mymod->UpdateData($table,$data,$where);
-				if($UpdateData){
-					$this->session->set_flashdata('success', 'Berhasil merubah data '.$title);
-					redirect('admin/produk');		
+				$this->load->library('image_lib',$config); 
+
+				if (!$this->image_lib->resize()){  
+					echo "error";
 				}else{
-					$this->session->set_flashdata('error', 'Gagal merubah data '.$title);
-					redirect('admin/produk');		
+
+					$this->image_lib->clear();
+					$config=array();
+
+					$config['image_library'] = 'gd2';
+					$config['source_image'] = $this->upload->upload_path.$this->upload->file_name;
+
+
+					switch($imgdata['Orientation']) {
+						case 3:
+						$config['rotation_angle']='180';
+						break;
+						case 6:
+						$config['rotation_angle']='270';
+						break;
+						case 8:
+						$config['rotation_angle']='90';
+						break;
+					}
+
+					$this->image_lib->initialize($config); 
+					$this->image_lib->rotate();
+					$gambar=$imgdata['FileName'];
+
+					$data = [
+						'produk_nama' => $produk_nama,
+						'sk_id' => $sk_id,
+						'produk_harga' => $produk_harga,
+						'produk_ket' => $keterangan,
+						'produk_up' => $produk_up,
+						'produk_parent' => $produk_parent,
+						'produk_gambar' => $gambar
+					];
+					
+					$UpdateData=$this->Mymod->UpdateData($table,$data,$where);
+					if($UpdateData){
+						$this->session->set_flashdata('success', 'Berhasil merubah data '.$title);
+						redirect('admin/produk');		
+					}else{
+						$this->session->set_flashdata('error', 'Gagal merubah data '.$title);
+						redirect('admin/produk');		
+					}
 				}
 			}
-		}else{
 
+		}else{
 			$data = [
 				'produk_kode' => $produk_kode,
 				'produk_nama' => $produk_nama,
-				'list_id' => $list_id,
+				'sk_id' => $sk_id,
 				'produk_up' => $produk_up,
 				'produk_parent' => $produk_parent,
 				'produk_harga' => $produk_harga,
 				'produk_ket' => $keterangan,
 			];
-			
+
 			$UpdateData=$this->Mymod->UpdateData($table,$data,$where);
 			if($UpdateData){
 				$this->session->set_flashdata('success', 'Berhasil merubah data '.$title);
@@ -1073,7 +1117,7 @@ class BackendC extends CI_Controller{
 				'rekening_nama' => $rekening_nama,
 				'rekening_nomor' => $rekening_nomor,
 			];
-			
+
 			$UpdateData=$this->Mymod->UpdateData($table,$data,$where);
 			if($UpdateData){
 				$this->session->set_flashdata('success', 'Berhasil merubah data '.$title);

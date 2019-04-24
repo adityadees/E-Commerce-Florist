@@ -60,8 +60,6 @@
                                                                 <div class="dropdown-menu">
                                                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalEdit<?php echo $i['sk_id']; ?>">Edit</a>
                                                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalHapus<?php echo $i['sk_id']; ?>">Hapus</a>
-                                                                    <div class="dropdown-divider"></div>
-                                                                    <a class="dropdown-item" href="#">Lihat Detail</a>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -95,7 +93,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Nama Subkategori: </label>
-                                        <input type="text" placeholder="sk_nama" name="sk_nama" class="form-control">
+                                        <input type="text" placeholder="Sub Kategori" name="sk_nama" class="form-control">
                                     </div>
                                 </div>
 
