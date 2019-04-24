@@ -151,16 +151,11 @@
     <div class="testimoniol-slider">
       <div class="testimoniol-items">
         <div class="item">
-          <img class="img-responsive" src="<?= base_url();?>assets/frontend/img/testimonial/1.png" alt="">
-          <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima</p>
-          <a href="#" title="">John Doe</a><br>
-          <span class="position">CEO & Founder</span>
-        </div>
-        <div class="item">
-          <img class="img-responsive" src="<?= base_url();?>assets/frontend/img/testimonial/2.png" alt="">
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima</p>
-          <a href="#" title="">Tivatheme</a><br>
-          <span class="position">CEO & Founder</span>
+          <img class="img-responsive" src="<?= base_url();?>assets/images/testimonial/andrewa.jpg" alt="" width="100px" height="100px">
+          <p>
+            Layanan bagus dan respons cepat 👍👍 (Asli) Good services and fast response 👍👍
+          </p>
+          <a href="#" title="">Andrew A</a><br>
         </div>
       </div>
     </div><!-- end testimoniol-slider -->
@@ -244,7 +239,7 @@
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
       <div class="banner-item effect">
-        <a class="image-wrap" href="#" title=""><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/banner/banner1-h3.jpg" alt=""></a>
+        <a class="image-wrap" href="#" title=""><img class="img-responsive" src="<?= base_url();?>assets/images/banner/thumblogo.jpg" alt=""></a>
       </div>
     </div>
   </div><!-- end row -->
@@ -320,26 +315,26 @@
   <div class="container">
     <div class="block-gallery block">
       <h4 class="title_block">Gallery</h4>
-      <p class="des-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod ut labore et dolore</p>
+      <!-- <p class="des-text">desc</p> -->
       <div class="block_content">
         <div class="row no-gutters">
           <div class="image-item col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sp-4">
-            <a href="<?= base_url();?>assets/frontend/img/gallery/1.jpg"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/gallery/1.jpg" alt=""></a>
+            <a href="<?= base_url();?>assets/images/gallery/img1.jpg"><img class="img-responsive" src="<?= base_url();?>assets/images/gallery/img1.jpg" alt="" width="600px" height="600px"></a>
           </div>
           <div class="image-item col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sp-4">
-            <a href="<?= base_url();?>assets/frontend/img/gallery/2.jpg"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/gallery/2.jpg" alt=""></a>
+            <a href="<?= base_url();?>assets/images/gallery/img2.jpg"><img class="img-responsive" src="<?= base_url();?>assets/images/gallery/img2.jpg" alt="" width="600px" height="600px"></a>
           </div>
           <div class="image-item col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sp-4">
-            <a href="<?= base_url();?>assets/frontend/img/gallery/3.jpg"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/gallery/3.jpg" alt=""></a>
+            <a href="<?= base_url();?>assets/images/gallery/img3.jpg"><img class="img-responsive" src="<?= base_url();?>assets/images/gallery/img3.jpg" alt="" width="600px" height="600px"></a>
           </div>
           <div class="image-item col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sp-4">
-            <a href="<?= base_url();?>assets/frontend/img/gallery/4.jpg"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/gallery/4.jpg" alt=""></a>
+            <a href="<?= base_url();?>assets/images/gallery/img4.jpg"><img class="img-responsive" src="<?= base_url();?>assets/images/gallery/img4.jpg" alt="" width="600px" height="600px"></a>
           </div>
           <div class="image-item col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sp-4">
-            <a href="<?= base_url();?>assets/frontend/img/gallery/5.jpg"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/gallery/5.jpg" alt=""></a>
+            <a href="<?= base_url();?>assets/images/gallery/img5.jpg"><img class="img-responsive" src="<?= base_url();?>assets/images/gallery/img5.jpg" alt="" width="600px" height="600px"></a>
           </div>
           <div class="image-item col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sp-4">
-            <a href="<?= base_url();?>assets/frontend/img/gallery/6.jpg"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/gallery/6.jpg" alt=""></a>
+            <a href="<?= base_url();?>assets/images/gallery/img6.jpg"><img class="img-responsive" src="<?= base_url();?>assets/images/gallery/img6.jpg" alt="" width="600px" height="600px"></a>
           </div>
         </div>
       </div>

@@ -6,16 +6,29 @@
           <div class="block-keep block">
             <h4 class="title_block">About us</h4>
             <div class="block_content">
-              <p>Lorem Khaled Ipsum is a major key to success. To be successful you’ve got to work hard, to make history, simple, you’ve got to make it. You do know</p>
+              <p>
+                Menyediakan flower box, bunga tangan, bunga wisuda, bunga untuk hadiah ulang tahun, bunga papan, dll
+              </p>
+              <ul class="toggle-footer list-group bullet">
+                <li>
+                  <img src="<?= base_url('assets/images/logo/linemessager.png')?>" width="15px" height="15px">
+                  <a href="#" title="Our Policy">
+                    enggakp99 / diannelviariza
+                  </a>
+                </li>
+                <li>
+                  <img src="<?= base_url('assets/images/logo/telefono.png')?>" width="15px" height="15px">
+                  <a href="#" title="Our Policy">
+                    081368246866 / 082175111777
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
           <div class="social_block">
             <ul class="links">
               <li><a href="#"><em class="fa fa-facebook"></em><span class="unvisible">facebook</span> </a></li>
               <li><a href="#"><em class="fa fa-twitter"></em><span class="unvisible">twitter</span> </a></li>
-              <li><a href="#"><em class="fa fa-google-plus"></em><span class="unvisible">google</span> </a></li>
-              <li><a href="#"><em class="fa fa-linkedin"></em><span class="unvisible">linkedin</span> </a></li>
-              <li><a href="#"><em class="fa fa-pinterest"></em><span class="unvisible">pinterest</span> </a></li>
               <li class="last"><a href="#"><em class="fa fa-instagram"></em><span class="unvisible">instagram</span> </a></li>
             </ul>
           </div><!-- end social_block -->
@@ -48,9 +61,8 @@
           <div class="block-html block">
             <h4 class="title_block">Opening time</h4>
             <div class="block_content">
-              <p>Monday to Friday ....... 8 am - 10 pm</p>
-              <p>Saturday & Sunday ....... 10 am - 9 pm</p>
-              <p>Holiday is off</p>
+              <p>Senin - Sabtu : 08.00 - 20.00</p>
+              <p>Minggu : 09.00 - 17.00</p>
             </div>
           </div><!-- end block-gallery -->
         </div>
@@ -62,7 +74,7 @@
     <div class="container">
       <div class="row">
         <div class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12 col-sp-12">
-          Copyright © 2019 Florist. All Right Reserved
+          Copyright © 2019 ORM Florist. All Right Reserved
         </div>
       </div>
     </div>
@@ -75,33 +87,6 @@
   <a href="#"><i class="fa fa-chevron-up"></i></a>    
 </div><!-- end go-up -->
 </div> <!-- end all -->
-
-<!-- Multi-color -->
-<div id="multi-color" class="multi-color">
-  <span class="handle" title="Style Settings"><i class="fa fa-sun-o"></i></span>
-
-  <h4>Setting</h4>
-
-  <p class="underline"><i class="fa fa-paint-brush"></i>Template color</p>
-  <div class="group-handle multi-groupcolor">
-    <span class="color color1" id="color1"></span>
-    <span class="color color2" id="color2"></span>
-    <span class="color color3" id="color3"></span>
-    <span class="color color4" id="color4"></span>
-    <span class="color color5" id="color5"></span>
-  </div>
-
-  <p class="underline"><i class="fa fa-toggle-on"></i>Fixed header</p>
-  <div class="group-handle"> 
-    <div class="btn-fixedheader">
-      <span class="button yes" data-value="1">Yes</span> 
-      <span class="button no active" data-value="0">No</span>
-    </div>
-  </div>
-
-  <p class="view-demos"><i class="fa fa-hand-o-right"></i><a href="http://tivatheme.com/html/landing-page/byhands/" title="View Other Demos">View All Demos</a></p>
-</div><!-- end multi-color -->
-
 
 
 <?php if(isset($produk)){
@@ -175,28 +160,39 @@
                           ?>
                         </p>
                       </div><!-- end short_description_block -->
-                      <div class="box-info-product clearfix">
-                        <div id="quantity_wanted_p">
-                          <label>Quantity</label>
-                          <div class="group-quantity">
-                            <input type="number" min="1" name="qty" id="quantity_wanted" class="text form-control" value="1">
+                      <form action="<?= base_url();?>frontendc/addtocart" method="POST" name="cartForm">
+                        <div class="box-info-product clearfix">
+                          <div id="quantity_wanted_p">
+                            <label>Quantity</label>
+                            <div class="group-quantity">
+                              <input type="number" min="1" name="qty" id="quantity_wanted" class="text form-control" value="1">
+                            </div>
                           </div>
-                        </div>
-                      </div><!-- end box-info-product -->
-                      <div class="box-cart-bottom clearfix">
-                        <button id="add_to_cart" type="submit" name="Submit" class="exclusive btn button btn-primary" title="Add to cart">
-                          Add to cart
-                        </button>
-                      </div><!-- end box-cart-bottom -->
-                    </div><!-- end pb-centercolumn -->
-                  </div><!-- end pb-center-column -->
-                </div><!-- end row -->
+                        </div><!-- end box-info-product -->
+                        <div class="box-cart-bottom clearfix">
+                          <?php if(isset($_SESSION['logged_in_user'])) {
+                            ?>
+                            <input type="hidden" name="produk_kode" value="<?= $i['produk_kode'];?>">
+                            <button id="add_to_cart" type="submit" name="Submit" class="exclusive btn button btn-primary" title="Add to cart">
+                              Add to cart
+                            </button>
+                          <?php } else { ?>
+                            <button id="add_to_cart" type="submit" name="Submit" class="exclusive btn button btn-primary"  disabled="disabled"  title="Add to cart">
+                             <span class="text-danger">*Anda harus login terlebih dahulu</span>
+                             <?php 
+                           } 
+                           ?>
+                         </div><!-- end box-cart-bottom -->
+                       </form>
+                     </div><!-- end pb-centercolumn -->
+                   </div><!-- end pb-center-column -->
+                 </div><!-- end row -->
 
-              </div>
-            </div>
-          </div> 
+               </div>
+             </div>
+           </div> 
 
-          <div class="modal-footer">
+           <div class="modal-footer">
             <div class="share-social">
               <span>Share:</span>
               <ul class="links list-inline">

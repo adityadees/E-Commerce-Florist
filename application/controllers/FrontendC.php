@@ -40,7 +40,7 @@ class FrontendC extends CI_Controller{
 
 
 
-		$y['title']='Produk';
+		$y['title']='ORM FLORIST';
 		$this->load->view('frontend/layout/header',$y);
 		$this->load->view('frontend/slider/slider');
 		$this->load->view('frontend/index',$x);
