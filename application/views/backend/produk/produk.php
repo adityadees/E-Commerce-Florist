@@ -60,7 +60,7 @@
                                                     <tr>
                                                         <td><?php echo $i['produk_kode'];?></td>
                                                         <td><?php echo $i['produk_nama'];?></td>
-                                                        <td><?php echo $i['list_nama'];?></td>
+                                                        <td><?php echo $i['sk_nama'];?></td>
                                                         <td><?= 'Rp. '.number_format($i['produk_harga']); ?></td>
                                                         <td><?php echo substr($i['produk_ket'],0,50);?>...</td>
                                                         <td><?php echo $i['produk_up']; ?></td>
@@ -130,9 +130,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>List: </label>
-                                        <select class="form-control" name="list_id">
+                                        <select class="form-control" name="sk_id">
                                             <?php foreach ($datalist as $j ) : ?>
-                                                <option value="<?php echo $j['list_id']; ?>"><?php echo $j['list_nama']; ?></option>
+                                                <option value="<?php echo $j['sk_id']; ?>"><?php echo $j['sk_nama']; ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -219,9 +219,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>List: </label>
-                                        <select class="form-control" name="list_id">
+                                        <select class="form-control" name="sk_id">
                                             <?php foreach ($datalist as $j):?>
-                                                <option value="<?= $j['list_id'];?>" <?php if ($j['list_id']==$i['list_id']){echo "selected";} else {} ?>><?= $j['list_nama']; ?></option>
+                                                <option value="<?= $j['sk_id'];?>" <?php if ($j['sk_id']==$i['sk_id']){echo "selected";} else {} ?>><?= $j['sk_nama']; ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>

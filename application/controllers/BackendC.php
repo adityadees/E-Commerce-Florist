@@ -55,14 +55,14 @@ class BackendC extends CI_Controller{
 	{
 
 		$jtable=[
-			'produk' => 'list_id',
-			'list' => 'list_id'
+			'produk' => 'sk_id',
+			'sub_kategori' => 'sk_id'
 		];
 
 		$prod = $this->Mymod->GetDataJoinNW($jtable)->result_array();
-		$list_data = $this->Mymod->ViewData('list');
+		$sk_data = $this->Mymod->ViewData('sub_kategori');
 		$x['produk'] = $prod;
-		$x['datalist'] = $list_data;
+		$x['datalist'] = $sk_data;
 		$y['title']='Produk';
 		$this->load->view('backend/layout/header',$y);
 		$this->load->view('backend/layout/topbar');

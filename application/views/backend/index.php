@@ -13,7 +13,7 @@
                       <i class="icon-camera font-large-2 white"></i>
                     </div>
                     <div class="p-2 bg-gradient-x-primary white media-body">
-                      <h5>Total Products</h5>
+                      <h5>Products</h5>
                       <h5 class="text-bold-400 mb-0"><i class="ft-stack"></i> <?= $cp['cproduk'];?></h5>
                     </div>
                   </div>
@@ -29,7 +29,7 @@
                       <i class="icon-user font-large-2 white"></i>
                     </div>
                     <div class="p-2 bg-gradient-x-danger white media-body">
-                      <h5>Total Customers</h5>
+                      <h5>Customers</h5>
                       <h5 class="text-bold-400 mb-0"><?= $cus['cuser'];?></h5>
                     </div>
                   </div>
@@ -44,7 +44,7 @@
                       <i class="icon-basket-loaded font-large-2 white"></i>
                     </div>
                     <div class="p-2 bg-gradient-x-warning white media-body">
-                      <h5>Total Orders</h5>
+                      <h5>Orders</h5>
                       <h5 class="text-bold-400 mb-0"><?= $cord['cord'];?></h5>
                     </div>
                   </div>
@@ -59,7 +59,7 @@
                       <i class="icon-wallet font-large-2 white"></i>
                     </div>
                     <div class="p-2 bg-gradient-x-success white media-body">
-                      <h5>Total Profit</h5>
+                      <h5>Profit</h5>
                       <h5 class="text-bold-400 mb-0"><?= "Rp. ".number_format($sumprof['sprof']);?></h5>
                     </div>
                   </div>

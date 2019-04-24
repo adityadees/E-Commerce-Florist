@@ -210,34 +210,6 @@ class Mymod extends CI_Model{
         return $res;
     }
 
-/*
-
-
-    public function JoinPesan(){
-        $this->db->select('*');
-        $this->db->from('pemesanan');
-        $this->db->join ( 'pembayaran', 'pemesanan.pemesanan_kode = pembayaran.pemesanan_kode' , 'left' );
-        $this->db->join ( 'user', 'pemesanan.user_id = user.user_id' , 'left' );
-        $res = $this->db->get();
-        return $res;
-    }
-    public function JoinBayar(){
-        $this->db->select('*');
-        $this->db->from('pemesanan');
-        $this->db->join ( 'pembayaran', 'pemesanan.pemesanan_kode = pembayaran.pemesanan_kode' , 'inner' );
-        $this->db->join ( 'user', 'pemesanan.user_id = user.user_id' , 'inner' );
-        $this->db->where ( 'pembayaran.pembayaran_status', 'selesai' );
-        $res = $this->db->get();
-        return $res;
-    }
-    public function joinlist($kode){
-        $this->db->select('*');
-        $this->db->from('list');
-        $this->db->join ( 'produk', 'produk.list_id = list.list_id' , 'inner' );
-        $this->db->where ( 'list.list_id', $kode );
-        $res = $this->db->get();
-        return $res;
-    }
     public function GetDataJoinNW($table){
         $i=1;
         foreach($table as $table_name=>$table_id){ 
@@ -257,6 +229,34 @@ class Mymod extends CI_Model{
         $this->db->select('*');
         $this->db->from('produk');
         $this->db->where('produk_kode !=',$produk_kode);
+        $res = $this->db->get();
+        return $res;
+    }
+    public function JoinPesan(){
+        $this->db->select('*');
+        $this->db->from('pemesanan');
+        $this->db->join ( 'pembayaran', 'pemesanan.pemesanan_kode = pembayaran.pemesanan_kode' , 'left' );
+        $this->db->join ( 'user', 'pemesanan.user_id = user.user_id' , 'left' );
+        $res = $this->db->get();
+        return $res;
+    }
+    public function JoinBayar(){
+        $this->db->select('*');
+        $this->db->from('pemesanan');
+        $this->db->join ( 'pembayaran', 'pemesanan.pemesanan_kode = pembayaran.pemesanan_kode' , 'inner' );
+        $this->db->join ( 'user', 'pemesanan.user_id = user.user_id' , 'inner' );
+        $this->db->where ( 'pembayaran.pembayaran_status', 'selesai' );
+        $res = $this->db->get();
+        return $res;
+    }
+/*
+
+
+    public function joinlist($kode){
+        $this->db->select('*');
+        $this->db->from('list');
+        $this->db->join ( 'produk', 'produk.list_id = list.list_id' , 'inner' );
+        $this->db->where ( 'list.list_id', $kode );
         $res = $this->db->get();
         return $res;
     }
