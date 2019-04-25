@@ -81,6 +81,7 @@ $route['admin/pembayaran']='BackendC/pembayaran';
 $route['admin/Invoice/(:any)']='BackendC/invoice/$1';
 $route['admin/cetak/(:any)']='BackendC/cetak/$1';
 $route['invoice/cetak/(:any)']='BackendC/cetak/$1';
+$route['invoice/view/(:any)']='FrontendC/invoice/$1';
 $route['logout']='loginadmin/logout';
 $route['data/detail/(:any)']='BackendC/detail/$1';
 $route['admin']='BackendC';

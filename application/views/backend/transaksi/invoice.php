@@ -14,14 +14,6 @@
           </div>
         </div>
       </div>
-      <div class="content-header-right col-md-6 col-12">
-        <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
-          <div class="btn-group" role="group">
-            <button class="btn btn-outline-primary dropdown-toggle dropdown-menu-right" id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ft-settings icon-left"></i> Settings</button>
-            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1"><a class="dropdown-item" href="card-bootstrap.html">Bootstrap Cards</a><a class="dropdown-item" href="component-buttons-extended.html">Buttons Extended</a></div>
-          </div><a class="btn btn-outline-primary" href="full-calender-basic.html"><i class="ft-mail"></i></a><a class="btn btn-outline-primary" href="timeline-center.html"><i class="ft-pie-chart"></i></a>
-        </div>
-      </div>
     </div>
     <div class="content-body"><section class="card">
       <div id="invoice-template" class="card-body">
@@ -29,12 +21,12 @@
         <div id="invoice-company-details" class="row">
           <div class="col-md-6 col-sm-12 text-center text-md-left">
             <div class="media">
-              <img src="<?php echo base_url();?>assets/frontend/assets/img/favicon.png" width="150px" height="75px" alt="company logo" class=""/>
+              <img src="<?php echo base_url();?>assets/images/logo/thumbnail.png" width="150px" height="150px" alt="company logo" class=""/>
               <div class="media-body">
                 <ul class="ml-2 px-0 list-unstyled">
-                  <li class="text-bold-800">Gantri Market</li>
-                  <li>KPRI GUKA SMK N 3 PALEMBANG</li>
-                  <li>(+62) 858-883–43527</li>
+                  <li class="text-bold-800">ORM FLORIST</li>
+                  <li>Jl. Suhada No.122, Lorok Pakjo, Ilir Bar. I, Kota Palembang, Sumatera Selatan 30137</li>
+                  <li>(+62) 813-6824-6866 / (+62) 821-7511-1777</li>
                 </ul>
               </div>
             </div>
@@ -115,22 +107,6 @@
                     }else {
                       $bonus=0;
                     }
-               /*       $data = [
-                          'produk_kode' => $gcart['produk_kode'],
-                          'promo_start <='=>$tgl,
-                          'promo_end >'=>$tgl,
-                      ];
-                      $cek = $this->Mymod->CekDataRows('promo',$data);
-
-                      if($cek->num_rows()>0){
-                          $je=$cek->row_array();
-                          $newprc=($gcart['produk_harga']-(($gcart['produk_harga']*$je['promo_diskon'])/100));
-                          $ptotal=$newprc*$gcart['pdp_qty'];
-                      } else {
-                          $ptotal=$gcart['produk_harga']*$gcart['pdp_qty'];
-                      }
-
-                      $total +=$ptotal;*/
                       ?>
                       <tr>
                         <th scope="row"><?= $gcart['produk_kode']; ?></th>
@@ -173,8 +149,8 @@
                 <div class="text-center">
                   <p>Authorized person</p>
                   <img src="<?= base_url()?>assets/backend/images/pages/signature-scan.png" alt="signature" class="height-100"/>
-                  <h6>Amanda Orton</h6>
-                  <p class="text-muted">Managing Director</p>
+                  <h6>Engga</h6>
+                  <p class="text-muted">Owner</p>
                 </div>
               </div>
             </div>

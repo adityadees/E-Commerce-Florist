@@ -65,7 +65,7 @@
                                                         <td><?php echo date('d-m-Y H:i:s',strtotime($i['promo_start']));?></td>
                                                         <td><?php echo date('d-m-Y H:i:s',strtotime($i['promo_end']));?></td>
                                                         <td><?php  if($tgln>$i['promo_end']){echo "Start";}else if($tgln<$i['promo_start']){echo "Belum Mulai";}else{echo "End";};?></td>
-                                                        <td>    <img class="card-img-top img-fluid" src="<?php echo base_url().'assets/images/'.$i['produk_gambar'];?>" alt="Card image cap"></td>
+                                                        <td>    <img class="card-img-top img-fluid" src="<?php echo base_url().'assets/images/product/'.$i['produk_gambar'];?>" alt="Card image cap"></td>
                                                         <td class=" text-center">
                                                             <div class="btn-group mr-1 mb-1">
                                                                 <button type="button" class="btn btn-icon btn-pink dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-info"></i></button>

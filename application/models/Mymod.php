@@ -22,7 +22,7 @@ class Mymod extends CI_Model{
         $res= $this->db->get();
         return $res->row_array();
     }
-
+    
     public function cord(){
         $this->db->select('count(*) as cord');
         $this->db->from('pemesanan');

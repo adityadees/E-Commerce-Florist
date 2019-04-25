@@ -30,6 +30,17 @@
 
 <div id="columns" class="columns-container">
     <div class="container">
+        <?php if($this->session->flashdata('success')){ ?>
+            <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>Sukses!</strong> <?php echo $this->session->flashdata('success'); ?>
+            </div>
+        <?php } else if($this->session->flashdata('error')){?>
+            <div class="alert alert-warning">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>Error!</strong> <?php echo $this->session->flashdata('error'); ?>
+            </div>
+        <?php }?>
         <div class="row">
             <div class="col-md-12"> 
                 <div class="card">
@@ -204,7 +215,7 @@
                                                 if(isset($belumbayar)){
                                                     foreach ($belumbayar->result_array() as $i) : ?>
                                                         <tr>
-                                                            <td><a href="<?= base_url();?>invoice/cetak/<?= $i['pemesanan_kode']; ?>" target="_blank"><?= $i['pemesanan_kode']; ?></a></td>
+                                                            <td><a href="<?= base_url();?>invoice/view/<?= $i['pemesanan_kode']; ?>" target="_blank"><?= $i['pemesanan_kode']; ?></a></td>
                                                             <td class="text-center"><?= "Rp. ".number_format($i['pemesanan_total']); ?></td>
                                                             <td class="text-center"><?= date('d-m-Y',strtotime($i['pemesanan_tanggal'])); ?></td>
                                                             <td class="text-center">
@@ -232,7 +243,7 @@
                                               if(isset($belumdikirim)){
                                                 foreach ($belumdikirim->result_array() as $i) : ?>
                                                     <tr>
-                                                        <td><a href="<?= base_url();?>invoice/cetak/<?= $i['pemesanan_kode']; ?>" target="_blank"><?= $i['pemesanan_kode']; ?></a></td>
+                                                        <td><a href="<?= base_url();?>invoice/view/<?= $i['pemesanan_kode']; ?>" target="_blank"><?= $i['pemesanan_kode']; ?></a></td>
                                                         <td><?= "Rp. ".number_format($i['pemesanan_total']); ?></td>
                                                         <td><?= date('d-m-Y',strtotime($i['pemesanan_tanggal'])); ?></td>
                                                         <td><?php if($i['pembayaran_status']=='pending') {echo "
@@ -256,7 +267,7 @@
                                               if(isset($selesai)){
                                                 foreach ($selesai->result_array() as $i) : ?>
                                                     <tr>
-                                                        <td><a href="<?= base_url();?>invoice/cetak/<?= $i['pemesanan_kode']; ?>" target="_blank"><?= $i['pemesanan_kode']; ?></a></td>
+                                                        <td><a href="<?= base_url();?>invoice/view/<?= $i['pemesanan_kode']; ?>" target="_blank"><?= $i['pemesanan_kode']; ?></a></td>
                                                         <td><?= "Rp. ".number_format($i['pemesanan_total']); ?></td>
                                                         <td><?= date('d-m-Y',strtotime($i['pemesanan_tanggal'])); ?></td>
                                                     </tr>

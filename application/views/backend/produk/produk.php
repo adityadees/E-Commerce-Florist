@@ -72,8 +72,6 @@
                                                                 <div class="dropdown-menu">
                                                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalEdit<?= $i['produk_kode']; ?>">Edit</a>
                                                                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalHapus<?= $i['produk_kode']; ?>">Hapus</a>
-                                                                    <div class="dropdown-divider"></div>
-                                                                    <a class="dropdown-item" href="#">Lihat Detail</a>
                                                                 </div>
                                                             </div>
                                                         </td>

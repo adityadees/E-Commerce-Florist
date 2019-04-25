@@ -71,12 +71,37 @@ class FrontendC extends CI_Controller{
 			$getcart = $this->Mymod->GetDataJoin($jtable,$where);
 
 			$x['getCartData']=$getcart->result_array();
+			$y['title']='Cart';
+			$this->load->view('frontend/layout/header',$y);
+			$this->load->view('frontend/myaccount/cart',$x);
+			$this->load->view('frontend/layout/footer');
+		} else {
+			redirect('Login');
 		}
-		$y['title']='Cart';
-		$this->load->view('frontend/layout/header',$y);
-		$this->load->view('frontend/myaccount/cart',$x);
-		$this->load->view('frontend/layout/footer');
+	}
 
+	public function invoice()
+	{
+		$segment=$this->uri->segment(3);
+
+		$where=[
+			't1.pemesanan_kode'=>$segment,
+		];
+
+		$jtable=[
+			'pemesanan' => 'pemesanan_kode',
+			'pemesanan_detailp' => 'pemesanan_kode',
+			'pemesanan_ship' => 'pemesanan_kode',
+			'pembayaran' => 'pemesanan_kode',
+		];
+
+
+		$data = $this->Mymod->GetDataJoinArr($jtable,$where);
+		$y['title']='Invoice';
+		$x['data'] = $data->row_array();
+		$this->load->view('frontend/layout/header',$y);
+		$this->load->view('frontend/myaccount/invoice',$x);
+		$this->load->view('frontend/layout/footer');
 	}
 
 
@@ -105,12 +130,14 @@ class FrontendC extends CI_Controller{
 			$x['getCartData']=$getcart->result_array();
 			$x['rekening']=$getRekening;
 			$x['user']=$getUser->row_array();
-		}
-		$y['title']='Cart';
-		$this->load->view('frontend/layout/header',$y);
-		$this->load->view('frontend/myaccount/checkout',$x);
-		$this->load->view('frontend/layout/footer');
 
+			$y['title']='Cart';
+			$this->load->view('frontend/layout/header',$y);
+			$this->load->view('frontend/myaccount/checkout',$x);
+			$this->load->view('frontend/layout/footer');
+		} else {
+			redirect('Login');			
+		}
 	}
 
 	public function produk_detail()
@@ -270,6 +297,8 @@ class FrontendC extends CI_Controller{
 			$this->load->view('frontend/layout/header',$y);
 			$this->load->view('frontend/myaccount/myaccount',$x);
 			$this->load->view('frontend/layout/footer');	
+		} else {
+			redirect('Login');
 		}
 	}
 	public function myprofil(){
@@ -361,6 +390,21 @@ class FrontendC extends CI_Controller{
 	}
 
 	public function update_cart(){
+		$qty = $this->input->post('qty');
+		$produk_kode = $this->input->post('produk_kode');
+		for($count = 0; $count < count($produk_kode); $count++){
+
+			$data=[
+				'keranjang_qty'=>$qty[$count],
+			];
+
+			$where=[
+				'produk_kode'=>$produk_kode[$count],
+			];
+			$rd=$this->Mymod->UpdateData('keranjang', $data, $where);
+		}
+		$this->session->set_flashdata('success', 'Berhasil merubah data keranjang');
+		redirect('cart');			
 
 	}
 
@@ -543,35 +587,46 @@ class FrontendC extends CI_Controller{
 	function upbukti(){
 		$pembayaran_nama=$this->input->post('pembayaran_nama');
 		$pemesanan_kode=$this->input->post('pemesanan_kode');
-		$table='pembayaran';
 
-		$where = [
-			'pemesanan_kode' => $pemesanan_kode
-		];
+		$cekinvoice=$this->Mymod->CekDataRows('pemesanan',['pemesanan_kode' => $pemesanan_kode])->num_rows();
+		if($cekinvoice == 0) {
+			$this->session->set_flashdata('error', 'Kode Invoice yang anda masukan salah atau tidak terdaftar, silahkan ulangi lagi');
+			redirect('upload/pembayaran');		
+		} else {
 
-		if(!empty($_FILES['filefoto']['name'])){
-			$config['upload_path'] = 'assets\images';
-			$config['allowed_types'] = 'jpg|jpeg|png|gif';
-			$config['file_name'] = $_FILES['filefoto']['name'];
-			$config['width'] = 1920;
-			$config['height'] = 683;
+			$table='pembayaran';
 
-			$this->load->library('upload',$config);
-			$this->upload->initialize($config);
+			$where = [
+				'pemesanan_kode' => $pemesanan_kode
+			];
 
-			if($this->upload->do_upload('filefoto')){
-				$uploadData = $this->upload->data();
-				$pembayaran_bukti = $uploadData['file_name'];
+			if(!empty($_FILES['filefoto']['name'])){
+				$config['upload_path'] = 'assets\images\transfer';
+				$config['allowed_types'] = 'jpg|jpeg|png|gif';
+				$config['file_name'] = $_FILES['filefoto']['name'];
+				$config['width'] = 1920;
+				$config['height'] = 683;
 
-				$data = [
-					'pembayaran_nama' => $pembayaran_nama,
-					'pembayaran_bukti' => $pembayaran_bukti,
-					'pembayaran_status' => 'pending',
-				];
-				$UpdateData=$this->Mymod->UpdateData($table,$data,$where);
-				if($UpdateData){
-					$this->session->set_flashdata('success', 'Berhasil ngeirim data '.$title);
-					redirect('upload/pembayaran');		
+				$this->load->library('upload',$config);
+				$this->upload->initialize($config);
+
+				if($this->upload->do_upload('filefoto')){
+					$uploadData = $this->upload->data();
+					$pembayaran_bukti = $uploadData['file_name'];
+
+					$data = [
+						'pembayaran_nama' => $pembayaran_nama,
+						'pembayaran_bukti' => $pembayaran_bukti,
+						'pembayaran_status' => 'pending',
+					];
+					$UpdateData=$this->Mymod->UpdateData($table,$data,$where);
+					if($UpdateData){
+						$this->session->set_flashdata('success', 'Berhasil mengirim data '.$title);
+						redirect('upload/pembayaran');		
+					}else{
+						$this->session->set_flashdata('error', 'Gagal ngeirim data '.$title);
+						redirect('upload/pembayaran');		
+					}
 				}else{
 					$this->session->set_flashdata('error', 'Gagal ngeirim data '.$title);
 					redirect('upload/pembayaran');		
@@ -580,9 +635,6 @@ class FrontendC extends CI_Controller{
 				$this->session->set_flashdata('error', 'Gagal ngeirim data '.$title);
 				redirect('upload/pembayaran');		
 			}
-		}else{
-			$this->session->set_flashdata('error', 'Gagal ngeirim data '.$title);
-			redirect('upload/pembayaran');		
 		}
 	}
 }

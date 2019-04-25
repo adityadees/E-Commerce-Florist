@@ -208,10 +208,16 @@
                             </td>
                           </tr>
                           <tr>
-                            <td>Total</td>
-                            <td colspan="2">
-                              <span class="text-danger text-right bold pull-right">  <?= "Rp. ".number_format($total); ?> </span><br>
-                            </td>
+                            <?php if($countcart>0) {?>
+                              <td>Total</td>
+                              <td colspan="2">
+                                <span class="text-danger text-right bold pull-right">  <?= "Rp. ".number_format($total); ?> </span><br>
+                              </td>
+                            <?php } else { ?>
+                              <td colspan="3" class="text-center">
+                                Keranjang anda masih kosong
+                              </td>
+                            <?php } ?>
                           </tr>
                           <tr>
                             <td class="actions" colspan="3">
@@ -228,21 +234,6 @@
                 </div><!-- end blockcart_top -->
               <?php } else {}?>
 
-              <div id="search_block_top" class="block-search dropdown-over pull-right">
-                <div data-toggle="dropdown" class="dropdown-title">
-                  <a href="#" title="Search"><i class="zmdi zmdi-search"></i></a>
-                </div>
-                <div class="dropdown-content">
-                  <form id="searchbox" action="#">
-                    <div class="input-group">
-                      <input class="search_query form-control" type="text" id="search_query_top" name="search_query" placeholder="Search" value="" autocomplete="off">
-                      <div class="input-group-btn">
-                        <button type="submit" name="submit_search" class="btn button btn-primary">Search</button> 
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div><!-- end #search_block_top -->
             </div><!-- end topheader-navholder-lf -->
             <div class="topheader-navholder-rg">
               <span id="btn-menu"><i class="zmdi zmdi-menu"></i></span>

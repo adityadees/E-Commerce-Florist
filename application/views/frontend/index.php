@@ -96,10 +96,20 @@
                           <?php } else {} ?>
                         </div>
                         <div class="box-buttons">
-                          <a class="ajax_add_to_cart_button button btn" href="#" rel="nofollow" title="Add to cart"><i class="zmdi zmdi-shopping-cart"></i></a>
-                          <a class="button btn quick-view" href="#" data-toggle="modal" data-target="#modal_box<?= $gprod['produk_kode']; ?>"  title="Quick view">
-                            <i class="zmdi zmdi-eye"></i>
-                          </a>
+                          <form action="<?= base_url();?>frontendc/addtocart" method="POST" name="cartForm">
+                            <input type="hidden" min="1" name="qty" id="quantity_wanted" class="text form-control" value="1">
+                            <input type="hidden" name="produk_kode" value="<?= $gprod['produk_kode'];?>">
+
+                            <?php if(isset($_SESSION['logged_in_user'])) { ?>
+                              <button class="ajax_add_to_cart_button button btn" title="Add to cart">
+                                <i class="zmdi zmdi-shopping-cart"></i>
+                              </button>
+                            <?php } else { } ?>
+
+                            <a class="button btn quick-view" href="#" data-toggle="modal" data-target="#modal_box<?= $gprod['produk_kode']; ?>" title="Quick view">
+                              <i class="zmdi zmdi-eye"></i>
+                            </a>
+                          </form>
                         </div>
                       </div><!--end left block -->
                       <div class="right-block">
@@ -205,45 +215,54 @@
                         <?php } else {} ?>
                       </div>
                       <div class="box-buttons">
-                        <a class="ajax_add_to_cart_button button btn" href="#" rel="nofollow" title="Add to cart"><i class="zmdi zmdi-shopping-cart"></i></a>
-                        <a class="button btn quick-view" href="#" data-toggle="modal" data-target="#modal_box<?= $gc['produk_kode']; ?>"   title="Quick view">
-                          <i class="zmdi zmdi-eye"></i>
-                        </a>
-                      </a>
-                    </div>
-                  </div><!--end left block -->
-                  <div class="right-block">
-                    <div class="product-box">
-                      <h5 class="name">
-                        <a class="product-name" href="<?= base_url();?>produk/detail/<?= $gc['produk_kode']; ?>" title="<?= $gc['produk_nama'];?>">
-                          <?= $gc['produk_nama'];?>
-                        </a>
-                      </h5>
-                      <div class="content_price">
-                        <?php if($promo->row_array() > 0 ) {?>
-                          <span class="price product-price"><?= "Rp. ".number_format($newprc); ?> </span>
-                          <span class="old-price product-price"> <?= "Rp. ".number_format($gc['produk_harga']); ?> </span>
-                        <?php } else { ?>
-                          <span class="price product-price"><?= "Rp. ".number_format($gc['produk_harga']); ?> </span>
-                        <?php } ?>
-                      </div>
-                    </div><!-- end product-box -->
-                  </div><!--end right block -->
-                </div><!-- end product-container-->
-              </div>
-            <?php endforeach; ?>
+                        <form action="<?= base_url();?>frontendc/addtocart" method="POST" name="cartForm">
+                          <input type="hidden" min="1" name="qty" id="quantity_wanted" class="text form-control" value="1">
+                          <input type="hidden" name="produk_kode" value="<?= $gc['produk_kode'];?>">
 
-          </div><!-- end bestsellers-owlcaousel -->
-        </div><!-- end bock_content -->
-      </div><!-- end tiva-prolist -->
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="banner-item effect">
-        <a class="image-wrap" href="#" title=""><img class="img-responsive" src="<?= base_url();?>assets/images/banner/thumblogo.jpg" alt=""></a>
+                          <?php if(isset($_SESSION['logged_in_user'])) { ?>
+                            <button class="ajax_add_to_cart_button button btn" title="Add to cart">
+                              <i class="zmdi zmdi-shopping-cart"></i>
+                            </button>
+                          <?php } else { } ?>
+
+                          <a class="button btn quick-view" href="#" data-toggle="modal" data-target="#modal_box<?= $gc['produk_kode']; ?>" title="Quick view">
+                            <i class="zmdi zmdi-eye"></i>
+                          </a>
+                        </form>
+                      </div>
+                    </div><!--end left block -->
+                    <div class="right-block">
+                      <div class="product-box">
+                        <h5 class="name">
+                          <a class="product-name" href="<?= base_url();?>produk/detail/<?= $gc['produk_kode']; ?>" title="<?= $gc['produk_nama'];?>">
+                            <?= $gc['produk_nama'];?>
+                          </a>
+                        </h5>
+                        <div class="content_price">
+                          <?php if($promo->row_array() > 0 ) {?>
+                            <span class="price product-price"><?= "Rp. ".number_format($newprc); ?> </span>
+                            <span class="old-price product-price"> <?= "Rp. ".number_format($gc['produk_harga']); ?> </span>
+                          <?php } else { ?>
+                            <span class="price product-price"><?= "Rp. ".number_format($gc['produk_harga']); ?> </span>
+                          <?php } ?>
+                        </div>
+                      </div><!-- end product-box -->
+                    </div><!--end right block -->
+                  </div><!-- end product-container-->
+                </div>
+              <?php endforeach; ?>
+
+            </div><!-- end bestsellers-owlcaousel -->
+          </div><!-- end bock_content -->
+        </div><!-- end tiva-prolist -->
       </div>
-    </div>
-  </div><!-- end row -->
-</div><!-- end container -->
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="banner-item effect">
+          <a class="image-wrap" href="#" title=""><img class="img-responsive" src="<?= base_url();?>assets/images/banner/thumblogo.jpg" alt=""></a>
+        </div>
+      </div>
+    </div><!-- end row -->
+  </div><!-- end container -->
 </div><!-- end section-bestsellers -->
 
 

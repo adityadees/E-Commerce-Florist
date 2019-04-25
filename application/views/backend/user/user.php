@@ -66,8 +66,6 @@
 																<div class="dropdown-menu">
 																	<a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalEdit<?php echo $i['user_id']; ?>">Edit</a>
 																	<a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalHapus<?php echo $i['user_id']; ?>">Hapus</a>
-																	<div class="dropdown-divider"></div>
-																	<a class="dropdown-item" href="#">Lihat Detail</a>
 																</div>
 															</div>
 														</td>

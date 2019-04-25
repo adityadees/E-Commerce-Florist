@@ -395,29 +395,10 @@ class BackendC extends CI_Controller{
 		$title='kategori';
 		$table='kategori';
 
-		if(!empty($_FILES['filefoto']['name'])){
-			$config['upload_path'] = 'assets\images';
-			$config['allowed_types'] = 'jpg|jpeg|png|gif';
-			$config['file_name'] = $_FILES['filefoto']['name'];
-			$config['width'] = 700;
-			$config['height'] = 700;
-
-			$this->load->library('upload',$config);
-			$this->upload->initialize($config);
-
-			if($this->upload->do_upload('filefoto')){
-				$uploadData = $this->upload->data();
-				$kategori_gambar = $uploadData['file_name'];
-			}else{
-				$kategori_gambar='defaultkat.png';
-			}
-		}else{
-			$kategori_gambar='defaultkat.png';
-		}
+		
 		$data =[ 
 			'kategori_nama'=>$kategori_nama,
 			'kategori_ket'=>$keterangan,
-			'kategori_gambar' => $kategori_gambar
 		];
 		$InsertData=$this->Mymod->InsertData($table,$data);
 		if($InsertData){
@@ -490,70 +471,18 @@ class BackendC extends CI_Controller{
 			'kategori_id' => $kategori_id
 		];
 
-		if(!empty($_FILES['filefoto']['name'])){
-			$config['upload_path'] = 'assets\images';
-			$config['allowed_types'] = 'jpg|jpeg|png|gif';
-			$config['file_name'] = $_FILES['filefoto']['name'];
-			$config['width'] = 700;
-			$config['height'] = 700;
-
-			$this->load->library('upload',$config);
-			$this->upload->initialize($config);
-
-			if($this->upload->do_upload('filefoto')){
-				$uploadData = $this->upload->data();
-				$kategori_gambar = $uploadData['file_name'];
-
-				$data = [
-					'kategori_nama'=>$kategori_nama,
-					'kategori_ket'=>$keterangan,
-					'kategori_gambar' => $kategori_gambar
-				];
-				$UpdateData=$this->Mymod->UpdateData($table,$data,$where);
-				if($UpdateData){
-					$this->session->set_flashdata('success', 'Berhasil merubah data '.$title);
-					redirect('admin/kategori');		
-				}else{
-					$this->session->set_flashdata('error', 'Gagal merubah data '.$title);
-					redirect('admin/kategori');		
-				}
-			}else{
-				
-				$data =[ 
-					'kategori_nama'=>$kategori_nama,
-					'kategori_ket'=>$keterangan,
-				];
-				$UpdateData=$this->Mymod->UpdateData($table,$data,$where);
-				if($UpdateData){
-					$this->session->set_flashdata('success', 'Berhasil merubah data '.$title);
-					redirect('admin/kategori');		
-				}else{
-					$this->session->set_flashdata('error', 'Gagal merubah data '.$title);
-					redirect('admin/kategori');		
-				}
-			}
+		$data =[ 
+			'kategori_nama'=>$kategori_nama,
+			'kategori_ket'=>$keterangan,
+		];
+		$UpdateData=$this->Mymod->UpdateData($table,$data,$where);
+		if($UpdateData){
+			$this->session->set_flashdata('success', 'Berhasil merubah data '.$title);
+			redirect('admin/kategori');		
 		}else{
-
-			$data =[ 
-				'kategori_nama'=>$kategori_nama,
-				'kategori_ket'=>$keterangan,
-			];
-			$UpdateData=$this->Mymod->UpdateData($table,$data,$where);
-			if($UpdateData){
-				$this->session->set_flashdata('success', 'Berhasil merubah data '.$title);
-				redirect('admin/kategori');		
-			}else{
-				$this->session->set_flashdata('error', 'Gagal merubah data '.$title);
-				redirect('admin/kategori');		
-			}
+			$this->session->set_flashdata('error', 'Gagal merubah data '.$title);
+			redirect('admin/kategori');		
 		}
-
-
-
-
-
-
-
 	}
 
 	function delete_kategori(){
@@ -640,7 +569,7 @@ class BackendC extends CI_Controller{
 		$title='slider';
 
 		if(!empty($_FILES['filefoto']['name'])){
-			$config['upload_path'] = 'assets\images';
+			$config['upload_path'] = 'assets\images\slider';
 			$config['allowed_types'] = 'jpg|jpeg|png|gif';
 			$config['file_name'] = $_FILES['filefoto']['name'];
 			$config['width'] = 1920;
@@ -688,7 +617,7 @@ class BackendC extends CI_Controller{
 		];
 
 		if(!empty($_FILES['filefoto']['name'])){
-			$config['upload_path'] = 'assets\images';
+			$config['upload_path'] = 'assets\images\slider';
 			$config['allowed_types'] = 'jpg|jpeg|png|gif';
 			$config['file_name'] = $_FILES['filefoto']['name'];
 			$config['width'] = 1920;

@@ -49,11 +49,10 @@
           <div class="footer-block block">
             <h4 class="title_block">Account</h4>
             <ul class="toggle-footer list-group bullet">
-              <li><a href="page-login.html" title="Login">Login</a></li>
-              <li><a href="page-register.html" title="Register">Register</a></li>
-              <li><a href="#" title="Wishlist">Wishlist</a></li>
-              <li><a href="#" title="Order History">Order History</a></li>
-              <li><a href="page-checkout.html" title="Checkout">Checkout</a></li>
+              <li><a href="<?= base_url('Login')?>" title="Login">Login</a></li>
+              <li><a href="<?= base_url('Register')?>" title="Register">Register</a></li>
+              <li><a href="<?= base_url('contactus')?>" title="Register">Contact Us</a></li>
+              <li><a href="<?= base_url('aboutus')?>" title="Register">About Us</a></li>
             </ul>
           </div>
         </div>
@@ -170,29 +169,27 @@
                           </div>
                         </div><!-- end box-info-product -->
                         <div class="box-cart-bottom clearfix">
-                          <?php if(isset($_SESSION['logged_in_user'])) {
-                            ?>
+                          <?php if(isset($_SESSION['logged_in_user'])) { ?>
                             <input type="hidden" name="produk_kode" value="<?= $i['produk_kode'];?>">
                             <button id="add_to_cart" type="submit" name="Submit" class="exclusive btn button btn-primary" title="Add to cart">
                               Add to cart
                             </button>
                           <?php } else { ?>
-                            <button id="add_to_cart" type="submit" name="Submit" class="exclusive btn button btn-primary"  disabled="disabled"  title="Add to cart">
-                             <span class="text-danger">*Anda harus login terlebih dahulu</span>
-                             <?php 
-                           } 
-                           ?>
-                         </div><!-- end box-cart-bottom -->
-                       </form>
-                     </div><!-- end pb-centercolumn -->
-                   </div><!-- end pb-center-column -->
-                 </div><!-- end row -->
+                            <button id="add_to_cart" type="submit" name="Submit" class="exclusive btn button btn-primary"  disabled="disabled"  title="Add to cart">Add to cart
+                            </button>
+                            <span class="text-danger">*Anda harus login terlebih dahulu</span>
+                          <?php } ?>
+                        </div><!-- end box-cart-bottom -->
+                      </form>
+                    </div><!-- end pb-centercolumn -->
+                  </div><!-- end pb-center-column -->
+                </div><!-- end row -->
 
-               </div>
-             </div>
-           </div> 
+              </div>
+            </div>
+          </div> 
 
-           <div class="modal-footer">
+          <div class="modal-footer">
             <div class="share-social">
               <span>Share:</span>
               <ul class="links list-inline">

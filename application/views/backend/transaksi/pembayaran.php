@@ -106,7 +106,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <a href="<?php echo base_url().'assets/images/'.$i['pembayaran_bukti'];?>" target="_blank"><img class="card-img-top img-fluid" src="<?php echo base_url().'assets/images/'.$i['pembayaran_bukti'];?>" alt="Card image cap" style="height:250px;"></a>
+                                <a href="<?php echo base_url().'assets/images/transfer/'.$i['pembayaran_bukti'];?>" target="_blank"><img class="card-img-top img-fluid" src="<?php echo base_url().'assets/images/transfer/'.$i['pembayaran_bukti'];?>" alt="Card image cap" style="height:250px;"></a>
                             </div>
                         </div>
                     </div>

@@ -162,12 +162,20 @@
                                     <?php } else {} ?>
                                 </div>
                                 <div class="box-buttons">
-                                    <a class="ajax_add_to_cart_button button btn" href="#" rel="nofollow" title="Add to cart">
-                                        <i class="zmdi zmdi-shopping-cart"></i>
-                                    </a>
-                                    <a class="button btn quick-view" href="#" data-toggle="modal" data-target="#modal_box<?= $prod['produk_kode']; ?>"  title="Quick view">
-                                        <i class="zmdi zmdi-eye"></i>
-                                    </a>
+                                    <form action="<?= base_url();?>frontendc/addtocart" method="POST" name="cartForm">
+                                        <input type="hidden" min="1" name="qty" id="quantity_wanted" class="text form-control" value="1">
+                                        <input type="hidden" name="produk_kode" value="<?= $prod['produk_kode'];?>">
+
+                                        <?php if(isset($_SESSION['logged_in_user'])) { ?>
+                                            <button class="ajax_add_to_cart_button button btn" title="Add to cart">
+                                                <i class="zmdi zmdi-shopping-cart"></i>
+                                            </button>
+                                        <?php } else { } ?>
+
+                                        <a class="button btn quick-view" href="#" data-toggle="modal" data-target="#modal_box<?= $prod['produk_kode']; ?>" title="Quick view">
+                                            <i class="zmdi zmdi-eye"></i>
+                                        </a>
+                                    </form>
                                 </div>
                             </div><!--end left block -->
                             <div class="right-block">
@@ -231,12 +239,20 @@
                                             <?php } else {} ?>
                                         </div>
                                         <div class="box-buttons">
-                                            <a class="ajax_add_to_cart_button button btn" href="#" rel="nofollow" title="Add to cart">
-                                                <i class="zmdi zmdi-shopping-cart"></i>
-                                            </a>
-                                            <a class="button btn quick-view" href="#" data-toggle="modal" data-target="#modal_box<?= $prod['produk_kode']; ?>"  title="Quick view">
-                                                <i class="zmdi zmdi-eye"></i>
-                                            </a>
+                                            <form action="<?= base_url();?>frontendc/addtocart" method="POST" name="cartForm">
+                                                <input type="hidden" min="1" name="qty" id="quantity_wanted" class="text form-control" value="1">
+                                                <input type="hidden" name="produk_kode" value="<?= $prod['produk_kode'];?>">
+
+                                                <?php if(isset($_SESSION['logged_in_user'])) { ?>
+                                                    <button class="ajax_add_to_cart_button button btn" title="Add to cart">
+                                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                                    </button>
+                                                <?php } else { } ?>
+
+                                                <a class="button btn quick-view" href="#" data-toggle="modal" data-target="#modal_box<?= $prod['produk_kode']; ?>" title="Quick view">
+                                                    <i class="zmdi zmdi-eye"></i>
+                                                </a>
+                                            </form>
                                         </div>
                                     </div><!--end left block -->
                                 </div>

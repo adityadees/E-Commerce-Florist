@@ -4,12 +4,12 @@
       <div id="invoice-company-details" class="row">
         <div class="col-md-6 col-sm-12 text-center text-md-left">
           <div class="media">
-            <img src="<?php echo base_url();?>assets/frontend/assets/img/favicon.png" width="150px" height="75px" alt="company logo" class=""/>
+            <img src="<?= base_url();?>assets/images/logo/thumbnail.png" width="150px" height="150px" alt="company logo" class=""/>
             <div class="media-body">
               <ul class="ml-2 px-0 list-unstyled">
-                <li class="text-bold-800">Gantri Market</li>
-                <li>KPRI GUKA SMK N 3 PALEMBANG</li>
-                <li>(+62) 858-883–43527</li>
+                <li class="text-bold-800">ORM FLORIST</li>
+                <li>Jl. Suhada No.122, Lorok Pakjo, Ilir Bar. I, Kota Palembang, Sumatera Selatan 30137</li>
+                <li>(+62) 813-6824-6866 / (+62) 821-7511-1777</li>
               </ul>
             </div>
           </div>
@@ -127,8 +127,8 @@
             <div class="text-center">
               <p>Authorized person</p>
               <img src="<?= base_url()?>assets/backend/images/pages/signature-scan.png" alt="signature" class="height-100"/>
-              <h6>Amanda Orton</h6>
-              <p class="text-muted">Managing Director</p>
+              <h6>Engga</h6>
+              <p class="text-muted">Owner</p>
             </div>
           </div>
         </div>

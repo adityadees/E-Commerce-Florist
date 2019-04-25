@@ -1,28 +1,38 @@
-<div class="breadcrumbs_area contact_bread">
+<div id="breadcrumb" class="clearfix">
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="breadcrumb_content">
-                    <div class="breadcrumb_header">
-                        <a href="index.html"><i class="fa fa-home"></i></a>
-                        <span><i class="fa fa-angle-right"></i></span>
-                        <span>Pembayaran</span>
-                    </div>
-                    <div class="breadcrumb_title">
-                        <h2>Upload Bukti Transfer</h2>
-                    </div>
-                </div>
-            </div>
+        <div class="breadcrumb clearfix">
+            <ul class="ul-breadcrumb">
+                <li><a href="<?= base_url()?>" title="Home">Home</a></li>
+                <li><span>Pembayaran</span></li>
+            </ul>
+            <h2 class="bread-title">Pembayaran</h2>
         </div>
     </div>
-</div>
-<section class="main_content_area my_account">
+</div><!-- end breadcrumb -->
+
+
+<div id="columns" class="columns-container">
     <div class="container">
-        <div class="account_dashboard">
+
+        <?php if($this->session->flashdata('success')){ ?>
+            <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>Sukses!</strong> <?php echo $this->session->flashdata('success'); ?>
+            </div>
+        <?php } else if($this->session->flashdata('error')){?>
+            <div class="alert alert-warning">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>Error!</strong> <?php echo $this->session->flashdata('error'); ?>
+            </div>
+        <?php }?>
+        
+        <div class="contact-us">
             <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                     <div class="row">
-                        <div class="ml-auto mr-auto col-lg-6">
+                        <h2 class="title_block">Upload Bukti Transfer</h2>
+                        <div class="col-md-6 col-md-offset-3">
                             <form action="<?= base_url();?>frontendc/upbukti" method="POST" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label>Invoice</label>
@@ -41,7 +51,10 @@
                         </div>
                     </div>
                 </div>
+
             </div>
-        </div>
-    </div>          
-</section>        
+        </div><!-- end contact-us -->
+    </div><!-- end container -->
+</div><!--end columns-->
+<br>
+<br>
