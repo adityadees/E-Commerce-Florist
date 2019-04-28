@@ -24,7 +24,8 @@
 	display: block !important;
 	position: relative !important; 
 	width: 100% !important;
-	height: auto !important;
+	/*height: auto !important;*/
+	height: 534px !important;
 }
 
 /* If an image is wrapped in a link */

@@ -128,35 +128,35 @@
                 <div class="card-content">
                   <div class="card-body">
                     <p>Data Transaksi Terakhir.</p>
-                  </div>
-                  <div class="table-responsive">
-                    <table id="recent-orders" class="table table-hover mb-0 ps-container ps-theme-default">
-                      <thead>
-                        <tr>
-                          <th>Invoice#</th>
-                          <th>Customer Name</th>
-                          <th>Status</th>
-                          <th>Amount</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php foreach ($indexlastorder->result_array() as $i)  : ?>
+                    <div class="table-responsive">
+                      <table id="recent-orders" class="table table-hover mb-0 ps-container ps-theme-default">
+                        <thead>
                           <tr>
-                            <td class="text-truncate"><a href="<?= base_url(); ?>admin/Invoice/<?= $i['pemesanan_kode'];?>"><?= $i['pemesanan_kode'];?></a></td>
-                            <td class="text-truncate"><?= $i['user_nama']; ?></td>
-                            <td class="text-truncate">
-                              <?php if ($i['pemesanan_status']=='selesai'){?>
-                                <span class="badge badge-default badge-success"><?= $i['pemesanan_status']; ?></span>
-                              <?php } else if($i['pemesanan_status']=='waiting'){?>
-                                <span class="badge badge-default badge-info"><?= $i['pemesanan_status']; ?></span>
-                              <?php } ?>
-                            </td>
-                            <td class="text-truncate"><?= "Rp. ".number_format($i['pemesanan_total']); ?></td>
+                            <th>Invoice#</th>
+                            <th>Customer Name</th>
+                            <th>Status</th>
+                            <th>Amount</th>
                           </tr>
-                        <?php endforeach; ?>
+                        </thead>
+                        <tbody>
+                          <?php foreach ($indexlastorder->result_array() as $i)  : ?>
+                            <tr>
+                              <td class="text-truncate"><a href="<?= base_url(); ?>admin/Invoice/<?= $i['pemesanan_kode'];?>"><?= $i['pemesanan_kode'];?></a></td>
+                              <td class="text-truncate"><?= $i['user_nama']; ?></td>
+                              <td class="text-truncate">
+                                <?php if ($i['pemesanan_status']=='selesai'){?>
+                                  <span class="badge badge-default badge-success"><?= $i['pemesanan_status']; ?></span>
+                                <?php } else if($i['pemesanan_status']=='waiting'){?>
+                                  <span class="badge badge-default badge-info"><?= $i['pemesanan_status']; ?></span>
+                                <?php } ?>
+                              </td>
+                              <td class="text-truncate"><?= "Rp. ".number_format($i['pemesanan_total']); ?></td>
+                            </tr>
+                          <?php endforeach; ?>
 
-                      </tbody>
-                    </table>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>

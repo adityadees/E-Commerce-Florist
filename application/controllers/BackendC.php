@@ -615,7 +615,7 @@ class BackendC extends CI_Controller{
 		$where = [
 			'slider_id' => $slider_id
 		];
-
+ 
 		if(!empty($_FILES['filefoto']['name'])){
 			$config['upload_path'] = 'assets\images\slider';
 			$config['allowed_types'] = 'jpg|jpeg|png|gif';
@@ -875,6 +875,7 @@ class BackendC extends CI_Controller{
 		$produk_parent=$this->input->post('produk_parent');
 		$sk_id=$this->input->post('sk_id');
 		$keterangan=$this->input->post('keterangan');
+		$oldimg=$this->input->post('oldimg');
 		$table='produk';
 		$title='produk';
 
@@ -894,6 +895,11 @@ class BackendC extends CI_Controller{
 				$config['source_image'] = $this->upload->upload_path.$this->upload->file_name;
 				$filename = $_FILES['filefoto']['tmp_name'];
 
+				if($oldimg != null){
+					if(file_exists('assets/images/product/'.$oldimg)) {
+						unlink('assets/images/product/'.$oldimg);
+					}
+				}
 
 				$imgdata=exif_read_data($this->upload->upload_path.$this->upload->file_name, 'IFD0');
 

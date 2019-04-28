@@ -204,6 +204,7 @@
                                     <div class="form-group">
                                         <label>Nama: </label>
                                         <input type="hidden" name="produk_kode" value="<?= $i['produk_kode'];?>">
+                                        <input type="hidden" name="oldimg" value="<?= $i['produk_gambar'];?>">
                                         <input type="text" placeholder="Nama Produk" name="produk_nama" value="<?= $i['produk_nama']; ?>" class="form-control">
                                     </div>
                                 </div>

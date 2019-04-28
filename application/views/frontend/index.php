@@ -1,24 +1,25 @@
-  
 <div class="tiva-slideshow-wrapper">
   <div id="tiva-slideshow" class="nivoSlider">
-    <?php $no=0; foreach ($slider as $slide) : $no++;?>
-    <a href="#" title="Slideshow image"><img class="img-responsive" src="<?= base_url()?>assets/images/slider/<?= $slide['slider_gambar']; ?>" title="#caption<?= $no; ?>" alt="Slideshow image"></a>
+    <?php $no=0; 
+    foreach ($slider as $slide) : $no++;?>
+      <a href="#" title="Slideshow image">
+        <img class="img-responsive" src="<?= base_url()?>assets/images/slider/<?= $slide['slider_gambar']; ?>" title="#caption<?= $no; ?>" alt="Slideshow image">
+      </a>
+    <?php endforeach; ?>
+  </div>
+
+  <?php $no=0; 
+  foreach ($slider as $slide) : $no++;?>
+    <div id="caption<?= $no; ?>" class="nivo-html-caption">
+      <div class="tiva-caption">
+        <div class="left-right hidden-xs normal very_large_60"><?= $slide['slider_judul']; ?></div>
+        <div class="left-right  hidden-md hidden-sm hidden-xs slow medium_16">
+          <?= $slide['slider_ket']; ?>
+        </div>
+      </div>
+    </div>
   <?php endforeach; ?>
 </div>
-
-<?php $no=0; foreach ($slider as $slide) : $no++;?>
-<div id="caption<?= $no; ?>" class="nivo-html-caption">
-  <div class="tiva-caption">
-    <div class="left-right hidden-xs normal very_large_60"><?= $slide['slider_judul']; ?></div>
-    <div class="left-right  hidden-md hidden-sm hidden-xs slow medium_16">
-      <?= $slide['slider_ket']; ?>
-    </div>
-  </div>
-</div>
-<?php endforeach; ?>
-
-</div><!-- end tiva-slideshow-wrapper -->
-
 
 <div id="columns" class="columns-container">
   <div class="section section-tabsproduct">
@@ -264,71 +265,6 @@
     </div><!-- end row -->
   </div><!-- end container -->
 </div><!-- end section-bestsellers -->
-
-
-
-<div class="section section-servies">
-  <div class="services-items">
-    <div class="row no-gutters">
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-sp-12">
-        <div class="services-item services-item1">
-          <div class="media">    
-            <div class="icon-box">   
-              <i class="zmdi zmdi-truck"></i>
-            </div>    
-            <div class="media-body">        
-              <h4><a title="Free shipping" href="#">Free shipping</a></h4>        
-              <p>Guaranteed delivery in 3 days</p>    
-            </div>
-          </div>
-        </div><!--end services-item-->
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-sp-12">
-        <div class="services-item services-item2">
-          <div class="media">    
-            <div class="icon-box">   
-              <i class="zmdi zmdi-mail-reply-all"></i>
-            </div>    
-            <div class="media-body">        
-              <h4><a title="Exchanges & returns" href="#">Exchanges & returns</a></h4>        
-              <p>100% money back within 30 days</p>    
-            </div>
-          </div>
-        </div><!--end services-item-->
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-sp-12">
-        <div class="services-item services-item3">
-          <div class="media">    
-            <div class="icon-box">   
-              <i class="zmdi zmdi-comments"></i>
-            </div>    
-            <div class="media-body">        
-              <h4><a title="Online support" href="#">Online support</a></h4>        
-              <p>Live chat or call us 24/7</p>    
-            </div>
-          </div>
-        </div><!--end services-item-->
-      </div>
-    </div>
-  </div><!-- end services-items -->
-</div><!-- end section-servies -->
-
-<div class="section section-manufacture" style="">
-  <div class="container">
-    <div class="block manufacturers_block">
-      <ul class="manufacture_block">
-        <li><a href="#"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/brand/logo_image1.jpg" alt=""></a></li>
-        <li><a href="#"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/brand/logo_image2.jpg" alt=""></a></li>
-        <li><a href="#"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/brand/logo_image3.jpg" alt=""></a></li>
-        <li><a href="#"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/brand/logo_image4.jpg" alt=""></a></li>
-        <li><a href="#"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/brand/logo_image5.jpg" alt=""></a></li>
-        <li><a href="#"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/brand/logo_image1.jpg" alt=""></a></li>
-        <li><a href="#"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/brand/logo_image2.jpg" alt=""></a></li>
-        <li><a href="#"><img class="img-responsive" src="<?= base_url();?>assets/frontend/img/brand/logo_image3.jpg" alt=""></a></li>
-      </ul><!--end manufacture_block-->
-    </div><!-- end Manufactures -->
-  </div><!-- end container -->
-</div><!-- end section-manufacture -->
 
 <section class="section section-gallery" style="background: #fafafa">
   <div class="container">

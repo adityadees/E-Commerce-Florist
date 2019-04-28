@@ -34,7 +34,7 @@
                         <div class="form-group required">
                             <div class="col-lg-12">
                                 <label for="Username">Username <sup>*</sup></label>
-                                <input type="text" class="form-control" id="Username" name="Username">
+                                <input type="text" class="form-control" id="Username" name="username">
                             </div>
                         </div>
 

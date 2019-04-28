@@ -133,7 +133,7 @@ class Mymod extends CI_Model{
         $this->db->from(''.$table1.' t1');
         $this->db->join(''.$table2.' t2','t1.'.$t1id.'=t2.'.$t2id);
         $this->db->where($where);
-        $this->db->limit('5');
+        $this->db->limit('4');
         $res = $this->db->get();
         return $res;
     }
