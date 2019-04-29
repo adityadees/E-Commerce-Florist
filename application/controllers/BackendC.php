@@ -122,8 +122,6 @@ class BackendC extends CI_Controller{
 		$this->load->view('backend/layout/footer');
 	}
 
-
-
 	public function promo()
 	{
 
@@ -309,7 +307,7 @@ class BackendC extends CI_Controller{
 	}	
 
 
-	function edit_user(){
+	public function edit_user(){
 		$nama=$this->input->post('nama');
 		$email=$this->input->post('email');
 		$tel=$this->input->post('tel');
@@ -343,7 +341,7 @@ class BackendC extends CI_Controller{
 	}	
 
 
-	function konfirmasi_pembayaran(){
+	public function konfirmasi_pembayaran(){
 		$pembayaran_kode=$this->input->post('pembayaran_kode');
 		$title = 'Konfirmasi';
 
@@ -359,7 +357,7 @@ class BackendC extends CI_Controller{
 		redirect('admin/pemesanan');		
 	}
 
-	function konfirmasi_pengiriman(){
+	public function konfirmasi_pengiriman(){
 		$pemesanan_kode=$this->input->post('pemesanan_kode');
 		$title = 'Konfirmasi';
 
@@ -375,7 +373,7 @@ class BackendC extends CI_Controller{
 		redirect('admin/pemesanan');		
 	}
 
-	function delete_user(){
+	public function delete_user(){
 		$title = 'User';
 		$user_id=$this->input->post('user_id');
 		$table='user';
@@ -388,7 +386,7 @@ class BackendC extends CI_Controller{
 		redirect('admin/user');
 	}		
 
-	function save_kategori(){
+	public function save_kategori(){
 
 		$kategori_nama=$this->input->post('kategori_nama');
 		$keterangan=$this->input->post('keterangan');
@@ -411,7 +409,7 @@ class BackendC extends CI_Controller{
 	}	
 
 
-	function save_promo(){
+	public function save_promo(){
 		$produk_kode=$this->input->post('produk_kode');
 		$promo_diskon=$this->input->post('promo_diskon');
 		$promo_start=$this->input->post('promo_start');
@@ -429,7 +427,7 @@ class BackendC extends CI_Controller{
 		$this->session->set_flashdata('success', 'Berhasil menambah '.$title);
 		redirect('admin/promo');
 	}	
-	function save_subkategori(){
+	public function save_subkategori(){
 		$sk_nama=$this->input->post('sk_nama');
 		$kategori_id=$this->input->post('kategori_id');
 
@@ -444,7 +442,7 @@ class BackendC extends CI_Controller{
 		redirect('admin/subkategori');
 	}	
 
-	function save_list(){
+	public function save_list(){
 		$list_nama=$this->input->post('list_nama');
 		$sk_id=$this->input->post('sk_id');
 
@@ -460,7 +458,7 @@ class BackendC extends CI_Controller{
 	}	
 
 
-	function edit_kategori(){
+	public function edit_kategori(){
 		$kategori_nama=$this->input->post('kategori_nama');
 		$keterangan=$this->input->post('keterangan');
 		$kategori_id=$this->input->post('kategori_id');
@@ -485,7 +483,7 @@ class BackendC extends CI_Controller{
 		}
 	}
 
-	function delete_kategori(){
+	public function delete_kategori(){
 		$title = 'kategori';
 		$kategori_id=$this->input->post('kategori_id');
 		$table='kategori';
@@ -499,7 +497,7 @@ class BackendC extends CI_Controller{
 	}		
 
 
-	function edit_list(){
+	public function edit_list(){
 		$list_nama=$this->input->post('list_nama');
 		$sk_id=$this->input->post('sk_id');
 		$list_id=$this->input->post('list_id');
@@ -517,7 +515,7 @@ class BackendC extends CI_Controller{
 		redirect('admin/list');		
 	}
 
-	function delete_list(){
+	public function delete_list(){
 		$title = 'List';
 		$list_id=$this->input->post('list_id');
 		$table='list';
@@ -531,7 +529,7 @@ class BackendC extends CI_Controller{
 	}		
 
 
-	function edit_subkategori(){
+	public function edit_subkategori(){
 		$sk_nama=$this->input->post('sk_nama');
 		$sk_id=$this->input->post('sk_id');
 		$kategori_id=$this->input->post('kategori_id');
@@ -549,7 +547,7 @@ class BackendC extends CI_Controller{
 		redirect('admin/subkategori');		
 	}
 
-	function delete_subkategori(){
+	public function delete_subkategori(){
 		$title = 'Sub-Kategori';
 		$sk_id=$this->input->post('sk_id');
 		$table='sub_kategori';
@@ -569,97 +567,49 @@ class BackendC extends CI_Controller{
 		$title='slider';
 
 		if(!empty($_FILES['filefoto']['name'])){
-			$config['upload_path'] = 'assets\images\slider';
-			$config['allowed_types'] = 'jpg|jpeg|png|gif';
-			$config['file_name'] = $_FILES['filefoto']['name'];
-			$config['width'] = 1920;
-			$config['height'] = 683;
 
-			$this->load->library('upload',$config);
+			$config['upload_path'] = './assets/images/slider';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; 
+			$config['encrypt_name'] = TRUE; 
+
 			$this->upload->initialize($config);
+			if(!empty($_FILES['filefoto']['name'])){
 
-			if($this->upload->do_upload('filefoto')){
-				$uploadData = $this->upload->data();
-				$slider_gambar = $uploadData['file_name'];
-			}else{
-				$slider_gambar='';
-			}
-		}else{
-			$slider_gambar='';
-		}
+				if ($this->upload->do_upload('filefoto')){
+					$gbr = $this->upload->data();
+					$config['image_library']='gd2';
+					$config['source_image']='./assets/images/slider/'.$gbr['file_name'];
+					$config['create_thumb']= FALSE;
+					$config['maintain_ratio']= FALSE;
+					$config['quality']= '100%';
+					$config['width']= 1920;
+					$config['height']= 760;
+					$config['new_image']= './assets/images/slider/'.$gbr['file_name'];
+					$this->load->library('image_lib', $config);
+					$this->image_lib->resize();
 
-		$data =[ 
-			'slider_judul' => $slider_judul,
-			'slider_ket' => $keterangan,
-			'slider_gambar' => $slider_gambar
-		];
-		$InsertData=$this->Mymod->InsertData($table,$data);
-		if($InsertData){
-			$this->session->set_flashdata('success', 'Berhasil menambah data '.$title);
-			redirect('admin/slider');		
-		}else{
-			$this->session->set_flashdata('error', 'Gagal menambah data '.$title);
-			redirect('admin/slider');		
-		}
-
-	}	
-
-
-	function edit_slider(){
-		$slider_judul=$this->input->post('slider_judul');
-		$slider_id=$this->input->post('slider_id');
-		$keterangan=$this->input->post('keterangan');
-		$table='slider';
-		$title='slider';
-
-		$where = [
-			'slider_id' => $slider_id
-		];
- 
-		if(!empty($_FILES['filefoto']['name'])){
-			$config['upload_path'] = 'assets\images\slider';
-			$config['allowed_types'] = 'jpg|jpeg|png|gif';
-			$config['file_name'] = $_FILES['filefoto']['name'];
-			$config['width'] = 1920;
-			$config['height'] = 683;
-
-			$this->load->library('upload',$config);
-			$this->upload->initialize($config);
-
-			if($this->upload->do_upload('filefoto')){
-				$uploadData = $this->upload->data();
-				$slider_gambar = $uploadData['file_name'];
-
-				$data = [
-					'slider_judul' => $slider_judul,
-					'slider_ket' => $keterangan,
-					'slider_gambar' => $slider_gambar
-				];
-				$UpdateData=$this->Mymod->UpdateData($table,$data,$where);
-				if($UpdateData){
-					$this->session->set_flashdata('success', 'Berhasil merubah data '.$title);
-					redirect('admin/slider');		
-				}else{
-					$this->session->set_flashdata('error', 'Gagal merubah data '.$title);
-					redirect('admin/slider');		
+					$gambar=$gbr['file_name'];
+					
+					$data =[ 
+						'slider_judul' => $slider_judul,
+						'slider_ket' => $keterangan,
+						'slider_gambar' => $gambar
+					];
+					$InsertData=$this->Mymod->InsertData($table,$data);
+					if($InsertData){
+						$this->session->set_flashdata('success', 'Berhasil merubah data '.$title);
+						redirect('admin/slider');		
+					}else{
+						$this->session->set_flashdata('error', 'Gagal merubah data '.$title);
+						redirect('admin/slider');		
+					}
 				}
-			}else{
-				
-				$data =[ 
-					'slider_judul' => $slider_judul,
-					'slider_ket' => $keterangan,
-				];
-				$UpdateData=$this->Mymod->UpdateData($table,$data,$where);
-				if($UpdateData){
-					$this->session->set_flashdata('success', 'Berhasil merubah data '.$title);
-					redirect('admin/slider');		
-				}else{
-					$this->session->set_flashdata('error', 'Gagal merubah data '.$title);
-					redirect('admin/slider');		
-				}
-			}
-		}else{
 
+			}else{
+				$this->session->set_flashdata('error', 'Gagal mengupload gambar '.$title);
+				redirect('admin/slider');	
+			}
+		} else{
 			$data =[ 
 				'slider_judul' => $slider_judul,
 				'slider_ket' => $keterangan,
@@ -672,10 +622,95 @@ class BackendC extends CI_Controller{
 				$this->session->set_flashdata('error', 'Gagal merubah data '.$title);
 				redirect('admin/slider');		
 			}
+
+		}
+
+	}	
+
+
+	public function edit_slider(){
+		$slider_judul=$this->input->post('slider_judul');
+		$slider_id=$this->input->post('slider_id');
+		$keterangan=$this->input->post('keterangan');
+		$oldimg=$this->input->post('oldimg');
+		$table='slider';
+		$title='slider';
+
+		$where = [
+			'slider_id' => $slider_id
+		];
+
+		if(!empty($_FILES['filefoto']['name'])){
+
+			$config['upload_path'] = './assets/images/slider';
+			$config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; 
+			$config['encrypt_name'] = TRUE; 
+
+			$this->upload->initialize($config);
+			if(!empty($_FILES['filefoto']['name'])){
+
+				if ($this->upload->do_upload('filefoto')){
+					$gbr = $this->upload->data();
+                //Compress Image
+					$config['image_library']='gd2';
+					$config['source_image']='./assets/images/slider/'.$gbr['file_name'];
+					$config['create_thumb']= FALSE;
+					$config['maintain_ratio']= FALSE;
+					$config['quality']= '100%';
+					$config['width']= 1920;
+					$config['height']= 760;
+					$config['new_image']= './assets/images/slider/'.$gbr['file_name'];
+					$this->load->library('image_lib', $config);
+					$this->image_lib->resize();
+
+					$gambar=$gbr['file_name'];
+					
+
+					$data = [
+						'slider_judul' => $slider_judul,
+						'slider_ket' => $keterangan,
+						'slider_gambar' => $gambar
+					];
+
+					$UpdateData=$this->Mymod->UpdateData($table,$data,$where);
+					if($UpdateData){
+
+						if($oldimg != null){
+							if(file_exists('assets/images/slider/'.$oldimg)) {
+								unlink('assets/images/slider/'.$oldimg);
+							}
+						}
+
+						$this->session->set_flashdata('success', 'Berhasil merubah data '.$title);
+						redirect('admin/slider');		
+					}else{
+						$this->session->set_flashdata('error', 'Gagal merubah data '.$title);
+						redirect('admin/slider');		
+					}
+				}
+
+			}else{
+				$this->session->set_flashdata('error', 'Gagal mengupload gambar '.$title);
+				redirect('admin/slider');	
+			}
+		} else{
+			$data =[ 
+				'slider_judul' => $slider_judul,
+				'slider_ket' => $keterangan,
+			];
+			$UpdateData=$this->Mymod->UpdateData($table,$data,$where);
+			if($UpdateData){
+				$this->session->set_flashdata('success', 'Berhasil merubah data '.$title);
+				redirect('admin/slider');		
+			}else{
+				$this->session->set_flashdata('error', 'Gagal merubah data '.$title);
+				redirect('admin/slider');		
+			}
+
 		}
 	}
 
-	function delete_slider(){
+	public function delete_slider(){
 		$title = 'slider';
 		$slider_id=$this->input->post('slider_id');
 		$table='slider';
@@ -952,7 +987,7 @@ class BackendC extends CI_Controller{
 						'produk_parent' => $produk_parent,
 						'produk_gambar' => $gambar
 					];
-					
+
 					$UpdateData=$this->Mymod->UpdateData($table,$data,$where);
 					if($UpdateData){
 						$this->session->set_flashdata('success', 'Berhasil merubah data '.$title);
@@ -1078,7 +1113,7 @@ class BackendC extends CI_Controller{
 		$this->session->set_flashdata('success', 'Berhasil menghapus data '.$title);
 		redirect('admin/produk');
 	}		
-	function delete_rekening(){
+	public function delete_rekening(){
 		$title = 'Rekening';
 		$rekening_id=$this->input->post('rekening_id');
 		$table='rekening';

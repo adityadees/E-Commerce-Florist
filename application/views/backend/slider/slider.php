@@ -144,6 +144,7 @@
 													<label>Slider Judul: </label>
 													<input type="text" placeholder="Slidername" name="slider_judul" class="form-control" value="<?php echo $i['slider_judul']; ?>" >
 													<input type="hidden" placeholder="Slidername" name="slider_id" class="form-control" value="<?php echo $i['slider_id']; ?>" readonly="readonly">
+													<input type="hidden"  name="oldimg" class="form-control" value="<?php echo $i['slider_gambar']; ?>" readonly="readonly">
 												</div>
 											</div>
 											<div class="col-md-12">
