@@ -26,21 +26,26 @@ class FrontendC extends CI_Controller{
 			't1.promo_start <='=>$tgl,
 			't1.promo_end >'=>$tgl,
 		];
-	//	$promo = $this->Mymod->GetDataJoin($jtable,$where)->result_array();
-	//	$shoprand = $this->Mymod->order_by_rand('kategori');
 
-	//	$x['produk'] = $prod;
 		$xx['produk'] = $prod;
-	//	$x['shoprand'] = $shoprand;
 		$x['kategori'] = $this->data['kat'];
 		$y['kategori'] = $this->data['kat'];
 		$x['slider'] = $slide;
-	//	$x['promo'] = $promo;
 		$x['best'] = $this->data['best'];
-
-
-
 		$y['title']='ORM FLORIST';
+
+
+		$access_token = "2709387629.1677ed0.94730093b6734dfd9ceb9bbca2b6cf79";
+		$photo_count = 6;
+		$json_link = "https://api.instagram.com/v1/users/self/media/recent/?";
+		$json_link .="access_token={$access_token}&count={$photo_count}";
+		$json = file_get_contents($json_link);
+		$obj = json_decode(preg_replace('/("\w+"):(\d+)/', '\\1:"\\2"', $json), true);
+
+		$x['ig'] =  $obj['data'];
+
+	//	print_r($obj['data']);
+	//	exit();
 		$this->load->view('frontend/layout/header',$y);
 		$this->load->view('frontend/slider/slider');
 		$this->load->view('frontend/index',$x);

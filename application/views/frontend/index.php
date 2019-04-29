@@ -273,9 +273,14 @@
       <!-- <p class="des-text">desc</p> -->
       <div class="block_content">
         <div class="row no-gutters">
-          <div class="image-item col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sp-4">
-            <a href="<?= base_url();?>assets/images/gallery/img1.jpg"><img class="img-responsive" src="<?= base_url();?>assets/images/gallery/img1.jpg" alt="" width="600px" height="600px"></a>
+          <?php foreach($ig as $da) :
+//print_r($da['images']['thumbnail']['url']);
+           ?>
+           <div class="image-item col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sp-4">
+            <a href="<?= $da['images']['standard_resolution']['url'] ?>"><img class="img-responsive" src="<?= $da['images']['thumbnail']['url'] ?>" alt="" width="600px" height="600px"></a>
           </div>
+        <?php endforeach; ?>
+          <!-- 
           <div class="image-item col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sp-4">
             <a href="<?= base_url();?>assets/images/gallery/img2.jpg"><img class="img-responsive" src="<?= base_url();?>assets/images/gallery/img2.jpg" alt="" width="600px" height="600px"></a>
           </div>
@@ -290,7 +295,7 @@
           </div>
           <div class="image-item col-lg-2 col-md-2 col-sm-2 col-xs-2 col-sp-4">
             <a href="<?= base_url();?>assets/images/gallery/img6.jpg"><img class="img-responsive" src="<?= base_url();?>assets/images/gallery/img6.jpg" alt="" width="600px" height="600px"></a>
-          </div>
+          </div> -->
         </div>
       </div>
     </div><!-- end block-gallery -->
