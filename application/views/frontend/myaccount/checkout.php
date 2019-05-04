@@ -66,46 +66,46 @@
 </div><!-- end breadcrumb -->
 
 
-<form method="POST" action="<?php base_url();?>frontendc/save_checkout">
-    <div id="columns" class="columns-container">
-        <!-- container -->
-        <div class="container">
+<div id="columns" class="columns-container">
+    <!-- container -->
+    <div class="container">
 
 
-            <?php if($this->session->flashdata('success')){ ?>
-                <div class="alert alert-success">
-                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                    <strong>Sukses!</strong> <?php echo $this->session->flashdata('success'); ?>
-                </div>
-            <?php } else if($this->session->flashdata('error')){?>
-                <div class="alert alert-warning">
-                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                    <strong>Error!</strong> <?php echo $this->session->flashdata('error'); ?>
-                </div>
-            <?php }?>
+        <?php if($this->session->flashdata('success')){ ?>
+            <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>Sukses!</strong> <?php echo $this->session->flashdata('success'); ?>
+            </div>
+        <?php } else if($this->session->flashdata('error')){?>
+            <div class="alert alert-warning">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>Error!</strong> <?php echo $this->session->flashdata('error'); ?>
+            </div>
+        <?php }?>
 
-            <?php
-            if(isset($_SESSION['logged_in_user'])){
-                $ses_user=$_SESSION['user_id'];
-                $join='user';
-                $where=[
-                    't1.user_id'=>$ses_user,
-                ];
+        <?php
+        if(isset($_SESSION['logged_in_user'])){
+            $ses_user=$_SESSION['user_id'];
+            $join='user';
+            $where=[
+                't1.user_id'=>$ses_user,
+            ];
 
-                $jtable=[
-                    'keranjang' => 'produk_kode',
-                    'produk' => 'produk_kode'
-                ];
-                $kategori = $this->Mymod->ViewData('kategori');
-                $getcart = $this->Mymod->GetDataJoin($jtable,$where);
+            $jtable=[
+                'keranjang' => 'produk_kode',
+                'produk' => 'produk_kode'
+            ];
+            $kategori = $this->Mymod->ViewData('kategori');
+            $getcart = $this->Mymod->GetDataJoin($jtable,$where);
 
-                $countcart=$getcart->num_rows();
-                $getCartData=$getcart->result_array();
-            }else {}
+            $countcart=$getcart->num_rows();
+            $getCartData=$getcart->result_array();
+        }else {}
 
-            if($countcart > 0){
-                ?>
+        if($countcart > 0){
+            ?>
 
+            <form method="POST" action="<?php base_url();?>frontendc/save_checkout">
                 <div class="page-checkout">
                     <div class="row">
                         <div class="checkoutleft col-lg-9 col-md-9 col-sm-9 col-xs-12">
@@ -391,6 +391,7 @@
                                                             </a>
                                                         </td>
                                                         <td class="product-name">
+                                                            <input type="text" name="cid" value="<?= $cid; ?>">
                                                             <a href="<?= base_url('produk/detail/'.$gcart['produk_kode'])?>"><?= $gcart['produk_nama']; ?></a>
                                                         </td>
                                                         <td class="product-price text-right">
@@ -408,6 +409,7 @@
                                                             </span>
                                                         </td>
                                                         <td class="product-quantity text-center">
+                                                            <input type="text" name="produk_kode[]" value="<?= $gcart['produk_kode'];?>">
                                                             <input type="hidden" name="pdp_qty[]" value="<?= $gcart['keranjang_qty'];?>">
                                                             <?= $gcart['keranjang_qty']; ?>
                                                         </td>
@@ -567,18 +569,18 @@
                     </div>
                 </div>
             </div>
-        <?php } else { ?>
+        </form>
+    <?php } else { ?>
 
-            <div class="alert alert-success" role="alert">
-                <h4 class="alert-heading">Keranjang anda masih kosong!</h4>
-                <p>
-                    Silahkan berbelanja terlebih dahulu untuk melakukan checkout. 
-                    <br>
-                    <a href="<?= base_url('produk')?>" class="btn btn-primary">Belanja sekarang</a>
-                </p>
-            </div>
-        <?php } ?>
-        <br>
-    </div> <!-- end container -->
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Keranjang anda masih kosong!</h4>
+            <p>
+                Silahkan berbelanja terlebih dahulu untuk melakukan checkout. 
+                <br>
+                <a href="<?= base_url('produk')?>" class="btn btn-primary">Belanja sekarang</a>
+            </p>
+        </div>
+    <?php } ?>
+    <br>
+</div> <!-- end container -->
 </div><!--end columns -->
-</form>

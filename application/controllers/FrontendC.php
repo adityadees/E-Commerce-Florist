@@ -441,7 +441,6 @@ class FrontendC extends CI_Controller{
 
 
 
-
 		$data=[
 			'pemesanan_kode'=>$pemesanan_kode,
 			'user_id'=>$user_id,
@@ -449,39 +448,43 @@ class FrontendC extends CI_Controller{
 			'pemesanan_ongkir'=>$pemesanan_ongkir,
 			'pemesanan_total'=>$pemesanan_total,
 		];
+
+
 		$rd=$this->Mymod->insertData('pemesanan',$data);
 
 		if($rd){
 			if($pembayaran_method=='ditempat'){
-				$data=[
+				$data_pembayaran=[
 					'pemesanan_kode'=>$pemesanan_kode,
 					'pembayaran_method'=>$pembayaran_method,
 				];
 			}else {
-				$data=[
+				$data_pembayaran=[
 					'pemesanan_kode'=>$pemesanan_kode,
 					'pembayaran_method'=>$pembayaran_method,
 					'pembayaran_status'=>'belumbayar',
 				];
 			}
 
-			$rs=$this->Mymod->insertData('pembayaran',$data);
+			$rs=$this->Mymod->insertData('pembayaran',$data_pembayaran);
+
 			if($rs){
-				for($count = 0; $count < sizeof($cid); $count++){
-					$data=[
+				for($count = 0; $count < ($cid); $count++){
+					$detailp=[
 						'pemesanan_kode'=>$pemesanan_kode,
-						'produk_kode'=>$prd_kd[$count],
+						'produk_kode'=>$produk_kode[$count],
 						'pdp_qty'=>$pdp_qty[$count],
 						'pdp_bonus'=>$pdp_bonus[$count],
 						'pdp_harga'=>$pdp_harga[$count],
 						'pdp_diskon'=>$pdp_diskon[$count],
 						'pdp_subtotal'=>$pdp_subtotal[$count],
 					];
-					$this->Mymod->insertData('pemesanan_detailp',$data);
+					$this->Mymod->insertData('pemesanan_detailp',$detailp);
+
 				}
 
 				if($infoakun=='sesuai'){
-					$data=[
+					$ship=[
 						'pemesanan_kode'=>$pemesanan_kode,
 						'ps_nama'=>$user_nama,
 						'ps_email'=>$user_email,
@@ -489,7 +492,7 @@ class FrontendC extends CI_Controller{
 						'ps_alamat'=>$user_alamat,
 					];
 				}else {
-					$data=[
+					$ship=[
 						'pemesanan_kode'=>$pemesanan_kode,
 						'ps_nama'=>$ps_nama,
 						'ps_email'=>$ps_email,
@@ -499,7 +502,7 @@ class FrontendC extends CI_Controller{
 				}
 
 
-				$this->Mymod->insertData('pemesanan_ship',$data);
+				$this->Mymod->insertData('pemesanan_ship',$ship);
 
 				$table='keranjang';
 				$user_id=$_SESSION['user_id'];
