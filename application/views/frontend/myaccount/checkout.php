@@ -391,7 +391,7 @@
                                                             </a>
                                                         </td>
                                                         <td class="product-name">
-                                                            <input type="text" name="cid" value="<?= $cid; ?>">
+                                                            <input type="hidden" name="cid" value="<?= $cid; ?>">
                                                             <a href="<?= base_url('produk/detail/'.$gcart['produk_kode'])?>"><?= $gcart['produk_nama']; ?></a>
                                                         </td>
                                                         <td class="product-price text-right">
@@ -404,12 +404,12 @@
 
                                                                 <?php   } else { ?>
                                                                     <input type="hidden" name="pdp_harga[]" value="<?= $gcart['produk_harga'];?>">
-                                                                    <span class="old_price"><?= "Rp. ".number_format($gcart['produk_harga']);?> </span><br>
+                                                                    <span class="new_price"><?= "Rp. ".number_format($gcart['produk_harga']);?> </span><br>
                                                                 <?php }?>
                                                             </span>
                                                         </td>
                                                         <td class="product-quantity text-center">
-                                                            <input type="text" name="produk_kode[]" value="<?= $gcart['produk_kode'];?>">
+                                                            <input type="hidden" name="produk_kode[]" value="<?= $gcart['produk_kode'];?>">
                                                             <input type="hidden" name="pdp_qty[]" value="<?= $gcart['keranjang_qty'];?>">
                                                             <?= $gcart['keranjang_qty']; ?>
                                                         </td>
