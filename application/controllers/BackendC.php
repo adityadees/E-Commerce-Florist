@@ -358,6 +358,17 @@ class BackendC extends CI_Controller{
 	}
 
 	public function konfirmasi_pengiriman(){
+		$template = file_get_contents(APPPATH."views/backend/email/template.php");
+		$variables = array();
+
+		$variables['name'] = $this->input->post('user_nama');
+		$variables['kode'] = $this->input->post('pemesanan_kode');
+		foreach($variables as $key => $value)
+		{
+			$template = str_replace('{{ '.$key.' }}', $value, $template);
+		}
+
+	
 		$pemesanan_kode=$this->input->post('pemesanan_kode');
 		$title = 'Konfirmasi';
 
@@ -369,6 +380,30 @@ class BackendC extends CI_Controller{
 			'pemesanan_kode' => $pemesanan_kode
 		];		
 		$this->Mymod->UpdateData($table,$data,$where);
+
+
+		$config = Array(
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_port' => 465, //587
+			'smtp_user' => 'Enggakurniap@gmail.com',
+			'smtp_pass' => 'sendiri99',
+			'mailtype'  => 'html',
+			'charset'   => 'iso-8859-1'
+		);
+		$this->load->library('email', $config);
+		$this->email->set_newline("\r\n");
+		$this->email->from('Enggakurniap@gmail.com', 'ORM FLORIST');
+		$this->email->to($this->input->post('user_email')); 
+		$this->email->subject('Barang Telah Dikirim');
+		$this->email->message($template);
+		if (!$this->email->send())
+		{
+			echo $this->email->print_debugger();
+
+		}
+
+
 		$this->session->set_flashdata('success', 'Berhasil merubah data '.$title);
 		redirect('admin/pemesanan');		
 	}

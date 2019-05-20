@@ -217,6 +217,8 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <input type="hidden" name="pemesanan_kode" value="<?php echo $i['pemesanan_kode'];?>">
+                                                <input type="hidden" name="user_email" value="<?php echo $i['user_email'];?>">
+                                                <input type="hidden" name="user_nama" value="<?php echo $i['user_nama'];?>">
                                             </div>
                                         </div>
                                     </div>
